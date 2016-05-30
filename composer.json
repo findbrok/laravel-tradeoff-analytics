@@ -1,0 +1,37 @@
+{
+    "name": "findbrok/laravel-tradeoff-analytics",
+    "description": "A simple Laravel 5 Wrapper around IBM Watson Tradeoff Analytics API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Percy Mamedy",
+            "email": "percymamedy@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "findbrok/php-watson-api-bridge": "1.0.*",
+        "laravel/framework": "5.0.*|5.1.*|5.2.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "~4.1",
+        "guzzlehttp/guzzle": "5.3.*|6.0.*|6.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "FindBrok\\TradeoffAnalytics\\": "src/"
+        },
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

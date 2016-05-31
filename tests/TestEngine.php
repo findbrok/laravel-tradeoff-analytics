@@ -1,11 +1,11 @@
 <?php
 
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestCase
+ * Class TestEngine
  */
-class TestCase extends OrchestraTestCase
+class TestEngine extends TestCase
 {
     /**
      * Our config path
@@ -13,6 +13,13 @@ class TestCase extends OrchestraTestCase
      * @var string
      */
     protected $ourConfigPath;
+
+    /**
+     * Analytics engine
+     *
+     * @var \FindBrok\TradeoffAnalytics\Engine
+     */
+    protected $engine;
 
     /**
      * Setup the test environment.
@@ -24,6 +31,20 @@ class TestCase extends OrchestraTestCase
         parent::setUp();
         //Setup our config path
         $this->ourConfigPath = __DIR__.'/../src/config/tradeoff-analytics.php';
+        //Set up engine
+        $this->engine = app('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
+    }
+
+    /**
+     * Clean up the testing environment before the next test.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->engine);
+        unset($this->ourConfigPath);
     }
 
     /**
@@ -85,12 +106,11 @@ class TestCase extends OrchestraTestCase
      */
     public function testGetCredentialWithDefaultCredentials()
     {
-        $engine = $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
         $this->assertEquals([
             'username' => 'superSecretUsername',
             'password' => 'superSecretPassword',
             'url' => 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'
-        ], $engine->getCredentials());
+        ], $this->engine->getCredentials());
     }
 
     /**
@@ -105,13 +125,13 @@ class TestCase extends OrchestraTestCase
         Config::set('tradeoff-analytics.credentials.foo.username', env('TRADEOFF_ANALYTICS_USERNAME1'));
         Config::set('tradeoff-analytics.credentials.foo.password', env('TRADEOFF_ANALYTICS_PASSWORD1'));
 
-        $engine = $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
-        $engine->usingCredentials('foo');
+        $this->engine->usingCredentials('foo');
+
         $this->assertEquals([
             'username' => 'superSecretUsername1',
             'password' => 'superSecretPassword1',
             'url' => 'superSecretUrl1'
-        ], $engine->getCredentials());
+        ],  $this->engine->getCredentials());
     }
 
     /**
@@ -121,15 +141,15 @@ class TestCase extends OrchestraTestCase
      */
     public function testAppendHeadersMethod()
     {
-        $engine = $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
-        $engine->appendHeaders([
+        $this->engine->appendHeaders([
             'X-foo' => 'Bar'
         ]);
         $this->assertEquals([
             'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
             'X-foo' => 'Bar',
             'X-Watson-Learning-Opt-Out' => false
-        ], $engine->getHeaders());
+        ], $this->engine->getHeaders());
     }
 
     /**
@@ -140,7 +160,6 @@ class TestCase extends OrchestraTestCase
      */
     public function testMakeBridgeMethod()
     {
-        $engine = $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
-        $this->assertInstanceOf('FindBrok\WatsonBridge\Bridge', $engine->makeBridge());
+        $this->assertInstanceOf('FindBrok\WatsonBridge\Bridge', $this->engine->makeBridge());
     }
 }

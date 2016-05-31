@@ -22,7 +22,8 @@ abstract class AbstractEngine
      * @var array
      */
     protected $headers = [
-        'Accept' => 'application/json'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json'
     ];
 
     /**

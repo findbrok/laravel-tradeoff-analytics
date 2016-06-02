@@ -193,4 +193,15 @@ class ProblemColumn extends BaseCollector
 
         'description'
     ];
+
+    /**
+     * Add a Range object to the Column
+     *
+     * @param mixed $range
+     * @return self
+     */
+    public function addRange($range)
+    {
+        $this->put('range', $range);
+    }
 }

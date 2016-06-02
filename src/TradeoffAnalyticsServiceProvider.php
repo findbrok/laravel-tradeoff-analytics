@@ -20,7 +20,21 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $binds = [
-        TradeoffAnalyticsInterface::class => Engine::class
+        TradeoffAnalyticsInterface::class => Engine::class,
+    ];
+
+    /**
+     * Defines all data collectors class aliases
+     *
+     * @var array
+     */
+    protected $dataCollectors = [
+        'TradeoffAnalyticsProblem' => DataCollection\Problem::class,
+        'TradeoffAnalyticsProblemColumn' => DataCollection\ProblemColumn::class,
+        'TradeoffAnalyticsProblemOption' => DataCollection\ProblemOption::class,
+        'TradeoffAnalyticsProblemColumnCategoricalRange' => DataCollection\ProblemColumnCategoricalRange::class,
+        'TradeoffAnalyticsProblemColumnDateRange' => DataCollection\ProblemColumnDateRange::class,
+        'TradeoffAnalyticsProblemColumnValueRange' => DataCollection\ProblemColumnValueRange::class
     ];
 
     /**
@@ -92,21 +106,11 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function registerDataCollections()
     {
-        //Register Problem object
-        $this->app->bind('TradeoffAnalyticsProblem', function ($app, $items = []) {
-            return new DataCollection\Problem($items);
-        });
-        //Register ProblemColumn object
-        $this->app->bind('TradeoffAnalyticsProblemColumn', function ($app, $items = []) {
-            return new DataCollection\ProblemColumn($items);
-        });
-        //Register ProblemOption Object
-        $this->app->bind('TradeoffAnalyticsProblemOption', function ($app, $items = []) {
-            return new DataCollection\ProblemOption($items);
-        });
-        //Register ProblemColumnCategoricalRange object
-        $this->app->bind('TradeoffAnalyticsProblemColumnCategoricalRange', function ($app, $items) {
-            return new DataCollection\ProblemColumnCategoricalRange($items);
+        //Bind Each Collector
+        collect($this->dataCollectors)->each(function ($className, $aliasName) {
+            $this->app->bind($aliasName, function ($app, $items = []) use ($className) {
+                return new $className($items);
+            });
         });
     }
 

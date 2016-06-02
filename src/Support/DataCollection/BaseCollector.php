@@ -40,7 +40,7 @@ class BaseCollector extends Collection
      */
     public function isFieldSupported($field)
     {
-        return $this->hasSupportedFields() && collect($this->supportedFields)->has($field);
+        return $this->hasSupportedFields() && in_array($field, $this->supportedFields);
     }
 
     /**
@@ -84,5 +84,23 @@ class BaseCollector extends Collection
     {
         //Parent merge
         return parent::merge($this->filterOutUnsupported($items));
+    }
+
+    /**
+     * Add items to the Column
+     *
+     * @param array $items
+     * @return self
+     */
+    public function add($items = [])
+    {
+        //Column not empty
+        if(! $this->isEmpty()) {
+            $this->items = $this->merge($items)->all();
+            return $this;
+        }
+        //Override items
+        $this->items = $items;
+        return $this;
     }
 }

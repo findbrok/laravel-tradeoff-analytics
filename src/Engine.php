@@ -11,4 +11,5 @@ use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface;
  */
 class Engine extends AbstractEngine implements TradeoffAnalyticsInterface
 {
+
 }

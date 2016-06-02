@@ -11,13 +11,15 @@
     "require": {
         "php": ">=5.5.0",
         "findbrok/php-watson-api-bridge": "1.0.*",
-        "laravel/framework": "5.0.*|5.1.*|5.2.*"
+        "laravel/framework": "5.0.*|5.1.*|5.2.*",
+        "nesbot/carbon": "1.21.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
         "orchestra/testbench": "~3.0",
         "phpunit/phpunit": "~4.1",
-        "guzzlehttp/guzzle": "5.3.*|6.0.*|6.2.*"
+        "guzzlehttp/guzzle": "5.3.*|6.0.*|6.2.*",
+        "fzaninotto/faker": "^1.6"
     },
     "autoload": {
         "psr-4": {

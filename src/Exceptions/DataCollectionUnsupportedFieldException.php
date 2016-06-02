@@ -16,7 +16,7 @@ class DataCollectionUnsupportedFieldException extends RuntimeException
      *
      * @var string
      */
-    protected $message = 'Tradeoff Analytics DataCollectionException: Unsupported field %fieldName% in %ObjectName% Object';
+    protected $message = 'Tradeoff Analytics DataCollectionException: Unsupported field {%fieldName%} in {%ObjectName%} Object';
 
     /**
      * Create a new instance of UnsupportedProblemFieldException

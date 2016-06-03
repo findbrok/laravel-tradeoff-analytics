@@ -9,4 +9,11 @@ namespace FindBrok\TradeoffAnalytics\Contracts;
  */
 interface TradeoffAnalyticsInterface
 {
+    /**
+     * Resolve the problem dilemma
+     *
+     * @param \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem $problem
+     * @return mixed
+     */
+    public function getDilemma($problem);
 }

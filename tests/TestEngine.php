@@ -1,5 +1,7 @@
 <?php
 
+use FindBrok\WatsonBridge\Bridge;
+use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -22,6 +24,13 @@ class TestEngine extends TestCase
     protected $engine;
 
     /**
+     * Watson Bridge
+     *
+     * @var Bridge
+     */
+    protected $bridge;
+
+    /**
      * Setup the test environment.
      *
      * @return void
@@ -33,6 +42,8 @@ class TestEngine extends TestCase
         $this->ourConfigPath = __DIR__.'/../src/config/tradeoff-analytics.php';
         //Set up engine
         $this->engine = app('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
+        //Mock Bridge
+        $this->mockBridge();
     }
 
     /**
@@ -45,6 +56,42 @@ class TestEngine extends TestCase
         parent::tearDown();
         unset($this->engine);
         unset($this->ourConfigPath);
+        unset($this->bridge);
+    }
+
+    /**
+     * Mock Watson Bridge
+     */
+    public function mockBridge()
+    {
+        $this->bridge = $this->getMockBuilder(Bridge::class)->disableOriginalConstructor()->setMethods(['post'])->getMock();
+        $this->bridge->expects($this->any())->method('post')->with($this->equalTo('v1/dilemmas?generate_visualization=true'), $this->anything())
+            ->willReturn(
+                new Response(200, ['X-Foo' => 'Bar'], $this->getResolutionResponseBody())
+            );
+
+        //Override bridge in IOC
+        $this->app->instance('TradeoffAnalyticsBridge', $this->bridge);
+    }
+
+    /**
+     * Get the problem fixture
+     *
+     * @return array
+     */
+    public function getProblem()
+    {
+        return json_decode(file_get_contents(__DIR__.'/fixtures/problem.json'), true);
+    }
+
+    /**
+     * Get Resolution Json Body Response
+     *
+     * @return string
+     */
+    public function getResolutionResponseBody()
+    {
+        return file_get_contents(__DIR__.'/fixtures/resolution.json');
     }
 
     /**
@@ -160,6 +207,30 @@ class TestEngine extends TestCase
      */
     public function testMakeBridgeMethod()
     {
-        $this->assertInstanceOf('FindBrok\WatsonBridge\Bridge', $this->engine->makeBridge());
+        $this->assertInstanceOf(Bridge::class, $this->engine->makeBridge());
+    }
+
+    /**
+     * Test that we can correctly set the AuthMethod on the engine
+     *
+     * @return void
+     */
+    public function testUseAuthMethodOnEngine()
+    {
+        $this->assertEquals('credentials', $this->engine->getAuthMethod());
+        $this->engine->useAuthMethod('token');
+        $this->assertEquals('token', $this->engine->getAuthMethod());
+    }
+
+    /**
+     * Test the getDilemma method on the engine
+     *
+     * @return void
+     */
+    public function testGetDilemmaMethodOnTheEngine()
+    {
+        //Make a problem
+        $problem = $this->app->make('TradeoffAnalyticsProblem', $this->getProblem());
+        $this->assertInstanceOf(\FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma::class, $this->engine->getDilemma($problem));
     }
 }

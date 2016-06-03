@@ -17,6 +17,13 @@ abstract class AbstractEngine
     protected $credentialName = 'default';
 
     /**
+     * Auth method to use
+     *
+     * @var string
+     */
+    protected $authMethod;
+
+    /**
      * Http headers to send to Watson.
      *
      * @var array
@@ -38,6 +45,8 @@ abstract class AbstractEngine
      */
     public function __construct()
     {
+        //Set Auth method
+        $this->useAuthMethod(config('tradeoff-analytics.auth_method'));
     }
 
     /**
@@ -48,6 +57,7 @@ abstract class AbstractEngine
     public function makeBridge()
     {
         return app()->make('TradeoffAnalyticsBridge', $this->getCredentials())
+                    ->useAuthMethodAs($this->getAuthMethod())
                     ->appendHeaders($this->getHeaders());
     }
 
@@ -116,5 +126,29 @@ abstract class AbstractEngine
             'password' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.password'),
             'url' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.url')
         ];
+    }
+
+    /**
+     * Set auth method to use when making request
+     *
+     * @param string $authMethod
+     * @return self
+     */
+    public function useAuthMethod($authMethod)
+    {
+        //Set method
+        $this->authMethod = $authMethod;
+        //Return object
+        return $this;
+    }
+
+    /**
+     * Return AuthMethod to use
+     *
+     * @return string
+     */
+    public function getAuthMethod()
+    {
+        return $this->authMethod;
     }
 }

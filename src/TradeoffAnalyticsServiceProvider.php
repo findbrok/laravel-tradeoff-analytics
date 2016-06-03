@@ -34,7 +34,8 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
         'TradeoffAnalyticsProblemOption' => DataCollection\ProblemOption::class,
         'TradeoffAnalyticsProblemColumnCategoricalRange' => DataCollection\ProblemColumnCategoricalRange::class,
         'TradeoffAnalyticsProblemColumnDateRange' => DataCollection\ProblemColumnDateRange::class,
-        'TradeoffAnalyticsProblemColumnValueRange' => DataCollection\ProblemColumnValueRange::class
+        'TradeoffAnalyticsProblemColumnValueRange' => DataCollection\ProblemColumnValueRange::class,
+        'TradeoffAnalyticsDilemma' => DataCollection\Dilemma::class
     ];
 
     /**

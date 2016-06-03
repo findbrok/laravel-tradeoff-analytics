@@ -31,9 +31,22 @@ return [
             'url' => env('TRADEOFF_ANALYTICS_URL', 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'),
             'password' => env('TRADEOFF_ANALYTICS_PASSWORD', 'SomePassword'),
             'username' => env('TRADEOFF_ANALYTICS_USERNAME', 'SomeUsername')
-        ],
-
+        ]
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auth method
+    |--------------------------------------------------------------------------
+    |
+    | This specifies which Authentication method we will use for
+    | making request to Watson, default is credentials
+    | - credentials
+    | - token
+    |
+    */
+
+    'auth_method' => 'credentials',
 
     /*
     |--------------------------------------------------------------------------

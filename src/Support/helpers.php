@@ -77,3 +77,16 @@ if (! function_exists('make_tradeoff_problem_column_value_range')) {
         return app()->make('TradeoffAnalyticsProblemColumnValueRange', $items);
     }
 }
+
+if (! function_exists('make_tradeoff_dilemma')) {
+    /**
+     * Make a Tradeoff analytics Dilemma Object
+     *
+     * @param array $items
+     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma
+     */
+    function make_tradeoff_dilemma($items = [])
+    {
+        return app()->make('TradeoffAnalyticsDilemma', $items);
+    }
+}

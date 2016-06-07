@@ -66,7 +66,7 @@ class Problem extends BaseCollector
      */
     protected function validateColumnField($item)
     {
-        if (!$item instanceof ProblemColumn) {
+        if (! $item instanceof ProblemColumn) {
             throw new DataCollectionFieldMissMatchTypeException('columns', 'Problem', 'ProblemColumn');
         }
     }
@@ -82,7 +82,7 @@ class Problem extends BaseCollector
      */
     protected function validateOptionField($item)
     {
-        if (!$item instanceof ProblemOption) {
+        if (! $item instanceof ProblemOption) {
             throw new DataCollectionFieldMissMatchTypeException('options', 'Problem', 'ProblemOption');
         }
     }
@@ -164,7 +164,7 @@ class Problem extends BaseCollector
     {
         //Objectify each column
         $columns = collect($this->get('columns'))->transform(function ($item) {
-            if (!$item instanceof ProblemColumn) {
+            if (! $item instanceof ProblemColumn) {
                 return make_tradeoff_problem_column($item);
             }
 
@@ -172,7 +172,7 @@ class Problem extends BaseCollector
         });
 
         //Put in field if we have items
-        if (!$columns->isEmpty()) {
+        if (! $columns->isEmpty()) {
             $this->put('columns', $columns->all());
         }
 
@@ -188,7 +188,7 @@ class Problem extends BaseCollector
     {
         //Objectify each column options
          $options = collect($this->get('options'))->transform(function ($item) {
-             if (!$item instanceof ProblemOption) {
+             if (! $item instanceof ProblemOption) {
                  return make_tradeoff_problem_option($item);
              }
 
@@ -196,7 +196,7 @@ class Problem extends BaseCollector
          });
 
         //Put in field if we have items
-        if (!$options->isEmpty()) {
+        if (! $options->isEmpty()) {
             $this->put('options', $options->all());
         }
 

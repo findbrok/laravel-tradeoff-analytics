@@ -53,7 +53,7 @@ class ProblemColumnValueRange extends BaseCollectorRange
         //Collect range
         $range = collect($range);
         //Validate Range
-        if (!$range->has('high') && !$range->has('low')) {
+        if (! $range->has('high') && ! $range->has('low')) {
             throw new Exception('Missing {high} or {low} field in {ProblemColumnValueRange} object', 422);
         }
         //Transform to int

@@ -1,4 +1,6 @@
-# Laravel 5 Tradeoff Analytics
+# Laravel 5 Tradeoff Analytics 
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42/big.png)](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42)
 
 [![StyleCI](https://styleci.io/repos/59981815/shield?style=flat)](https://styleci.io/repos/59981815)
 [![Build Status](https://travis-ci.org/findbrok/laravel-tradeoff-analytics.svg?branch=master)](https://travis-ci.org/findbrok/laravel-tradeoff-analytics)

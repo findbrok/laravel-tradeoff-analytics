@@ -1,6 +1,5 @@
 /vendor
 /node_modules
-/.idea
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/

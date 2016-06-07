@@ -7,8 +7,6 @@ use Illuminate\Support\Collection;
 
 /**
  * Class BaseCollector
- *
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class BaseCollector extends Collection
 {
@@ -35,7 +33,8 @@ class BaseCollector extends Collection
     /**
      * Check if a field is supported
      *
-     * @param $field
+     * @param string $field
+     *
      * @return bool
      */
     public function isFieldSupported($field)
@@ -47,6 +46,7 @@ class BaseCollector extends Collection
      * Return supported fields only
      *
      * @param array $items
+     *
      * @return array
      */
     public function filterOutUnsupported($items = [])
@@ -61,7 +61,9 @@ class BaseCollector extends Collection
      *
      * @param  mixed  $key
      * @param  mixed  $value
+     *
      * @throws DataCollectionUnsupportedFieldException
+     *
      * @return $this
      */
     public function put($key, $value)
@@ -78,6 +80,7 @@ class BaseCollector extends Collection
      * Merge the collection with the given items.
      *
      * @param  mixed  $items
+     *
      * @return static
      */
     public function merge($items)
@@ -90,6 +93,7 @@ class BaseCollector extends Collection
      * Add items to the Column
      *
      * @param array $items
+     *
      * @return self
      */
     public function add($items = [])

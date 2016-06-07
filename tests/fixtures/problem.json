@@ -10,7 +10,7 @@
             "range": {
                 "low": 0,
                 "high": 400
-            },
+            } ,
             "format": "number:2"
         },
         {
@@ -72,8 +72,138 @@
             "key": "3",
             "name": "HTC One",
             "values": {
+                "price": 111,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "4",
+            "name": "HTC A",
+            "values": {
+                "price": 222,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "5",
+            "name": "HTC B",
+            "values": {
+                "price": 123,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "6",
+            "name": "HTC C",
+            "values": {
                 "price": 299,
                 "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "7",
+            "name": "HTC D",
+            "values": {
+                "price": 33,
+                "weight": 111,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "8",
+            "name": "HTC E",
+            "values": {
+                "price": 22,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "9",
+            "name": "HTC F",
+            "values": {
+                "price": 11,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "10",
+            "name": "HTC G",
+            "values": {
+                "price": 22,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "11",
+            "name": "HTC H",
+            "values": {
+                "price": 299,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "12",
+            "name": "HTC I",
+            "values": {
+                "price": 45,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "13",
+            "name": "HTC J",
+            "values": {
+                "price": 123,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "14",
+            "name": "HTC K",
+            "values": {
+                "price": 43,
+                "weight": 11,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "15",
+            "name": "HTC L",
+            "values": {
+                "price": 100,
+                "weight": 143,
+                "brand": "HTC",
+                "rDate": "2013-03-01T00:00:00Z"
+            }
+        },
+        {
+            "key": "16",
+            "name": "HTC M",
+            "values": {
+                "price": 300,
+                "weight": 150,
                 "brand": "HTC",
                 "rDate": "2013-03-01T00:00:00Z"
             }

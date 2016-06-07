@@ -6,8 +6,8 @@
                 "key": "price",
                 "full_name": "Price",
                 "range": {
-                    "low": 0,
-                    "high": 400
+                  "low": 0,
+                  "high": 400
                 },
                 "format": "number:2",
                 "goal": "min",
@@ -74,8 +74,138 @@
                 "key": "3",
                 "name": "HTC One",
                 "values": {
+                    "price": 111,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "4",
+                "name": "HTC A",
+                "values": {
+                    "price": 222,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "5",
+                "name": "HTC B",
+                "values": {
+                    "price": 123,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "6",
+                "name": "HTC C",
+                "values": {
                     "price": 299,
                     "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "7",
+                "name": "HTC D",
+                "values": {
+                    "price": 33,
+                    "weight": 111,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "8",
+                "name": "HTC E",
+                "values": {
+                    "price": 22,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "9",
+                "name": "HTC F",
+                "values": {
+                    "price": 11,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "10",
+                "name": "HTC G",
+                "values": {
+                    "price": 22,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "11",
+                "name": "HTC H",
+                "values": {
+                    "price": 299,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "12",
+                "name": "HTC I",
+                "values": {
+                    "price": 45,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "13",
+                "name": "HTC J",
+                "values": {
+                    "price": 123,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "14",
+                "name": "HTC K",
+                "values": {
+                    "price": 43,
+                    "weight": 11,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "15",
+                "name": "HTC L",
+                "values": {
+                    "price": 100,
+                    "weight": 143,
+                    "brand": "HTC",
+                    "rDate": "2013-03-01T00:00:00Z"
+                }
+            },
+            {
+                "key": "16",
+                "name": "HTC M",
+                "values": {
+                    "price": 300,
+                    "weight": 150,
                     "brand": "HTC",
                     "rDate": "2013-03-01T00:00:00Z"
                 }
@@ -104,7 +234,160 @@
             {
                 "solution_ref": "3",
                 "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "4",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "5",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "6",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "7",
+                "status": "FRONT",
+                "shadow_me": [
+                    "14"
+                ]
+            },
+            {
+                "solution_ref": "8",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "9",
+                "status": "FRONT"
+            },
+            {
+                "solution_ref": "10",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "11",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "12",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "13",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "14",
+                "status": "FRONT",
+                "shadows": [
+                    "7"
+                ]
+            },
+            {
+                "solution_ref": "15",
+                "status": "EXCLUDED"
+            },
+            {
+                "solution_ref": "16",
+                "status": "EXCLUDED"
             }
-        ]
+        ],
+        "map": {
+            "nodes": [
+                {
+                    "coordinates": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "solution_refs": [
+                        "9"
+                    ]
+                },
+                {
+                    "coordinates": {
+                        "x": 8,
+                        "y": 1.7320508075688772
+                    },
+                    "solution_refs": [
+                        "1"
+                    ]
+                },
+                {
+                    "coordinates": {
+                        "x": 1.5,
+                        "y": 2.598076211353316
+                    },
+                    "solution_refs": [
+                        "7"
+                    ]
+                },
+                {
+                    "coordinates": {
+                        "x": 3,
+                        "y": 5.196152422706632
+                    },
+                    "solution_refs": [
+                        "14"
+                    ]
+                }
+            ],
+            "anchors": [
+                {
+                    "name": "price",
+                    "position": {
+                        "x": 0,
+                        "y": 0
+                    }
+                },
+                {
+                    "name": "weight",
+                    "position": {
+                        "x": 4.5,
+                        "y": 7.794228634059948
+                    }
+                },
+                {
+                    "name": "brand",
+                    "position": {
+                        "x": 9,
+                        "y": 0
+                    }
+                }
+            ],
+            "version": "APIV1-ANN",
+            "config": {
+                "params": {
+                    "rInit": 4.409081537009721,
+                    "rFinish": 1,
+                    "seed": 20014,
+                    "rAnchor": 1.6666666666666665,
+                    "alpha_init": 0.75,
+                    "map_size": 36,
+                    "training_period": 100,
+                    "anchor_epoch": 8
+                },
+                "drivers": {
+                    "r_fin": 1,
+                    "r_init": 0.9,
+                    "r_anchor_init": 1.5,
+                    "training_length": 100,
+                    "max_map_size": 200,
+                    "alpha_init": 0.75,
+                    "training_anchors": 2,
+                    "data_multiplier": 9
+                }
+            },
+            "metrics": {
+                "mqe": "NaN",
+                "tau": "NaN",
+                "somers": "NaN",
+                "kappa": 1,
+                "kappa_delta": "NaN",
+                "weighted_kappa": "NaN",
+                "final_kappa": 1
+            }
+        }
     }
 }

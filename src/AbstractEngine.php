@@ -4,8 +4,6 @@ namespace FindBrok\TradeoffAnalytics;
 
 /**
  * Class AbstractEngine
- *
- * @package FindBrok\TradeoffAnalytics
  */
 abstract class AbstractEngine
 {
@@ -29,8 +27,8 @@ abstract class AbstractEngine
      * @var array
      */
     protected $headers = [
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json'
+        'Accept'        => 'application/json',
+        'Content-Type'  => 'application/json'
     ];
 
     /**
@@ -80,6 +78,7 @@ abstract class AbstractEngine
      * Append Http Headers to send.
      *
      * @param array $headers
+     *
      * @return self
      */
     public function appendHeaders($headers = [])
@@ -94,6 +93,7 @@ abstract class AbstractEngine
      * Specify which credentials name to use.
      *
      * @param string $name
+     *
      * @return self
      */
     public function usingCredentials($name = 'default')
@@ -132,6 +132,7 @@ abstract class AbstractEngine
      * Set auth method to use when making request
      *
      * @param string $authMethod
+     *
      * @return self
      */
     public function useAuthMethod($authMethod)

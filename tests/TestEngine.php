@@ -1,5 +1,6 @@
 <?php
 
+use FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma;
 use FindBrok\WatsonBridge\Bridge;
 use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
@@ -98,6 +99,7 @@ class TestEngine extends TestCase
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
+     *
      * @return array
      */
     public function getPackageProviders($app)
@@ -230,7 +232,7 @@ class TestEngine extends TestCase
     public function testGetDilemmaMethodOnTheEngine()
     {
         //Make a problem
-        $problem = $this->app->make('TradeoffAnalyticsProblem', $this->getProblem());
-        $this->assertInstanceOf(\FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma::class, $this->engine->getDilemma($problem));
+        $problem = $this->app->make('TradeoffProblem', $this->getProblem());
+        $this->assertInstanceOf(Dilemma::class, $this->engine->getDilemma($problem));
     }
 }

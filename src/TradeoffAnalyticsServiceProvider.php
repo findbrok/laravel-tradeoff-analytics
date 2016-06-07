@@ -9,8 +9,6 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class TradeoffAnalyticsServiceProvider
- *
- * @package FindBrok\TradeoffAnalytics
  */
 class TradeoffAnalyticsServiceProvider extends ServiceProvider
 {
@@ -29,13 +27,20 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $dataCollectors = [
-        'TradeoffAnalyticsProblem' => DataCollection\Problem::class,
-        'TradeoffAnalyticsProblemColumn' => DataCollection\ProblemColumn::class,
-        'TradeoffAnalyticsProblemOption' => DataCollection\ProblemOption::class,
-        'TradeoffAnalyticsProblemColumnCategoricalRange' => DataCollection\ProblemColumnCategoricalRange::class,
-        'TradeoffAnalyticsProblemColumnDateRange' => DataCollection\ProblemColumnDateRange::class,
-        'TradeoffAnalyticsProblemColumnValueRange' => DataCollection\ProblemColumnValueRange::class,
-        'TradeoffAnalyticsDilemma' => DataCollection\Dilemma::class
+        'TradeoffProblem'                       => DataCollection\Problem::class,
+        'TradeoffProblemColumn'                 => DataCollection\ProblemColumn::class,
+        'TradeoffProblemOption'                 => DataCollection\ProblemOption::class,
+        'TradeoffProblemColumnCategoricalRange' => DataCollection\ProblemColumnCategoricalRange::class,
+        'TradeoffProblemColumnDateRange'        => DataCollection\ProblemColumnDateRange::class,
+        'TradeoffProblemColumnValueRange'       => DataCollection\ProblemColumnValueRange::class,
+        'TradeoffDilemma'                       => DataCollection\Dilemma::class,
+        'TradeoffResolution'                    => DataCollection\Resolution::class,
+        'TradeoffSolution'                      => DataCollection\Solution::class,
+        'TradeoffSolutionStatusCause'           => DataCollection\SolutionStatusCause::class,
+        'TradeoffMap'                           => DataCollection\Map::class,
+        'TradeoffMapAnchor'                     => DataCollection\MapAnchor::class,
+        'TradeoffMapNode'                       => DataCollection\MapNode::class,
+        'TradeoffMapNodeCoordinates'            => DataCollection\MapNodeCoordinates::class
     ];
 
     /**
@@ -119,6 +124,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      * Gets our config path for package
      *
      * @param string $fileName
+     *
      * @return string
      */
     public function ourConfigPath($fileName = '')

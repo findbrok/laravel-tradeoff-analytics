@@ -4,8 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 /**
  * Class ProblemColumn
- * 
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class ProblemColumn extends BaseCollector
 {
@@ -198,6 +196,7 @@ class ProblemColumn extends BaseCollector
      * Add a Range object to the Column
      *
      * @param mixed $range
+     *
      * @return self
      */
     public function addRange($range)

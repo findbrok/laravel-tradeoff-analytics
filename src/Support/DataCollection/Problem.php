@@ -6,8 +6,6 @@ use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionFieldMissMatchTypeExcept
 
 /**
  * Class Problem
- *
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class Problem extends BaseCollector
 {
@@ -61,7 +59,9 @@ class Problem extends BaseCollector
      * Perform a check to see if item is a ProblemColumn object
      *
      * @param mixed $item
+     *
      * @throws DataCollectionFieldMissMatchTypeException
+     *
      * @return void
      */
     protected function validateColumnField($item)
@@ -75,7 +75,9 @@ class Problem extends BaseCollector
      * Perform a check to see if item is a ProblemOption object
      *
      * @param mixed $item
+     *
      * @throws DataCollectionFieldMissMatchTypeException
+     *
      * @return void
      */
     protected function validateOptionField($item)
@@ -89,6 +91,7 @@ class Problem extends BaseCollector
      * Add Columns to the Problem
      *
      * @param ProblemColumn|array $items
+     *
      * @return self
      */
     public function addColumns($items)
@@ -109,6 +112,7 @@ class Problem extends BaseCollector
      * Add Options to a Problem
      *
      * @param ProblemOption|array $items
+     *
      * @return self
      */
     public function addOptions($items)
@@ -138,5 +142,61 @@ class Problem extends BaseCollector
             }
             return $item;
         })->toArray();
+    }
+
+    /**
+     * Make sure that columns and options fields contain objects
+     *
+     * @return self
+     */
+    public function objectify()
+    {
+        return $this->objectifyColumns()->objectifyOptions();
+    }
+
+    /**
+     * Transform all columns field in Object
+     *
+     * @return self
+     */
+    public function objectifyColumns()
+    {
+        //Objectify each column
+        $columns = collect($this->get('columns'))->transform(function ($item) {
+            if(!$item instanceof ProblemColumn) {
+                return make_tradeoff_problem_column($item);
+            }
+            return $item;
+        });
+
+        //Put in field if we have items
+        if(!$columns->isEmpty()) {
+            $this->put('columns', $columns->all());
+        }
+
+        return $this;
+    }
+
+    /**
+     * Transform all options field in Object
+     *
+     * @return self
+     */
+    public function objectifyOptions()
+    {
+        //Objectify each column options
+         $options = collect($this->get('options'))->transform(function ($item) {
+            if(!$item instanceof ProblemOption) {
+                return make_tradeoff_problem_option($item);
+            }
+            return $item;
+        });
+
+        //Put in field if we have items
+        if(!$options->isEmpty()) {
+            $this->put('options', $options->all());
+        }
+
+        return $this;
     }
 }

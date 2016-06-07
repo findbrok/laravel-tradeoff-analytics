@@ -2,10 +2,10 @@
 
 namespace FindBrok\TradeoffAnalytics\Contracts;
 
+use FindBrok\TradeoffAnalytics\Support\DataCollection\Problem;
+
 /**
  * Interface TradeoffAnalyticsInterface
- *
- * @package FindBrok\TradeoffAnalytics\Contracts
  */
 interface TradeoffAnalyticsInterface
 {
@@ -13,7 +13,11 @@ interface TradeoffAnalyticsInterface
      * Resolve the problem dilemma
      *
      * @param \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem $problem
-     * @return mixed
+     * @param bool $generateVisualization
+     *
+     * @throws \FindBrok\WatsonBridge\Exceptions\WatsonBridgeException
+     *
+     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma
      */
-    public function getDilemma($problem);
+    public function getDilemma(Problem $problem, $generateVisualization = true);
 }

@@ -1,6 +1,7 @@
 {
     "name": "findbrok/laravel-tradeoff-analytics",
     "description": "A simple Laravel 5 Wrapper around IBM Watson Tradeoff Analytics API",
+    "keywords": ["php", "ibm", "watson", "api", "tradeoff", "analytics", "laravel"],
     "license": "MIT",
     "authors": [
         {

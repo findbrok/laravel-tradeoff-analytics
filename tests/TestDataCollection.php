@@ -73,12 +73,12 @@ class TestDataCollection extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->problem = $this->app->make('TradeoffAnalyticsProblem');
-        $this->problemColumn = $this->app->make('TradeoffAnalyticsProblemColumn');
-        $this->problemOption = $this->app->make('TradeoffAnalyticsProblemOption');
-        $this->problemColumnCategoricalRange = $this->app->make('TradeoffAnalyticsProblemColumnCategoricalRange');
-        $this->problemColumnDateRange = $this->app->make('TradeoffAnalyticsProblemColumnDateRange');
-        $this->problemColumnValueRange = $this->app->make('TradeoffAnalyticsProblemColumnValueRange');
+        $this->problem = $this->app->make('TradeoffProblem');
+        $this->problemColumn = $this->app->make('TradeoffProblemColumn');
+        $this->problemOption = $this->app->make('TradeoffProblemOption');
+        $this->problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange');
+        $this->problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange');
+        $this->problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange');
         $this->faker = Factory::create();
     }
 
@@ -103,6 +103,7 @@ class TestDataCollection extends TestCase
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
+     *
      * @return array
      */
     public function getPackageProviders($app)
@@ -117,7 +118,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problem = $this->app->make('TradeoffAnalyticsProblem');
+        $problem = $this->app->make('TradeoffProblem');
         $this->assertInstanceOf(Problem::class, $problem);
         $this->assertNotSame($this->problem, $problem);
     }
@@ -129,7 +130,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problemColumn = $this->app->make('TradeoffAnalyticsProblemColumn');
+        $problemColumn = $this->app->make('TradeoffProblemColumn');
         $this->assertInstanceOf(ProblemColumn::class, $problemColumn);
         $this->assertNotSame($this->problemColumn, $problemColumn);
     }
@@ -141,7 +142,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemOptionObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problemOption = $this->app->make('TradeoffAnalyticsProblemOption');
+        $problemOption = $this->app->make('TradeoffProblemOption');
         $this->assertInstanceOf(ProblemOption::class, $problemOption);
         $this->assertNotSame($this->problemOption, $problemOption);
     }
@@ -153,7 +154,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnCategoricalRangeObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problemColumnCategoricalRange = $this->app->make('TradeoffAnalyticsProblemColumnCategoricalRange');
+        $problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange');
         $this->assertInstanceOf(ProblemColumnCategoricalRange::class, $problemColumnCategoricalRange);
         $this->assertNotSame($this->problemColumnCategoricalRange, $problemColumnCategoricalRange);
     }
@@ -165,7 +166,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnDateRangeObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problemColumnDateRange = $this->app->make('TradeoffAnalyticsProblemColumnDateRange');
+        $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange');
         $this->assertInstanceOf(ProblemColumnDateRange::class, $problemColumnDateRange);
         $this->assertNotSame($this->problemColumnDateRange, $problemColumnDateRange);
     }
@@ -177,7 +178,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnValueRangeObjectCanBeConstructedAndEachIsDifferent()
     {
-        $problemColumnValueRange = $this->app->make('TradeoffAnalyticsProblemColumnValueRange');
+        $problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange');
         $this->assertInstanceOf(ProblemColumnValueRange::class, $problemColumnValueRange);
         $this->assertNotSame($this->problemColumnValueRange, $problemColumnValueRange);
     }
@@ -189,7 +190,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemObjectAcceptsSupportedFields()
     {
-        $problem = $this->app->make('TradeoffAnalyticsProblem', [
+        $problem = $this->app->make('TradeoffProblem', [
             'subject' => 'Foo',
             'columns' => ['x' => 'bar'],
             'options' => ['bar' => 'foo'],
@@ -226,7 +227,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnObjectAcceptsSupportedFields()
     {
-        $problemColumn = $this->app->make('TradeoffAnalyticsProblemColumn', [
+        $problemColumn = $this->app->make('TradeoffProblemColumn', [
             'key' => '123',
             'type' => 'numeric',
             'Foo' => 'Bar'
@@ -261,7 +262,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemOptionObjectAcceptsSupportedFields()
     {
-        $problemOption = $this->app->make('TradeoffAnalyticsProblemOption', [
+        $problemOption = $this->app->make('TradeoffProblemOption', [
             'key' => '123',
             'values' => ['X', 'Foo'],
             'Foo' => 'Bar'
@@ -296,7 +297,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnCategoricalRangeObjectAcceptsAnyField()
     {
-        $problemColumnCategoricalRange = $this->app->make('TradeoffAnalyticsProblemColumnCategoricalRange', [
+        $problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange', [
             'Foo',
             'Bar',
             'X-Foo'
@@ -332,7 +333,7 @@ class TestDataCollection extends TestCase
     {
         $low = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
         $high = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
-        $problemColumnDateRange = $this->app->make('TradeoffAnalyticsProblemColumnDateRange', [
+        $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange', [
             'high' => $high,
             'low' => $low,
             'Foo' => 'Bar'
@@ -367,7 +368,7 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnValueRangeObjectAcceptsSupportedFields()
     {
-        $problemColumnValueRange = $this->app->make('TradeoffAnalyticsProblemColumnValueRange', [
+        $problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange', [
             'high' => 100,
             'low' => 10,
             'Foo' => 'Bar'
@@ -417,11 +418,11 @@ class TestDataCollection extends TestCase
     public function testAddColumnsToProblemObject()
     {
         $columns = [
-            $this->app->make('TradeoffAnalyticsProblemColumn', [
+            $this->app->make('TradeoffProblemColumn', [
                 'key' => '123',
                 'description' => 'something',
             ]),
-            $this->app->make('TradeoffAnalyticsProblemColumn', [
+            $this->app->make('TradeoffProblemColumn', [
                 'key' => '456',
                 'description' => 'something else',
             ]),
@@ -429,7 +430,7 @@ class TestDataCollection extends TestCase
         $this->problem->addColumns($columns);
         $this->assertCount(2, $this->problem->get('columns'));
         $this->problem->addColumns(
-            $this->app->make('TradeoffAnalyticsProblemColumn', [
+            $this->app->make('TradeoffProblemColumn', [
                 'key' => '789',
                 'description' => 'another something else',
             ])
@@ -459,18 +460,18 @@ class TestDataCollection extends TestCase
     public function testAddOptionsToProblemObject()
     {
         $options = [
-            $this->app->make('TradeoffAnalyticsProblemOption', [
+            $this->app->make('TradeoffProblemOption', [
                 'key' => '123',
                 'name' => 'Some name'
             ]),
-            $this->app->make('TradeoffAnalyticsProblemOption', [
+            $this->app->make('TradeoffProblemOption', [
                 'key' => '456',
                 'name' => 'Another name'
             ]),
         ];
         $this->problem->addOptions($options);
         $this->assertCount(2, $this->problem->get('options'));
-        $this->problem->addOptions($this->app->make('TradeoffAnalyticsProblemOption', [
+        $this->problem->addOptions($this->app->make('TradeoffProblemOption', [
             'key' => '789',
             'name' => 'My name'
         ]));
@@ -554,16 +555,16 @@ class TestDataCollection extends TestCase
      */
     public function testGetProblemStatementFromProblemObject()
     {
-        $problem = $this->app->make('TradeoffAnalyticsProblem', [
+        $problem = $this->app->make('TradeoffProblem', [
             'subject' => 'phones',
             'columns' => [
-                $this->app->make('TradeoffAnalyticsProblemColumn', [
+                $this->app->make('TradeoffProblemColumn', [
                     'key' => 'price',
                     'type' => 'numeric',
                     'goal' => 'min',
                     'is_objective' => true,
                     'full_name' =>'Price',
-                    'range' => $this->app->make('TradeoffAnalyticsProblemColumnValueRange', [
+                    'range' => $this->app->make('TradeoffProblemColumnValueRange', [
                         'low' => 0,
                         'high' => 400
                     ]),
@@ -571,14 +572,14 @@ class TestDataCollection extends TestCase
                 ])
             ],
             'options' => [
-                $this->app->make('TradeoffAnalyticsProblemOption', [
+                $this->app->make('TradeoffProblemOption', [
                     'key' => '1',
                     'name' => 'Samsung Galaxy S4',
                     'values' => [
                         'price' => 249
                     ]
                 ]),
-                $this->app->make('TradeoffAnalyticsProblemOption', [
+                $this->app->make('TradeoffProblemOption', [
                     'key' => '2',
                     'name' => 'Apple iPhone 5',
                     'values' => [

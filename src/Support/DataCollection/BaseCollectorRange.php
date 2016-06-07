@@ -4,8 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 /**
  * Class BaseCollectorRange
- *
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class BaseCollectorRange extends BaseCollector
 {
@@ -26,6 +24,7 @@ class BaseCollectorRange extends BaseCollector
      * Add Range Fields to Range object
      *
      * @param array $range
+     *
      * @return self
      */
     public function defineRange($range = [])

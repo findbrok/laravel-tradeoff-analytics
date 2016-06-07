@@ -6,8 +6,6 @@ use Exception;
 
 /**
  * Class ProblemColumnValueRange
- *
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class ProblemColumnValueRange extends BaseCollectorRange
 {
@@ -45,7 +43,9 @@ class ProblemColumnValueRange extends BaseCollectorRange
      * Add Range Fields to Range object
      *
      * @param array $range
+     *
      * @throws
+     *
      * @return self
      */
     public function defineRange($range = [])

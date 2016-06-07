@@ -8,8 +8,6 @@ use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionFieldMissMatchTypeExcept
 
 /**
  * Class ProblemColumnDateRange
- *
- * @package FindBrok\TradeoffAnalytics\Support\DataCollection
  */
 class ProblemColumnDateRange extends BaseCollectorRange
 {
@@ -47,8 +45,10 @@ class ProblemColumnDateRange extends BaseCollectorRange
      * Add Range Fields to Range object
      *
      * @param array $range
+     *
      * @throws DataCollectionFieldMissMatchTypeException
      * @throws Exception
+     *
      * @return self
      */
     public function defineRange($range = [])

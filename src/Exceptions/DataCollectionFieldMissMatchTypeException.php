@@ -2,6 +2,7 @@
 
 namespace FindBrok\TradeoffAnalytics\Exceptions;
 
+use Exception;
 use RuntimeException;
 
 /**

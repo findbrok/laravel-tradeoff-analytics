@@ -12,54 +12,54 @@ use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestDataCollection
+ * Class TestDataCollection.
  */
 class TestDataCollection extends TestCase
 {
     /**
-     * The Problem object
+     * The Problem object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem
      */
     protected $problem;
 
     /**
-     * The ProblemColumn object
+     * The ProblemColumn object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn
      */
     protected $problemColumn;
 
     /**
-     * The ProblemOption object
+     * The ProblemOption object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption
      */
     protected $problemOption;
 
     /**
-     * The ProblemCategoricalRange object
+     * The ProblemCategoricalRange object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnCategoricalRange
      */
     protected $problemColumnCategoricalRange;
 
     /**
-     * The ProblemColumnDateRange object
+     * The ProblemColumnDateRange object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange
      */
     protected $problemColumnDateRange;
 
     /**
-     * The ProblemColumnValueRange object
+     * The ProblemColumnValueRange object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange
      */
     protected $problemColumnValueRange;
 
     /**
-     * The Faker instance
+     * The Faker instance.
      *
      * @var \Faker\Factory
      */
@@ -102,7 +102,7 @@ class TestDataCollection extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -112,7 +112,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test if we can create different Problem Objects and each is different
+     * Test if we can create different Problem Objects and each is different.
      *
      * @return void
      */
@@ -124,7 +124,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can create ProblemColumn object and each is different
+     * Test that we can create ProblemColumn object and each is different.
      *
      * @return void
      */
@@ -136,7 +136,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can create ProblemOption object nd each is different
+     * Test that we can create ProblemOption object nd each is different.
      *
      * @return void
      */
@@ -148,7 +148,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can create ProblemColumnCategoricalRange object and each is different
+     * Test that we can create ProblemColumnCategoricalRange object and each is different.
      *
      * @return void
      */
@@ -160,7 +160,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can create ProblemColumnDateRange object and each is different
+     * Test that we can create ProblemColumnDateRange object and each is different.
      *
      * @return void
      */
@@ -172,7 +172,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can create ProblemColumnValueRange object and each is different
+     * Test that we can create ProblemColumnValueRange object and each is different.
      *
      * @return void
      */
@@ -184,7 +184,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test ProblemObject Accepts Supported Fields
+     * Test ProblemObject Accepts Supported Fields.
      *
      * @return void
      */
@@ -194,17 +194,17 @@ class TestDataCollection extends TestCase
             'subject' => 'Foo',
             'columns' => ['x' => 'bar'],
             'options' => ['bar' => 'foo'],
-            'Foo' => 'Bar'
+            'Foo'     => 'Bar',
         ]);
         $this->assertEquals([
             'subject' => 'Foo',
             'columns' => ['x' => 'bar'],
-            'options' => ['bar' => 'foo']
+            'options' => ['bar' => 'foo'],
         ], $problem->all());
     }
 
     /**
-     * Test that if we put wrong field in the Problem object we get an exception
+     * Test that if we put wrong field in the Problem object we get an exception.
      *
      * @return void
      */
@@ -221,25 +221,25 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that the ProblemColumn object accepts only supported fields
+     * Test that the ProblemColumn object accepts only supported fields.
      *
      * @return void
      */
     public function testProblemColumnObjectAcceptsSupportedFields()
     {
         $problemColumn = $this->app->make('TradeoffProblemColumn', [
-            'key' => '123',
+            'key'  => '123',
             'type' => 'numeric',
-            'Foo' => 'Bar'
+            'Foo'  => 'Bar',
         ]);
         $this->assertEquals([
-            'key' => '123',
+            'key'  => '123',
             'type' => 'numeric',
         ], $problemColumn->all());
     }
 
     /**
-     * Test that if we put wrong field in the ProblemColumn object we get an exception
+     * Test that if we put wrong field in the ProblemColumn object we get an exception.
      *
      * @return void
      */
@@ -256,25 +256,25 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that the ProblemOption object accepts only supported fields
+     * Test that the ProblemOption object accepts only supported fields.
      *
      * @return void
      */
     public function testProblemOptionObjectAcceptsSupportedFields()
     {
         $problemOption = $this->app->make('TradeoffProblemOption', [
-            'key' => '123',
+            'key'    => '123',
             'values' => ['X', 'Foo'],
-            'Foo' => 'Bar'
+            'Foo'    => 'Bar',
         ]);
         $this->assertEquals([
-            'key' => '123',
+            'key'    => '123',
             'values' => ['X', 'Foo'],
         ], $problemOption->all());
     }
 
     /**
-     * Test that if we put wrong field in the ProblemOption object we get an exception
+     * Test that if we put wrong field in the ProblemOption object we get an exception.
      *
      * @return void
      */
@@ -291,7 +291,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that the ProblemColumnCategoricalRange object can accept any field
+     * Test that the ProblemColumnCategoricalRange object can accept any field.
      *
      * @return void
      */
@@ -300,17 +300,17 @@ class TestDataCollection extends TestCase
         $problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange', [
             'Foo',
             'Bar',
-            'X-Foo'
+            'X-Foo',
         ]);
         $this->assertEquals([
             'Foo',
             'Bar',
-            'X-Foo'
+            'X-Foo',
         ], $problemColumnCategoricalRange->all());
     }
 
     /**
-     * Test we can push any value in the ProblemColumnCategoricalRange object
+     * Test we can push any value in the ProblemColumnCategoricalRange object.
      *
      * @return void
      */
@@ -320,12 +320,12 @@ class TestDataCollection extends TestCase
         $this->problemColumnCategoricalRange->push('Foo');
         $this->assertEquals([
             'Bar',
-            'Foo'
+            'Foo',
         ], $this->problemColumnCategoricalRange->all());
     }
 
     /**
-     * Test that the ProblemColumnDateRange object accepts only supported fields
+     * Test that the ProblemColumnDateRange object accepts only supported fields.
      *
      * @return void
      */
@@ -335,17 +335,17 @@ class TestDataCollection extends TestCase
         $high = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
         $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange', [
             'high' => $high,
-            'low' => $low,
-            'Foo' => 'Bar'
+            'low'  => $low,
+            'Foo'  => 'Bar',
         ]);
         $this->assertEquals([
             'high' => $high->toIso8601String(),
-            'low' => $low->toIso8601String(),
+            'low'  => $low->toIso8601String(),
         ], $problemColumnDateRange->all());
     }
 
     /**
-     * Test that if we put wrong field in the ProblemColumnDateRange object we get an exception
+     * Test that if we put wrong field in the ProblemColumnDateRange object we get an exception.
      *
      * @return void
      */
@@ -362,7 +362,7 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that the ProblemColumnValueRange object accepts only supported fields
+     * Test that the ProblemColumnValueRange object accepts only supported fields.
      *
      * @return void
      */
@@ -370,17 +370,17 @@ class TestDataCollection extends TestCase
     {
         $problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange', [
             'high' => 100,
-            'low' => 10,
-            'Foo' => 'Bar'
+            'low'  => 10,
+            'Foo'  => 'Bar',
         ]);
         $this->assertEquals([
             'high' => 100,
-            'low' => 10,
+            'low'  => 10,
         ], $problemColumnValueRange->all());
     }
 
     /**
-     * Test that if we put wrong field in the ProblemColumnValueRange object we get an exception
+     * Test that if we put wrong field in the ProblemColumnValueRange object we get an exception.
      *
      * @return void
      */
@@ -397,21 +397,21 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can add some data in the ProblemColumn object
+     * Test that we can add some data in the ProblemColumn object.
      *
      * @return void
      */
     public function testAddDataInProblemColumnObject()
     {
         $this->problemColumn->add([
-            'key' => '123',
+            'key'         => '123',
             'description' => 'something',
         ]);
         $this->assertCount(2, $this->problemColumn);
     }
 
     /**
-     * Test that we can add ProblemColumn object to Problem object
+     * Test that we can add ProblemColumn object to Problem object.
      *
      * @return void
      */
@@ -419,11 +419,11 @@ class TestDataCollection extends TestCase
     {
         $columns = [
             $this->app->make('TradeoffProblemColumn', [
-                'key' => '123',
+                'key'         => '123',
                 'description' => 'something',
             ]),
             $this->app->make('TradeoffProblemColumn', [
-                'key' => '456',
+                'key'         => '456',
                 'description' => 'something else',
             ]),
         ];
@@ -431,7 +431,7 @@ class TestDataCollection extends TestCase
         $this->assertCount(2, $this->problem->get('columns'));
         $this->problem->addColumns(
             $this->app->make('TradeoffProblemColumn', [
-                'key' => '789',
+                'key'         => '789',
                 'description' => 'another something else',
             ])
         );
@@ -439,21 +439,21 @@ class TestDataCollection extends TestCase
     }
 
     /**
-     * Test that we can add data to ProblemOption object
+     * Test that we can add data to ProblemOption object.
      *
      * @return void
      */
     public function testAddDataToProblemOptionObject()
     {
         $this->problemOption->add([
-            'key' => '123',
+            'key'  => '123',
             'name' => 'Lorem Ipsum',
         ]);
         $this->assertCount(2, $this->problemOption);
     }
 
     /**
-     * Test that we can add ProblemOption to Problem object
+     * Test that we can add ProblemOption to Problem object.
      *
      * @return void
      */
@@ -461,25 +461,25 @@ class TestDataCollection extends TestCase
     {
         $options = [
             $this->app->make('TradeoffProblemOption', [
-                'key' => '123',
-                'name' => 'Some name'
+                'key'  => '123',
+                'name' => 'Some name',
             ]),
             $this->app->make('TradeoffProblemOption', [
-                'key' => '456',
-                'name' => 'Another name'
+                'key'  => '456',
+                'name' => 'Another name',
             ]),
         ];
         $this->problem->addOptions($options);
         $this->assertCount(2, $this->problem->get('options'));
         $this->problem->addOptions($this->app->make('TradeoffProblemOption', [
-            'key' => '789',
-            'name' => 'My name'
+            'key'  => '789',
+            'name' => 'My name',
         ]));
         $this->assertCount(3, $this->problem->get('options'));
     }
 
     /**
-     * Test that we can add fields to ProblemColumnCategoricalRange object
+     * Test that we can add fields to ProblemColumnCategoricalRange object.
      *
      * @return void
      */
@@ -489,13 +489,13 @@ class TestDataCollection extends TestCase
             'Apple',
             'HTC',
             'Samsung',
-            'Sony'
+            'Sony',
         ]);
         $this->assertCount(4, $this->problemColumnCategoricalRange);
     }
 
     /**
-     * Test that we can add fields to ProblemColumnDateRange object
+     * Test that we can add fields to ProblemColumnDateRange object.
      *
      * @return void
      */
@@ -504,36 +504,36 @@ class TestDataCollection extends TestCase
         $low = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
         $high = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
         $this->problemColumnDateRange->defineRange([
-            'low' => $low,
-            'high' => $high
+            'low'  => $low,
+            'high' => $high,
         ]);
         $this->assertCount(2, $this->problemColumnDateRange);
         $this->assertEquals([
-            'low' => $low->toIso8601String(),
-            'high' => $high->toIso8601String()
+            'low'  => $low->toIso8601String(),
+            'high' => $high->toIso8601String(),
         ], $this->problemColumnDateRange->all());
     }
 
     /**
-     * Test that we can add fields to the ProblemColumnValueRange object
+     * Test that we can add fields to the ProblemColumnValueRange object.
      *
      * @return void
      */
     public function testProblemColumnValueRangeAddRangeFields()
     {
         $this->problemColumnValueRange->defineRange([
-            'low' => '1',
-            'high' => 40
+            'low'  => '1',
+            'high' => 40,
         ]);
         $this->assertCount(2, $this->problemColumnValueRange);
         $this->assertEquals([
-            'low' => 1,
-            'high' => 40
+            'low'  => 1,
+            'high' => 40,
         ], $this->problemColumnValueRange->all());
     }
 
     /**
-     * Test that we can add Range objects to ProblemColumn
+     * Test that we can add Range objects to ProblemColumn.
      *
      * @return void
      */
@@ -541,15 +541,15 @@ class TestDataCollection extends TestCase
     {
         $this->problemColumn->addRange(
             $this->problemColumnValueRange->defineRange([
-                'low' => 10,
-                'high' => 100
+                'low'  => 10,
+                'high' => 100,
             ])
         );
         $this->assertInstanceOf(ProblemColumnValueRange::class, $this->problemColumn->get('range'));
     }
 
     /**
-     * Test that we can get the problem statement from the problem object
+     * Test that we can get the problem statement from the problem object.
      *
      * @return void
      */
@@ -559,68 +559,68 @@ class TestDataCollection extends TestCase
             'subject' => 'phones',
             'columns' => [
                 $this->app->make('TradeoffProblemColumn', [
-                    'key' => 'price',
-                    'type' => 'numeric',
-                    'goal' => 'min',
+                    'key'          => 'price',
+                    'type'         => 'numeric',
+                    'goal'         => 'min',
                     'is_objective' => true,
-                    'full_name' =>'Price',
-                    'range' => $this->app->make('TradeoffProblemColumnValueRange', [
-                        'low' => 0,
-                        'high' => 400
+                    'full_name'    => 'Price',
+                    'range'        => $this->app->make('TradeoffProblemColumnValueRange', [
+                        'low'  => 0,
+                        'high' => 400,
                     ]),
-                    'format' => 'number:2'
-                ])
+                    'format' => 'number:2',
+                ]),
             ],
             'options' => [
                 $this->app->make('TradeoffProblemOption', [
-                    'key' => '1',
-                    'name' => 'Samsung Galaxy S4',
+                    'key'    => '1',
+                    'name'   => 'Samsung Galaxy S4',
                     'values' => [
-                        'price' => 249
-                    ]
+                        'price' => 249,
+                    ],
                 ]),
                 $this->app->make('TradeoffProblemOption', [
-                    'key' => '2',
-                    'name' => 'Apple iPhone 5',
+                    'key'    => '2',
+                    'name'   => 'Apple iPhone 5',
                     'values' => [
-                        'price' => 449
-                    ]
+                        'price' => 449,
+                    ],
                 ]),
-            ]
+            ],
         ]);
 
         $this->assertEquals([
             'subject' => 'phones',
             'columns' => [
                 [
-                    'key' => 'price',
-                    'type' => 'numeric',
-                    'goal' => 'min',
+                    'key'          => 'price',
+                    'type'         => 'numeric',
+                    'goal'         => 'min',
                     'is_objective' => true,
-                    'full_name' =>'Price',
-                    'range' => [
-                        'low' => 0,
-                        'high' => 400
+                    'full_name'    => 'Price',
+                    'range'        => [
+                        'low'  => 0,
+                        'high' => 400,
                     ],
-                    'format' => 'number:2'
-                ]
+                    'format' => 'number:2',
+                ],
             ],
             'options' => [
                 [
-                    'key' => '1',
-                    'name' => 'Samsung Galaxy S4',
+                    'key'    => '1',
+                    'name'   => 'Samsung Galaxy S4',
                     'values' => [
-                        'price' => 249
-                    ]
+                        'price' => 249,
+                    ],
                 ],
                 [
-                    'key' => '2',
-                    'name' => 'Apple iPhone 5',
+                    'key'    => '2',
+                    'name'   => 'Apple iPhone 5',
                     'values' => [
-                        'price' => 449
-                    ]
-                ]
-            ]
+                        'price' => 449,
+                    ],
+                ],
+            ],
         ], $problem->statement());
     }
 }

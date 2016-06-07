@@ -1,11 +1,11 @@
 <?php
 
-if (! function_exists('make_tradeoff_problem')) {
+if (!function_exists('make_tradeoff_problem')) {
     /**
-     * Make a Tradeoff Analytics Problem object
+     * Make a Tradeoff Analytics Problem object.
      *
      * @param array $items
-     * @param bool $objectify
+     * @param bool  $objectify
      *
      * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem
      */
@@ -16,14 +16,14 @@ if (! function_exists('make_tradeoff_problem')) {
         if ($objectify) {
             return $problem->objectify();
         }
-        
+
         return $problem;
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column')) {
+if (!function_exists('make_tradeoff_problem_column')) {
     /**
-     * Make a Tradeoff Analytics ProblemColumn object
+     * Make a Tradeoff Analytics ProblemColumn object.
      *
      * @param array $items
      *
@@ -35,9 +35,9 @@ if (! function_exists('make_tradeoff_problem_column')) {
     }
 }
 
-if (! function_exists('make_tradeoff_problem_option')) {
+if (!function_exists('make_tradeoff_problem_option')) {
     /**
-     * Make a Tradeoff Analytics ProblemOption object
+     * Make a Tradeoff Analytics ProblemOption object.
      *
      * @param array $items
      *
@@ -49,9 +49,9 @@ if (! function_exists('make_tradeoff_problem_option')) {
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_categorical_range')) {
+if (!function_exists('make_tradeoff_problem_column_categorical_range')) {
     /**
-     * Make a Tradeoff Analytics ProblemColumnCategoricalRange object
+     * Make a Tradeoff Analytics ProblemColumnCategoricalRange object.
      *
      * @param array $items
      *
@@ -63,9 +63,9 @@ if (! function_exists('make_tradeoff_problem_column_categorical_range')) {
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_date_range')) {
+if (!function_exists('make_tradeoff_problem_column_date_range')) {
     /**
-     * Make a Tradeoff analytics ProblemColumnDateRange object
+     * Make a Tradeoff analytics ProblemColumnDateRange object.
      *
      * @param array $items
      *
@@ -77,9 +77,9 @@ if (! function_exists('make_tradeoff_problem_column_date_range')) {
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_value_range')) {
+if (!function_exists('make_tradeoff_problem_column_value_range')) {
     /**
-     * Make a Tradeoff analytics ProblemColumnValueRange object
+     * Make a Tradeoff analytics ProblemColumnValueRange object.
      *
      * @param array $items
      *
@@ -91,9 +91,9 @@ if (! function_exists('make_tradeoff_problem_column_value_range')) {
     }
 }
 
-if (! function_exists('make_tradeoff_dilemma')) {
+if (!function_exists('make_tradeoff_dilemma')) {
     /**
-     * Make a Tradeoff analytics Dilemma Object
+     * Make a Tradeoff analytics Dilemma Object.
      *
      * @param array $items
      *
@@ -105,9 +105,9 @@ if (! function_exists('make_tradeoff_dilemma')) {
     }
 }
 
-if (! function_exists('make_tradeoff_resolution')) {
+if (!function_exists('make_tradeoff_resolution')) {
     /**
-     * Make a Tradeoff Analytics Resolution Object
+     * Make a Tradeoff Analytics Resolution Object.
      *
      * @param array $items
      *
@@ -119,9 +119,9 @@ if (! function_exists('make_tradeoff_resolution')) {
     }
 }
 
-if (! function_exists('make_tradeoff_solution')) {
+if (!function_exists('make_tradeoff_solution')) {
     /**
-     * Make a Tradeoff Analytics Solution Object
+     * Make a Tradeoff Analytics Solution Object.
      *
      * @param array $items
      *
@@ -133,9 +133,9 @@ if (! function_exists('make_tradeoff_solution')) {
     }
 }
 
-if (! function_exists('make_tradeoff_solution_status_cause')) {
+if (!function_exists('make_tradeoff_solution_status_cause')) {
     /**
-     * Make a Tradeoff Analytic SolutionStatusCause Object
+     * Make a Tradeoff Analytic SolutionStatusCause Object.
      *
      * @param array $item
      *
@@ -147,9 +147,9 @@ if (! function_exists('make_tradeoff_solution_status_cause')) {
     }
 }
 
-if (! function_exists('make_tradeoff_map')) {
+if (!function_exists('make_tradeoff_map')) {
     /**
-     * Make a Tradeoff Analytics Map Object
+     * Make a Tradeoff Analytics Map Object.
      *
      * @param array $items
      *
@@ -161,9 +161,9 @@ if (! function_exists('make_tradeoff_map')) {
     }
 }
 
-if (! function_exists('make_tradeoff_map_anchor')) {
+if (!function_exists('make_tradeoff_map_anchor')) {
     /**
-     * Make a Tradeoff Analytics MapAnchor object
+     * Make a Tradeoff Analytics MapAnchor object.
      *
      * @param array $items
      *
@@ -175,9 +175,9 @@ if (! function_exists('make_tradeoff_map_anchor')) {
     }
 }
 
-if (! function_exists('make_tradeoff_map_node')) {
+if (!function_exists('make_tradeoff_map_node')) {
     /**
-     * Make a Tradeoff Analytics MapNode object
+     * Make a Tradeoff Analytics MapNode object.
      *
      * @param array $items
      *
@@ -189,9 +189,9 @@ if (! function_exists('make_tradeoff_map_node')) {
     }
 }
 
-if (! function_exists('make_tradeoff_map_node_coordinates')) {
+if (!function_exists('make_tradeoff_map_node_coordinates')) {
     /**
-     * Make a Tradeoff Analytics MapNodeCoordinates object
+     * Make a Tradeoff Analytics MapNodeCoordinates object.
      *
      * @param array $items
      *

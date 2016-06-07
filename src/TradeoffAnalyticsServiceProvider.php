@@ -8,12 +8,12 @@ use FindBrok\WatsonBridge\Bridge;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class TradeoffAnalyticsServiceProvider
+ * Class TradeoffAnalyticsServiceProvider.
  */
 class TradeoffAnalyticsServiceProvider extends ServiceProvider
 {
     /**
-     * Interfaces and their concrete classes
+     * Interfaces and their concrete classes.
      *
      * @var array
      */
@@ -22,7 +22,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Defines all data collectors class aliases
+     * Defines all data collectors class aliases.
      *
      * @var array
      */
@@ -40,7 +40,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
         'TradeoffMap'                           => DataCollection\Map::class,
         'TradeoffMapAnchor'                     => DataCollection\MapAnchor::class,
         'TradeoffMapNode'                       => DataCollection\MapNode::class,
-        'TradeoffMapNodeCoordinates'            => DataCollection\MapNodeCoordinates::class
+        'TradeoffMapNodeCoordinates'            => DataCollection\MapNodeCoordinates::class,
     ];
 
     /**
@@ -52,7 +52,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     {
         //Publish config files
         $this->publishes([
-            $this->ourConfigPath('tradeoff-analytics.php') => config_path('tradeoff-analytics.php')
+            $this->ourConfigPath('tradeoff-analytics.php') => config_path('tradeoff-analytics.php'),
         ], 'config');
     }
 
@@ -77,7 +77,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register bindings
+     * Register bindings.
      *
      * @return void
      */
@@ -89,7 +89,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register Watson Bridge
+     * Register Watson Bridge.
      *
      * @return void
      */
@@ -106,7 +106,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register all data Collectors
+     * Register all data Collectors.
      *
      * @return void
      */
@@ -121,7 +121,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Gets our config path for package
+     * Gets our config path for package.
      *
      * @param string $fileName
      *

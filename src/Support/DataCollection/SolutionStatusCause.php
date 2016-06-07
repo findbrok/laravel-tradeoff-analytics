@@ -5,9 +5,8 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class SolutionStatusCause
+ * Class SolutionStatusCause.
  */
 class SolutionStatusCause extends Collection
 {
-
 }

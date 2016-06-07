@@ -3,7 +3,7 @@
 namespace FindBrok\TradeoffAnalytics;
 
 /**
- * Class AbstractEngine
+ * Class AbstractEngine.
  */
 abstract class AbstractEngine
 {
@@ -15,7 +15,7 @@ abstract class AbstractEngine
     protected $credentialName = 'default';
 
     /**
-     * Auth method to use
+     * Auth method to use.
      *
      * @var string
      */
@@ -28,11 +28,11 @@ abstract class AbstractEngine
      */
     protected $headers = [
         'Accept'        => 'application/json',
-        'Content-Type'  => 'application/json'
+        'Content-Type'  => 'application/json',
     ];
 
     /**
-     * Results from API call
+     * Results from API call.
      *
      * @var string
      */
@@ -68,7 +68,7 @@ abstract class AbstractEngine
     {
         //Append X-Watson-Learning-Opt-Out
         $this->appendHeaders([
-            'X-Watson-Learning-Opt-Out' => config('tradeoff-analytics.x_watson_learning_opt_out')
+            'X-Watson-Learning-Opt-Out' => config('tradeoff-analytics.x_watson_learning_opt_out'),
         ]);
         //Return headers
         return $this->headers;
@@ -124,12 +124,12 @@ abstract class AbstractEngine
         return [
             'username' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.username'),
             'password' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.password'),
-            'url' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.url')
+            'url'      => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.url'),
         ];
     }
 
     /**
-     * Set auth method to use when making request
+     * Set auth method to use when making request.
      *
      * @param string $authMethod
      *
@@ -144,7 +144,7 @@ abstract class AbstractEngine
     }
 
     /**
-     * Return AuthMethod to use
+     * Return AuthMethod to use.
      *
      * @return string
      */

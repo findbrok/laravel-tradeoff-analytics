@@ -18,20 +18,20 @@ return [
     |--------------------------------------------------------------------------
     | Credentials
     |--------------------------------------------------------------------------
-    | 
+    |
     | Here you may define credentials for your Tradeoff Analytics Service
     | you should find them in your Bluemix console. You can define as
     | many credentials as you want
     |
     */
-    
+
     'credentials' => [
 
         'default' => [
-            'url' => env('TRADEOFF_ANALYTICS_URL', 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'),
+            'url'      => env('TRADEOFF_ANALYTICS_URL', 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'),
             'password' => env('TRADEOFF_ANALYTICS_PASSWORD', 'SomePassword'),
-            'username' => env('TRADEOFF_ANALYTICS_USERNAME', 'SomeUsername')
-        ]
+            'username' => env('TRADEOFF_ANALYTICS_USERNAME', 'SomeUsername'),
+        ],
     ],
 
     /*

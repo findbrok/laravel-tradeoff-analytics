@@ -5,7 +5,7 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class MapNodeCoordinates
+ * Class MapNodeCoordinates.
  */
 class MapNodeCoordinates extends Collection
 {

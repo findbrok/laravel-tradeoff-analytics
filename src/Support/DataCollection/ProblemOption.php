@@ -3,12 +3,12 @@
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 /**
- * Class ProblemOption
+ * Class ProblemOption.
  */
 class ProblemOption extends BaseCollector
 {
     /**
-     * List of Supported Field Names
+     * List of Supported Field Names.
      *
      * @var array
      */
@@ -17,7 +17,7 @@ class ProblemOption extends BaseCollector
         |--------------------------------------------------------------------------
         | Key (String | Required)
         |--------------------------------------------------------------------------
-        | 
+        |
         | An identifier for the option. The key must be unique among all options
         | for the decision problem.
         |
@@ -37,7 +37,7 @@ class ProblemOption extends BaseCollector
         | defined for its column. An option that fails to specify a value for a column
         | for which is_objective is true is marked as incomplete and is excluded from
         | the resolution.
-        | 
+        |
         */
 
         'values',
@@ -46,19 +46,19 @@ class ProblemOption extends BaseCollector
         |--------------------------------------------------------------------------
         | Name (String | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | The name of the option. Used only by the Tradeoff Analytics widget;
         | not part of the problem definition.
         |
         */
-        
+
         'name',
 
         /*
         |--------------------------------------------------------------------------
         | Description (String | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A description of the option in HTML format. The description is
         | displayed when the user selects the option in the interface.
         | Used only by the Tradeoff Analytics widget; not part of
@@ -83,6 +83,6 @@ class ProblemOption extends BaseCollector
         |
         */
 
-        'app_data'
+        'app_data',
     ];
 }

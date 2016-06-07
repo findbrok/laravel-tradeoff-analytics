@@ -5,7 +5,7 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class Resolution
+ * Class Resolution.
  */
 class Resolution extends Collection
 {
@@ -41,7 +41,7 @@ class Resolution extends Collection
 
         //Solution not found
         if (is_null($solution)) {
-            return null;
+            return;
         }
 
         return $this->objectifySolutions(
@@ -66,7 +66,7 @@ class Resolution extends Collection
         $solution = $this->findSolution($solutionRef);
         //Solution not found
         if (is_null($solution)) {
-            return null;
+            return;
         }
 
         return $this->objectifySolutions(
@@ -92,7 +92,7 @@ class Resolution extends Collection
      * Objectifies the solutions if necessary.
      *
      * @param array $solutions
-     * @param bool $objectify
+     * @param bool  $objectify
      *
      * @return array
      */
@@ -101,9 +101,10 @@ class Resolution extends Collection
         //Transform to objects
         if ($objectify) {
             return collect($solutions)->transform(function ($item) {
-                if (! $item instanceof Solution) {
+                if (!$item instanceof Solution) {
                     return make_tradeoff_solution($item);
                 }
+
                 return $item;
             })->all();
         }

@@ -4,33 +4,33 @@ use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestMap
+ * Class TestMap.
  */
 class TestMap extends TestCase
 {
     /**
-     * Dilemma Object
+     * Dilemma Object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma
      */
     protected $dilemma;
 
     /**
-     * The Resolution object
+     * The Resolution object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Resolution
      */
     protected $resolution;
 
     /**
-     * The Map Object
+     * The Map Object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Map
      */
     protected $map;
 
     /**
-     * Setup test
+     * Setup test.
      *
      * @return void
      */
@@ -43,7 +43,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Tear down test
+     * Tear down test.
      *
      * @return void
      */
@@ -58,7 +58,7 @@ class TestMap extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -68,7 +68,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Get Resolution array
+     * Get Resolution array.
      *
      * @return string
      */
@@ -78,7 +78,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Get an Anchor point
+     * Get an Anchor point.
      *
      * @return DataCollection\MapAnchor
      */
@@ -88,7 +88,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Get a Node point
+     * Get a Node point.
      *
      * @return DataCollection\MapNode
      */
@@ -98,7 +98,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Test the getAnchors method on the Map object
+     * Test the getAnchors method on the Map object.
      *
      * @return void
      */
@@ -112,7 +112,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Test the getNodes method on the Map object
+     * Test the getNodes method on the Map object.
      *
      * @return void
      */
@@ -126,7 +126,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Test that the getCoordinates method on the MapAnchor object works
+     * Test that the getCoordinates method on the MapAnchor object works.
      *
      * @return void
      */
@@ -137,7 +137,7 @@ class TestMap extends TestCase
     }
 
     /**
-     * Test that the getCoordinates method on the MapNode object works
+     * Test that the getCoordinates method on the MapNode object works.
      *
      * @return void
      */

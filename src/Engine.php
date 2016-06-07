@@ -6,15 +6,15 @@ use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface;
 use FindBrok\TradeoffAnalytics\Support\DataCollection\Problem;
 
 /**
- * Class Engine
+ * Class Engine.
  */
 class Engine extends AbstractEngine implements TradeoffAnalyticsInterface
 {
     /**
-     * Resolve the problem dilemma
+     * Resolve the problem dilemma.
      *
      * @param \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem $problem
-     * @param bool $generateVisualization
+     * @param bool                                                       $generateVisualization
      *
      * @throws \FindBrok\WatsonBridge\Exceptions\WatsonBridgeException
      *

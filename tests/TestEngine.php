@@ -6,26 +6,26 @@ use GuzzleHttp\Psr7\Response;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestEngine
+ * Class TestEngine.
  */
 class TestEngine extends TestCase
 {
     /**
-     * Our config path
+     * Our config path.
      *
      * @var string
      */
     protected $ourConfigPath;
 
     /**
-     * Analytics engine
+     * Analytics engine.
      *
      * @var \FindBrok\TradeoffAnalytics\Engine
      */
     protected $engine;
 
     /**
-     * Watson Bridge
+     * Watson Bridge.
      *
      * @var Bridge
      */
@@ -61,7 +61,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Mock Watson Bridge
+     * Mock Watson Bridge.
      */
     public function mockBridge()
     {
@@ -76,7 +76,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Get the problem fixture
+     * Get the problem fixture.
      *
      * @return array
      */
@@ -86,7 +86,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Get Resolution Json Body Response
+     * Get Resolution Json Body Response.
      *
      * @return string
      */
@@ -98,7 +98,7 @@ class TestEngine extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -109,7 +109,7 @@ class TestEngine extends TestCase
 
     /**
      * Test to see if our service is bound correctly
-     * in the IOC
+     * in the IOC.
      *
      * @return void
      */
@@ -122,7 +122,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Test to see if our config keys are working
+     * Test to see if our config keys are working.
      *
      * @return void
      */
@@ -133,7 +133,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Test to see if our config is being published correctly
+     * Test to see if our config is being published correctly.
      *
      * @return void
      */
@@ -141,7 +141,7 @@ class TestEngine extends TestCase
     {
         $this->artisan('vendor:publish', [
             '--provider' => 'FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider',
-            '--tag' => ['config']
+            '--tag'      => ['config'],
         ]);
         $this->assertTrue(file_exists(config_path('tradeoff-analytics.php')));
         $this->assertEquals(file_get_contents($this->ourConfigPath), file_get_contents(config_path('tradeoff-analytics.php')));
@@ -149,7 +149,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Test to see if we get the default credentials
+     * Test to see if we get the default credentials.
      *
      * @return void
      */
@@ -158,13 +158,13 @@ class TestEngine extends TestCase
         $this->assertEquals([
             'username' => 'superSecretUsername',
             'password' => 'superSecretPassword',
-            'url' => 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'
+            'url'      => 'https://gateway.watsonplatform.net/tradeoff-analytics/api/',
         ], $this->engine->getCredentials());
     }
 
     /**
      * Test the getCredentials method to see if changing the
-     * credentials name to use we get correct credentials
+     * credentials name to use we get correct credentials.
      *
      * @return void
      */
@@ -179,31 +179,31 @@ class TestEngine extends TestCase
         $this->assertEquals([
             'username' => 'superSecretUsername1',
             'password' => 'superSecretPassword1',
-            'url' => 'superSecretUrl1'
-        ],  $this->engine->getCredentials());
+            'url'      => 'superSecretUrl1',
+        ], $this->engine->getCredentials());
     }
 
     /**
-     * Test append headers method
+     * Test append headers method.
      *
      * @return void
      */
     public function testAppendHeadersMethod()
     {
         $this->engine->appendHeaders([
-            'X-foo' => 'Bar'
+            'X-foo' => 'Bar',
         ]);
         $this->assertEquals([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-foo' => 'Bar',
-            'X-Watson-Learning-Opt-Out' => false
+            'Accept'                    => 'application/json',
+            'Content-Type'              => 'application/json',
+            'X-foo'                     => 'Bar',
+            'X-Watson-Learning-Opt-Out' => false,
         ], $this->engine->getHeaders());
     }
 
     /**
      * Test our make bridge method to see if we get our bridge
-     * instance
+     * instance.
      *
      * @return void
      */
@@ -213,7 +213,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Test that we can correctly set the AuthMethod on the engine
+     * Test that we can correctly set the AuthMethod on the engine.
      *
      * @return void
      */
@@ -225,7 +225,7 @@ class TestEngine extends TestCase
     }
 
     /**
-     * Test the getDilemma method on the engine
+     * Test the getDilemma method on the engine.
      *
      * @return void
      */

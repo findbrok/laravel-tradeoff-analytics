@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Exception;
 
 /**
- * Class ProblemColumnValueRange
+ * Class ProblemColumnValueRange.
  */
 class ProblemColumnValueRange extends BaseCollectorRange
 {
     /**
-     * List of Supported Field Names
+     * List of Supported Field Names.
      *
      * @var array
      */
@@ -36,11 +36,11 @@ class ProblemColumnValueRange extends BaseCollectorRange
         |
         */
 
-        'high'
+        'high',
     ];
 
     /**
-     * Add Range Fields to Range object
+     * Add Range Fields to Range object.
      *
      * @param array $range
      *
@@ -53,7 +53,7 @@ class ProblemColumnValueRange extends BaseCollectorRange
         //Collect range
         $range = collect($range);
         //Validate Range
-        if (! $range->has('high') && ! $range->has('low')) {
+        if (!$range->has('high') && !$range->has('low')) {
             throw new Exception('Missing {high} or {low} field in {ProblemColumnValueRange} object', 422);
         }
         //Transform to int

@@ -4,26 +4,26 @@ use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestSolution
+ * Class TestSolution.
  */
 class TestSolution extends TestCase
 {
     /**
-     * Dilemma Object
+     * Dilemma Object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma
      */
     protected $dilemma;
 
     /**
-     * The Resolution object
+     * The Resolution object.
      *
      * @var \FindBrok\TradeoffAnalytics\Support\DataCollection\Resolution
      */
     protected $resolution;
 
     /**
-     * Setup test
+     * Setup test.
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class TestSolution extends TestCase
     }
 
     /**
-     * Tear down test
+     * Tear down test.
      *
      * @return void
      */
@@ -49,7 +49,7 @@ class TestSolution extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -59,7 +59,7 @@ class TestSolution extends TestCase
     }
 
     /**
-     * Get Resolution array
+     * Get Resolution array.
      *
      * @return string
      */
@@ -69,7 +69,7 @@ class TestSolution extends TestCase
     }
 
     /**
-     * Get an Incomplete solution
+     * Get an Incomplete solution.
      *
      * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Solution
      */
@@ -79,7 +79,7 @@ class TestSolution extends TestCase
     }
 
     /**
-     * Test that the hasStatusCause method on the Solution object works as Expected
+     * Test that the hasStatusCause method on the Solution object works as Expected.
      *
      * @return void
      */
@@ -89,7 +89,7 @@ class TestSolution extends TestCase
     }
 
     /**
-     * Test that the getStatusCause will return an StatusCause object
+     * Test that the getStatusCause will return an StatusCause object.
      *
      * @return void
      */

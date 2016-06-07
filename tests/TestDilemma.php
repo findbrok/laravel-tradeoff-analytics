@@ -4,19 +4,19 @@ use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Orchestra\Testbench\TestCase;
 
 /**
- * Class TestDilemma
+ * Class TestDilemma.
  */
 class TestDilemma extends TestCase
 {
     /**
-     * The Dilemma Object
+     * The Dilemma Object.
      *
      * @var DataCollection\Dilemma
      */
     protected $dilemma;
 
     /**
-     * Setup test
+     * Setup test.
      *
      * @return void
      */
@@ -27,7 +27,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Tear down test
+     * Tear down test.
      *
      * @return void
      */
@@ -40,7 +40,7 @@ class TestDilemma extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -50,7 +50,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Get Resolution array
+     * Get Resolution array.
      *
      * @return string
      */
@@ -60,7 +60,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can create the Dilemma Object
+     * Test that we can create the Dilemma Object.
      *
      * @return void
      */
@@ -70,7 +70,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that the has Problem method works
+     * Test that the has Problem method works.
      *
      * @return void
      */
@@ -80,7 +80,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test to see if the getProblem method works
+     * Test to see if the getProblem method works.
      *
      * @return void
      */
@@ -99,7 +99,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that the hasResolution method on the Dilemma object works
+     * Test that the hasResolution method on the Dilemma object works.
      *
      * @return void
      */
@@ -109,7 +109,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get ResolutionObject from Dilemma
+     * Test that we can get ResolutionObject from Dilemma.
      *
      * @return void
      */
@@ -119,7 +119,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test the hasSolution method on the Resolution object
+     * Test the hasSolution method on the Resolution object.
      *
      * @return void
      */
@@ -129,7 +129,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test we can get a solution object from the Resolution
+     * Test we can get a solution object from the Resolution.
      *
      * @return void
      */
@@ -141,7 +141,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we get only the favoured solutions from our Resolution
+     * Test that we get only the favoured solutions from our Resolution.
      *
      * @return void
      */
@@ -155,7 +155,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get excluded solutions from our Resolution
+     * Test that we can get excluded solutions from our Resolution.
      *
      * @return void
      */
@@ -169,7 +169,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get Incomplete solutions from our Resolution
+     * Test that we can get Incomplete solutions from our Resolution.
      *
      * @return void
      */
@@ -183,7 +183,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get solutions that do not meet preference from our Resolution
+     * Test that we can get solutions that do not meet preference from our Resolution.
      *
      * @return void
      */
@@ -194,7 +194,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that the hasMap method on the Resolution works
+     * Test that the hasMap method on the Resolution works.
      *
      * @return void
      */
@@ -204,7 +204,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get the Map object from the Resolution
+     * Test that we can get the Map object from the Resolution.
      *
      * @return void
      */
@@ -214,7 +214,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we are able to find a particular solution in the Resolution object
+     * Test that we are able to find a particular solution in the Resolution object.
      *
      * @return void
      */
@@ -228,7 +228,7 @@ class TestDilemma extends TestCase
 
     /**
      * Test that we are able to retrieve all solutions that
-     * shadow a particular solution
+     * shadow a particular solution.
      *
      * @return void
      */
@@ -240,7 +240,7 @@ class TestDilemma extends TestCase
     }
 
     /**
-     * Test that we can get all the solutions being shadowed by a particular solution
+     * Test that we can get all the solutions being shadowed by a particular solution.
      *
      * @return void
      */

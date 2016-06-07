@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class Map
+ * Class Map.
  */
 class Map extends Collection
 {
     /**
-     * Get all anchor points
+     * Get all anchor points.
      *
      * @return array
      */
@@ -22,7 +22,7 @@ class Map extends Collection
     }
 
     /**
-     * Get all nodes
+     * Get all nodes.
      *
      * @return array
      */

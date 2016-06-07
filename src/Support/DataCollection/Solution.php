@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class Solution
+ * Class Solution.
  */
 class Solution extends Collection
 {
     /**
-     * Check is the solution is an Optimal one
+     * Check is the solution is an Optimal one.
      *
      * @return bool
      */
@@ -20,7 +20,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks if the solution is Incomplete
+     * Checks if the solution is Incomplete.
      *
      * @return bool
      */
@@ -30,7 +30,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks if the solution is Excluded
+     * Checks if the solution is Excluded.
      *
      * @return bool
      */
@@ -40,7 +40,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks if the solution does not meet preference
+     * Checks if the solution does not meet preference.
      *
      * @return bool
      */
@@ -50,7 +50,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks that the solution is shadowed by other solutions
+     * Checks that the solution is shadowed by other solutions.
      *
      * @return bool
      */
@@ -60,7 +60,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks the the solution is shadows other solutions
+     * Checks the the solution is shadows other solutions.
      *
      * @return bool
      */
@@ -70,7 +70,7 @@ class Solution extends Collection
     }
 
     /**
-     * Array of solution that shadow this solution
+     * Array of solution that shadow this solution.
      *
      * @return array
      */
@@ -80,7 +80,7 @@ class Solution extends Collection
     }
 
     /**
-     * Array of solutions that gets shadowed by this solution
+     * Array of solutions that gets shadowed by this solution.
      *
      * @return array
      */
@@ -90,7 +90,7 @@ class Solution extends Collection
     }
 
     /**
-     * Checks if the Solution has a StatusCause
+     * Checks if the Solution has a StatusCause.
      *
      * @return bool
      */
@@ -100,7 +100,7 @@ class Solution extends Collection
     }
 
     /**
-     * Returns the StatusCause object
+     * Returns the StatusCause object.
      *
      * @return SolutionStatusCause|null
      */

@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class MapAnchor
+ * Class MapAnchor.
  */
 class MapAnchor extends Collection
 {
     /**
-     * Get the coordinates of the Anchor point
+     * Get the coordinates of the Anchor point.
      *
      * @return MapNodeCoordinates
      */

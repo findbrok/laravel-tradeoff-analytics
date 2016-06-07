@@ -5,22 +5,22 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class Dilemma
+ * Class Dilemma.
  */
 class Dilemma extends Collection
 {
     /**
-     * Checks if Dilemma has an Initial Problem
+     * Checks if Dilemma has an Initial Problem.
      *
      * @return bool
      */
     public function hasProblem()
     {
-        return $this->has('problem') && ! collect($this->get('problem'))->isEmpty();
+        return $this->has('problem') && !collect($this->get('problem'))->isEmpty();
     }
 
     /**
-     * Get the Initial Problem
+     * Get the Initial Problem.
      *
      * @return Problem
      */
@@ -31,21 +31,20 @@ class Dilemma extends Collection
             return make_tradeoff_problem($this->get('problem'), true);
         }
         //No Problem found in Dilemma
-        return null;
     }
 
     /**
-     * Checks if the Dilemma has a Resolution
+     * Checks if the Dilemma has a Resolution.
      *
      * @return bool
      */
     public function hasResolution()
     {
-        return $this->has('resolution') && ! collect($this->get('resolution'))->isEmpty();
+        return $this->has('resolution') && !collect($this->get('resolution'))->isEmpty();
     }
 
     /**
-     * Return the Resolution object
+     * Return the Resolution object.
      *
      * @return Resolution|null
      */

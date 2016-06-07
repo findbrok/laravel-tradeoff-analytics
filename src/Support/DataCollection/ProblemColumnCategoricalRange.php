@@ -3,7 +3,7 @@
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 /**
- * Class ProblemColumnCategoricalRange
+ * Class ProblemColumnCategoricalRange.
  */
 class ProblemColumnCategoricalRange extends BaseCollectorRange
 {

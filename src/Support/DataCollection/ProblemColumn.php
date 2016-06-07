@@ -3,12 +3,12 @@
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 /**
- * Class ProblemColumn
+ * Class ProblemColumn.
  */
 class ProblemColumn extends BaseCollector
 {
     /**
-     * List of Supported Field Names
+     * List of Supported Field Names.
      *
      * @var array
      */
@@ -18,7 +18,7 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Key (String | Required)
         |--------------------------------------------------------------------------
-        | 
+        |
         | An identifier for the column. The key must be unique among all
         | columns for the decision problem.
         |
@@ -45,21 +45,21 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Goal (String | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | The direction of the column:
         | - min: indicates that the goal is to minimize the objective (for example, the price of a vehicle).
         | - max: (the default) indicates that the goal is to maximize the objective (for example, the safety rating of a vehicle).
         | The goal is meaningful only for columns for which is_objective is true.
         |
         */
-        
+
         'goal',
 
         /*
         |--------------------------------------------------------------------------
         | Is Objective (Boolean | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | Indicates whether the column is an objective for the decision problem.
         | If true, the column contributes to the resolution; if false
         | (the default), the column does not contribute to the
@@ -77,7 +77,7 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Range (Object | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A ProblemColumnCategoricalRange, ProblemColumnDateRange, or
         | ProblemColumnValueRange object that indicates the
         | range of valid values for a categorical, datetime, or numeric column,
@@ -88,14 +88,14 @@ class ProblemColumn extends BaseCollector
         | set for the column.
         |
         */
-        
+
         'range',
 
         /*
         |--------------------------------------------------------------------------
         | Preference (String | Object)
         |--------------------------------------------------------------------------
-        | 
+        |
         | For columns whose type is categorical, a preferred subset of the strings
         | in the column's range; valid only for categorical columns. The order of the
         | values is important because it indicates the actual preference for the values in range:
@@ -104,14 +104,14 @@ class ProblemColumn extends BaseCollector
         | By default, values are preferred according to their ordering in range and the direction indicated by goal.
         |
         */
-        
+
         'preference',
 
         /*
         |--------------------------------------------------------------------------
         | Significant Gain (Number | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A significant gain for the column in the range of 0 to 1. The value is a
         | proportion of the complete range for the column. The field is relevant
         | only for columns whose is_objective field is true.
@@ -124,7 +124,7 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Significant Loss (Number | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A significant loss for the column in the range of 0 to 1. The value is a
         | proportion of the complete range for the column. The field is relevant
         | only for columns whose is_objective field is true.
@@ -150,7 +150,7 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Format (String | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | For columns whose type is numeric or datetime, an optional pattern that indicates
         | how the value is to be presented by the visualization. For numeric columns:
         | - Number of decimal places: "format": "number: n"
@@ -171,7 +171,7 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Full Name (String | Optional)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A descriptive name for the column. Used only by the Tradeoff
         | Analytics widget; not part of the problem definition.
         |
@@ -183,17 +183,17 @@ class ProblemColumn extends BaseCollector
         |--------------------------------------------------------------------------
         | Description
         |--------------------------------------------------------------------------
-        | 
+        |
         | A long description for the column. Used only by the Tradeoff Analytics
         | widget; not part of the problem definition.
         |
         */
 
-        'description'
+        'description',
     ];
 
     /**
-     * Add a Range object to the Column
+     * Add a Range object to the Column.
      *
      * @param mixed $range
      *

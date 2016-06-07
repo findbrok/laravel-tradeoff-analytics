@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionFieldMissMatchTypeException;
 
 /**
- * Class Problem
+ * Class Problem.
  */
 class Problem extends BaseCollector
 {
     /**
-     * List of Supported Field Names
+     * List of Supported Field Names.
      *
      * @var array
      */
@@ -19,7 +19,7 @@ class Problem extends BaseCollector
         |--------------------------------------------------------------------------
         | Subject (String | Required)
         |--------------------------------------------------------------------------
-        | 
+        |
         | A name for the decision problem. The field typically provides a heading
         | for the column that represents the options in the tabular
         | representation of the data.
@@ -45,18 +45,18 @@ class Problem extends BaseCollector
         |--------------------------------------------------------------------------
         | Options (Object | Required)
         |--------------------------------------------------------------------------
-        | 
+        |
         | An array of ProblemOption objects that lists the options for the
         | decision problem. The field typically specifies the rows for
         | the tabular representation of the data
         |
         */
 
-        'options'
+        'options',
     ];
 
     /**
-     * Perform a check to see if item is a ProblemColumn object
+     * Perform a check to see if item is a ProblemColumn object.
      *
      * @param mixed $item
      *
@@ -66,13 +66,13 @@ class Problem extends BaseCollector
      */
     protected function validateColumnField($item)
     {
-        if (! $item instanceof ProblemColumn) {
+        if (!$item instanceof ProblemColumn) {
             throw new DataCollectionFieldMissMatchTypeException('columns', 'Problem', 'ProblemColumn');
         }
     }
 
     /**
-     * Perform a check to see if item is a ProblemOption object
+     * Perform a check to see if item is a ProblemOption object.
      *
      * @param mixed $item
      *
@@ -82,13 +82,13 @@ class Problem extends BaseCollector
      */
     protected function validateOptionField($item)
     {
-        if (! $item instanceof ProblemOption) {
+        if (!$item instanceof ProblemOption) {
             throw new DataCollectionFieldMissMatchTypeException('options', 'Problem', 'ProblemOption');
         }
     }
 
     /**
-     * Add Columns to the Problem
+     * Add Columns to the Problem.
      *
      * @param ProblemColumn|array $items
      *
@@ -109,7 +109,7 @@ class Problem extends BaseCollector
     }
 
     /**
-     * Add Options to a Problem
+     * Add Options to a Problem.
      *
      * @param ProblemOption|array $items
      *
@@ -130,7 +130,7 @@ class Problem extends BaseCollector
     }
 
     /**
-     * Get the statement of the problem to send to Watson
+     * Get the statement of the problem to send to Watson.
      *
      * @return array
      */
@@ -140,12 +140,13 @@ class Problem extends BaseCollector
             if (is_array($item)) {
                 return collect($item)->toArray();
             }
+
             return $item;
         })->toArray();
     }
 
     /**
-     * Make sure that columns and options fields contain objects
+     * Make sure that columns and options fields contain objects.
      *
      * @return self
      */
@@ -155,7 +156,7 @@ class Problem extends BaseCollector
     }
 
     /**
-     * Transform all columns field in Object
+     * Transform all columns field in Object.
      *
      * @return self
      */
@@ -163,14 +164,15 @@ class Problem extends BaseCollector
     {
         //Objectify each column
         $columns = collect($this->get('columns'))->transform(function ($item) {
-            if(!$item instanceof ProblemColumn) {
+            if (!$item instanceof ProblemColumn) {
                 return make_tradeoff_problem_column($item);
             }
+
             return $item;
         });
 
         //Put in field if we have items
-        if(!$columns->isEmpty()) {
+        if (!$columns->isEmpty()) {
             $this->put('columns', $columns->all());
         }
 
@@ -178,7 +180,7 @@ class Problem extends BaseCollector
     }
 
     /**
-     * Transform all options field in Object
+     * Transform all options field in Object.
      *
      * @return self
      */
@@ -186,14 +188,15 @@ class Problem extends BaseCollector
     {
         //Objectify each column options
          $options = collect($this->get('options'))->transform(function ($item) {
-            if(!$item instanceof ProblemOption) {
-                return make_tradeoff_problem_option($item);
-            }
-            return $item;
-        });
+             if (!$item instanceof ProblemOption) {
+                 return make_tradeoff_problem_option($item);
+             }
+
+             return $item;
+         });
 
         //Put in field if we have items
-        if(!$options->isEmpty()) {
+        if (!$options->isEmpty()) {
             $this->put('options', $options->all());
         }
 

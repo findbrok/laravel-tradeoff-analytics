@@ -5,12 +5,12 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Illuminate\Support\Collection;
 
 /**
- * Class MapNode
+ * Class MapNode.
  */
 class MapNode extends Collection
 {
     /**
-     * Get the coordinates of the Node point
+     * Get the coordinates of the Node point.
      *
      * @return MapNodeCoordinates
      */

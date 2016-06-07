@@ -16,7 +16,7 @@ class Dilemma extends Collection
      */
     public function hasProblem()
     {
-        return $this->has('problem') && !collect($this->get('problem'))->isEmpty();
+        return $this->has('problem') && ! collect($this->get('problem'))->isEmpty();
     }
 
     /**
@@ -40,7 +40,7 @@ class Dilemma extends Collection
      */
     public function hasResolution()
     {
-        return $this->has('resolution') && !collect($this->get('resolution'))->isEmpty();
+        return $this->has('resolution') && ! collect($this->get('resolution'))->isEmpty();
     }
 
     /**

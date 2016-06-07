@@ -56,7 +56,7 @@ class Solution extends Collection
      */
     public function isShadowedByOthers()
     {
-        return $this->has('shadow_me') && !collect($this->get('shadow_me'))->isEmpty();
+        return $this->has('shadow_me') && ! collect($this->get('shadow_me'))->isEmpty();
     }
 
     /**
@@ -66,7 +66,7 @@ class Solution extends Collection
      */
     public function shadowsOthers()
     {
-        return $this->has('shadows') && !collect($this->get('shadows'))->isEmpty();
+        return $this->has('shadows') && ! collect($this->get('shadows'))->isEmpty();
     }
 
     /**
@@ -96,7 +96,7 @@ class Solution extends Collection
      */
     public function hasStatusCause()
     {
-        return $this->has('status_cause') && !collect($this->get('status_cause'))->isEmpty();
+        return $this->has('status_cause') && ! collect($this->get('status_cause'))->isEmpty();
     }
 
     /**

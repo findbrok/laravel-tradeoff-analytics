@@ -27,7 +27,7 @@ class BaseCollector extends Collection
      */
     public function hasSupportedFields()
     {
-        return property_exists($this, 'supportedFields') && !empty($this->supportedFields);
+        return property_exists($this, 'supportedFields') && ! empty($this->supportedFields);
     }
 
     /**
@@ -52,7 +52,7 @@ class BaseCollector extends Collection
     public function filterOutUnsupported($items = [])
     {
         return collect($items)->reject(function ($item, $key) {
-            return $this->hasSupportedFields() && !in_array($key, $this->supportedFields);
+            return $this->hasSupportedFields() && ! in_array($key, $this->supportedFields);
         })->all();
     }
 
@@ -69,7 +69,7 @@ class BaseCollector extends Collection
     public function put($key, $value)
     {
         //Field not supported
-        if (!$this->isFieldSupported($key)) {
+        if (! $this->isFieldSupported($key)) {
             throw new DataCollectionUnsupportedFieldException($key, get_class($this));
         }
         //Parent Put
@@ -99,7 +99,7 @@ class BaseCollector extends Collection
     public function add($items = [])
     {
         //Column not empty
-        if (!$this->isEmpty()) {
+        if (! $this->isEmpty()) {
             $this->items = $this->merge($items)->all();
 
             return $this;

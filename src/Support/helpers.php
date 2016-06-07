@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('make_tradeoff_problem')) {
+if (! function_exists('make_tradeoff_problem')) {
     /**
      * Make a Tradeoff Analytics Problem object.
      *
@@ -21,7 +21,7 @@ if (!function_exists('make_tradeoff_problem')) {
     }
 }
 
-if (!function_exists('make_tradeoff_problem_column')) {
+if (! function_exists('make_tradeoff_problem_column')) {
     /**
      * Make a Tradeoff Analytics ProblemColumn object.
      *
@@ -35,7 +35,7 @@ if (!function_exists('make_tradeoff_problem_column')) {
     }
 }
 
-if (!function_exists('make_tradeoff_problem_option')) {
+if (! function_exists('make_tradeoff_problem_option')) {
     /**
      * Make a Tradeoff Analytics ProblemOption object.
      *
@@ -49,7 +49,7 @@ if (!function_exists('make_tradeoff_problem_option')) {
     }
 }
 
-if (!function_exists('make_tradeoff_problem_column_categorical_range')) {
+if (! function_exists('make_tradeoff_problem_column_categorical_range')) {
     /**
      * Make a Tradeoff Analytics ProblemColumnCategoricalRange object.
      *
@@ -63,7 +63,7 @@ if (!function_exists('make_tradeoff_problem_column_categorical_range')) {
     }
 }
 
-if (!function_exists('make_tradeoff_problem_column_date_range')) {
+if (! function_exists('make_tradeoff_problem_column_date_range')) {
     /**
      * Make a Tradeoff analytics ProblemColumnDateRange object.
      *
@@ -77,7 +77,7 @@ if (!function_exists('make_tradeoff_problem_column_date_range')) {
     }
 }
 
-if (!function_exists('make_tradeoff_problem_column_value_range')) {
+if (! function_exists('make_tradeoff_problem_column_value_range')) {
     /**
      * Make a Tradeoff analytics ProblemColumnValueRange object.
      *
@@ -91,7 +91,7 @@ if (!function_exists('make_tradeoff_problem_column_value_range')) {
     }
 }
 
-if (!function_exists('make_tradeoff_dilemma')) {
+if (! function_exists('make_tradeoff_dilemma')) {
     /**
      * Make a Tradeoff analytics Dilemma Object.
      *
@@ -105,7 +105,7 @@ if (!function_exists('make_tradeoff_dilemma')) {
     }
 }
 
-if (!function_exists('make_tradeoff_resolution')) {
+if (! function_exists('make_tradeoff_resolution')) {
     /**
      * Make a Tradeoff Analytics Resolution Object.
      *
@@ -119,7 +119,7 @@ if (!function_exists('make_tradeoff_resolution')) {
     }
 }
 
-if (!function_exists('make_tradeoff_solution')) {
+if (! function_exists('make_tradeoff_solution')) {
     /**
      * Make a Tradeoff Analytics Solution Object.
      *
@@ -133,7 +133,7 @@ if (!function_exists('make_tradeoff_solution')) {
     }
 }
 
-if (!function_exists('make_tradeoff_solution_status_cause')) {
+if (! function_exists('make_tradeoff_solution_status_cause')) {
     /**
      * Make a Tradeoff Analytic SolutionStatusCause Object.
      *
@@ -147,7 +147,7 @@ if (!function_exists('make_tradeoff_solution_status_cause')) {
     }
 }
 
-if (!function_exists('make_tradeoff_map')) {
+if (! function_exists('make_tradeoff_map')) {
     /**
      * Make a Tradeoff Analytics Map Object.
      *
@@ -161,7 +161,7 @@ if (!function_exists('make_tradeoff_map')) {
     }
 }
 
-if (!function_exists('make_tradeoff_map_anchor')) {
+if (! function_exists('make_tradeoff_map_anchor')) {
     /**
      * Make a Tradeoff Analytics MapAnchor object.
      *
@@ -175,7 +175,7 @@ if (!function_exists('make_tradeoff_map_anchor')) {
     }
 }
 
-if (!function_exists('make_tradeoff_map_node')) {
+if (! function_exists('make_tradeoff_map_node')) {
     /**
      * Make a Tradeoff Analytics MapNode object.
      *
@@ -189,7 +189,7 @@ if (!function_exists('make_tradeoff_map_node')) {
     }
 }
 
-if (!function_exists('make_tradeoff_map_node_coordinates')) {
+if (! function_exists('make_tradeoff_map_node_coordinates')) {
     /**
      * Make a Tradeoff Analytics MapNodeCoordinates object.
      *

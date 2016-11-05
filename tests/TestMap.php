@@ -74,7 +74,7 @@ class TestMap extends TestCase
      */
     public function getResolution()
     {
-        return json_decode(file_get_contents(__DIR__.'/fixtures/resolution.json'), true);
+        return json_decode(file_get_contents(__DIR__ . '/fixtures/resolution.json'), true);
     }
 
     /**

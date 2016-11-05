@@ -24,7 +24,7 @@ class Engine extends AbstractEngine implements TradeoffAnalyticsInterface
     {
         //Get Response from Watson
         $response = $this->makeBridge()->post(
-            'v1/dilemmas?generate_visualization='.var_export($generateVisualization, true),
+            'v1/dilemmas?generate_visualization=' . var_export($generateVisualization, true),
             $problem->statement()
         );
         //Get Response content

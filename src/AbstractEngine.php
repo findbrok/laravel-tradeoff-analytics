@@ -122,9 +122,9 @@ abstract class AbstractEngine
     public function getCredentials()
     {
         return [
-            'username' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.username'),
-            'password' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.password'),
-            'url'      => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.url'),
+            'username' => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.username'),
+            'password' => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.password'),
+            'url'      => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.url'),
         ];
     }
 

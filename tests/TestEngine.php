@@ -40,7 +40,7 @@ class TestEngine extends TestCase
     {
         parent::setUp();
         //Setup our config path
-        $this->ourConfigPath = __DIR__.'/../src/config/tradeoff-analytics.php';
+        $this->ourConfigPath = __DIR__ . '/../src/config/tradeoff-analytics.php';
         //Set up engine
         $this->engine = app('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
         //Mock Bridge
@@ -82,7 +82,7 @@ class TestEngine extends TestCase
      */
     public function getProblem()
     {
-        return json_decode(file_get_contents(__DIR__.'/fixtures/problem.json'), true);
+        return json_decode(file_get_contents(__DIR__ . '/fixtures/problem.json'), true);
     }
 
     /**
@@ -92,7 +92,7 @@ class TestEngine extends TestCase
      */
     public function getResolutionResponseBody()
     {
-        return file_get_contents(__DIR__.'/fixtures/resolution.json');
+        return file_get_contents(__DIR__ . '/fixtures/resolution.json');
     }
 
     /**

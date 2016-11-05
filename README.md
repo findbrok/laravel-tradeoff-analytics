@@ -3,6 +3,7 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42/big.png)](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42)
 
 [![StyleCI](https://styleci.io/repos/59981815/shield?style=flat)](https://styleci.io/repos/59981815)
+[![Dependency Status](https://dependencyci.com/github/findbrok/laravel-tradeoff-analytics/badge)](https://dependencyci.com/github/findbrok/laravel-tradeoff-analytics)
 [![Build Status](https://travis-ci.org/findbrok/laravel-tradeoff-analytics.svg?branch=master)](https://travis-ci.org/findbrok/laravel-tradeoff-analytics)
 [![Latest Stable Version](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/v/stable)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics) 
 [![Total Downloads](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/downloads)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics) 

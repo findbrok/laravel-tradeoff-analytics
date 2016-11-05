@@ -24,7 +24,7 @@ class Resolution extends Collection
                 true
             ) : null;
 
-        return !empty($solution) ? $solution[0] : null;
+        return ! empty($solution) ? $solution[0] : null;
     }
 
     /**
@@ -85,7 +85,7 @@ class Resolution extends Collection
      */
     public function hasSolutions()
     {
-        return $this->has('solutions') && !collect($this->get('solutions'))->isEmpty();
+        return $this->has('solutions') && ! collect($this->get('solutions'))->isEmpty();
     }
 
     /**
@@ -101,7 +101,7 @@ class Resolution extends Collection
         //Transform to objects
         if ($objectify) {
             return collect($solutions)->transform(function ($item) {
-                if (!$item instanceof Solution) {
+                if (! $item instanceof Solution) {
                     return make_tradeoff_solution($item);
                 }
 
@@ -192,7 +192,7 @@ class Resolution extends Collection
      */
     public function hasMap()
     {
-        return $this->has('map') && !collect($this->get('map'))->isEmpty();
+        return $this->has('map') && ! collect($this->get('map'))->isEmpty();
     }
 
     /**

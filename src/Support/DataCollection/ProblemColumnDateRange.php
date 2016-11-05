@@ -56,12 +56,12 @@ class ProblemColumnDateRange extends BaseCollectorRange
         //Collect range
         $range = collect($range);
         //Validate Range
-        if (!$range->has('high') && !$range->has('low')) {
+        if (! $range->has('high') && ! $range->has('low')) {
             throw new Exception('Missing {high} or {low} field in {ProblemColumnDateRange} object', 422);
         }
         //Transform to toIso8601String
         $this->items = $range->transform(function ($item, $key) {
-            if (!$item instanceof Carbon) {
+            if (! $item instanceof Carbon) {
                 throw new DataCollectionFieldMissMatchTypeException($key, 'ProblemColumnCategoricalRange', 'Carbon\Carbon');
             }
 

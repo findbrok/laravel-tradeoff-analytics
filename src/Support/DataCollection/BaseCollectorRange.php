@@ -15,7 +15,7 @@ class BaseCollectorRange extends BaseCollector
     public function __construct($items = [])
     {
         //We have range
-        if (!empty($items)) {
+        if (! empty($items)) {
             $this->defineRange($this->filterOutUnsupported($items));
         }
     }

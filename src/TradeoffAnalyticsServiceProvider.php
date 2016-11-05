@@ -129,6 +129,6 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function ourConfigPath($fileName = '')
     {
-        return __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$fileName;
+        return __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $fileName;
     }
 }

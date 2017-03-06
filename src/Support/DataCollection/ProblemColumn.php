@@ -2,9 +2,6 @@
 
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-/**
- * Class ProblemColumn.
- */
 class ProblemColumn extends BaseCollector
 {
     /**
@@ -202,5 +199,7 @@ class ProblemColumn extends BaseCollector
     public function addRange($range)
     {
         $this->put('range', $range);
+
+        return $this;
     }
 }

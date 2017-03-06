@@ -2,9 +2,6 @@
 
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-/**
- * Class ProblemOption.
- */
 class ProblemOption extends BaseCollector
 {
     /**

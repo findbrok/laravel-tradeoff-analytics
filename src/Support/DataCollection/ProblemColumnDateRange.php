@@ -2,13 +2,10 @@
 
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
 use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionFieldMissMatchTypeException;
 
-/**
- * Class ProblemColumnDateRange.
- */
 class ProblemColumnDateRange extends BaseCollectorRange
 {
     /**
@@ -53,21 +50,25 @@ class ProblemColumnDateRange extends BaseCollectorRange
      */
     public function defineRange($range = [])
     {
-        //Collect range
+        // Collect range.
         $range = collect($range);
-        //Validate Range
+
+        // Validate Range.
         if (! $range->has('high') && ! $range->has('low')) {
             throw new Exception('Missing {high} or {low} field in {ProblemColumnDateRange} object', 422);
         }
-        //Transform to toIso8601String
+
+        // Transform to toIso8601String.
         $this->items = $range->transform(function ($item, $key) {
             if (! $item instanceof Carbon) {
-                throw new DataCollectionFieldMissMatchTypeException($key, 'ProblemColumnCategoricalRange', 'Carbon\Carbon');
+                throw new DataCollectionFieldMissMatchTypeException($key, 'ProblemColumnCategoricalRange',
+                    'Carbon\Carbon');
             }
 
             return $item->toIso8601String();
         })->all();
-        //Return calling object
+
+        // Return calling object.
         return $this;
     }
 }

@@ -5,9 +5,6 @@ namespace FindBrok\TradeoffAnalytics\Exceptions;
 use Exception;
 use RuntimeException;
 
-/**
- * Class DataCollectionUnsupportedFieldException.
- */
 class DataCollectionUnsupportedFieldException extends RuntimeException
 {
     /**
@@ -18,16 +15,16 @@ class DataCollectionUnsupportedFieldException extends RuntimeException
     protected $message = 'Tradeoff Analytics DataCollectionException: Unsupported field {%fieldName%} in {%ObjectName%} Object';
 
     /**
-     * Create a new instance of UnsupportedProblemFieldException.
+     * DataCollectionUnsupportedFieldException constructor.
      *
      * @param string         $field
-     * @param string         $objectName
+     * @param int            $objectName
      * @param int            $code
      * @param Exception|null $previous
      */
     public function __construct($field, $objectName, $code = 400, Exception $previous = null)
     {
-        //Call parent exception
+        // Call parent exception.
         parent::__construct($this->constructErrorMessage($field, $objectName), $code, $previous);
     }
 

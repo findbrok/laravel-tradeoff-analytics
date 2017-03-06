@@ -2,14 +2,11 @@
 
 namespace FindBrok\TradeoffAnalytics;
 
-use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface;
-use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use FindBrok\WatsonBridge\Bridge;
 use Illuminate\Support\ServiceProvider;
+use FindBrok\TradeoffAnalytics\Support\DataCollection;
+use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface;
 
-/**
- * Class TradeoffAnalyticsServiceProvider.
- */
 class TradeoffAnalyticsServiceProvider extends ServiceProvider
 {
     /**
@@ -50,7 +47,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Publish config files
+        // Publish config files.
         $this->publishes([
             $this->ourConfigPath('tradeoff-analytics.php') => config_path('tradeoff-analytics.php'),
         ], 'config');
@@ -63,16 +60,16 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //Merge config files
+        // Merge config files.
         $this->mergeConfigFrom(
             $this->ourConfigPath('tradeoff-analytics.php'), 'tradeoff-analytics'
         );
 
-        //Register bindings
+        // Register bindings.
         $this->registerBindings();
-        //Register Bridge
+        // Register Bridge.
         $this->registerWatsonBridge();
-        //Register Data Collectors
+        // Register Data Collectors.
         $this->registerDataCollections();
     }
 
@@ -95,7 +92,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function registerWatsonBridge()
     {
-        //Register Bridge
+        // Register Bridge.
         $this->app->bind('TradeoffAnalyticsBridge', function ($app, $args = []) {
             return new Bridge(
                 $args['username'],
@@ -112,7 +109,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function registerDataCollections()
     {
-        //Bind Each Collector
+        // Bind Each Collector.
         collect($this->dataCollectors)->each(function ($className, $aliasName) {
             $this->app->bind($aliasName, function ($app, $items = []) use ($className) {
                 return new $className($items);

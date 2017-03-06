@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use Illuminate\Support\Collection;
 
-/**
- * Class Dilemma.
- */
 class Dilemma extends Collection
 {
     /**
@@ -22,15 +19,17 @@ class Dilemma extends Collection
     /**
      * Get the Initial Problem.
      *
-     * @return Problem
+     * @return Problem|null
      */
     public function getProblem()
     {
-        //We have the Initial Problem
+        // We have the Initial Problem.
         if ($this->hasProblem()) {
             return make_tradeoff_problem($this->get('problem'), true);
         }
-        //No Problem found in Dilemma
+
+        // No Problem found in Dilemma.
+        return null;
     }
 
     /**

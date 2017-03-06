@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use Illuminate\Support\Collection;
 
-/**
- * Class MapNode.
- */
 class MapNode extends Collection
 {
     /**
@@ -16,8 +13,6 @@ class MapNode extends Collection
      */
     public function getCoordinates()
     {
-        return $this->get('coordinates') instanceof MapNodeCoordinates ?
-            $this->get('coordinates') :
-            make_tradeoff_map_node_coordinates($this->get('coordinates'));
+        return $this->get('coordinates') instanceof MapNodeCoordinates ? $this->get('coordinates') : make_tradeoff_map_node_coordinates($this->get('coordinates'));
     }
 }

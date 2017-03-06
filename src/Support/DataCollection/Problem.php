@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionFieldMissMatchTypeException;
 
-/**
- * Class Problem.
- */
 class Problem extends BaseCollector
 {
     /**
@@ -96,15 +93,18 @@ class Problem extends BaseCollector
      */
     public function addColumns($items)
     {
-        //Force Array
+        // Force Array.
         $items = $items instanceof ProblemColumn ? [$items] : $items;
-        //Validate items
+
+        // Validate items.
         collect($items)->each(function ($item) {
             $this->validateColumnField($item);
         });
-        //Add columns
+
+        // Add columns.
         $this->put('columns', collect($this->get('columns'))->merge($items)->all());
-        //Return Problem
+
+        // Return Problem.
         return $this;
     }
 
@@ -117,15 +117,18 @@ class Problem extends BaseCollector
      */
     public function addOptions($items)
     {
-        //Force array
+        // Force array.
         $items = $items instanceof ProblemOption ? [$items] : $items;
-        //Validate items
+
+        // Validate items.
         collect($items)->each(function ($item) {
             $this->validateOptionField($item);
         });
-        //Add option
+
+        // Add option.
         $this->put('options', collect($this->get('options'))->merge($items)->all());
-        //Return Problem
+
+        // Return Problem.
         return $this;
     }
 
@@ -162,7 +165,7 @@ class Problem extends BaseCollector
      */
     public function objectifyColumns()
     {
-        //Objectify each column
+        // Objectify each column.
         $columns = collect($this->get('columns'))->transform(function ($item) {
             if (! $item instanceof ProblemColumn) {
                 return make_tradeoff_problem_column($item);
@@ -171,7 +174,7 @@ class Problem extends BaseCollector
             return $item;
         });
 
-        //Put in field if we have items
+        // Put in field if we have items.
         if (! $columns->isEmpty()) {
             $this->put('columns', $columns->all());
         }
@@ -186,16 +189,16 @@ class Problem extends BaseCollector
      */
     public function objectifyOptions()
     {
-        //Objectify each column options
-         $options = collect($this->get('options'))->transform(function ($item) {
-             if (! $item instanceof ProblemOption) {
-                 return make_tradeoff_problem_option($item);
-             }
+        // Objectify each column options.
+        $options = collect($this->get('options'))->transform(function ($item) {
+            if (! $item instanceof ProblemOption) {
+                return make_tradeoff_problem_option($item);
+            }
 
-             return $item;
-         });
+            return $item;
+        });
 
-        //Put in field if we have items
+        // Put in field if we have items.
         if (! $options->isEmpty()) {
             $this->put('options', $options->all());
         }

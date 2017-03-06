@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use Illuminate\Support\Collection;
 
-/**
- * Class Map.
- */
 class Map extends Collection
 {
     /**

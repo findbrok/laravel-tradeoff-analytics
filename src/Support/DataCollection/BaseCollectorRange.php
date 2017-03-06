@@ -2,19 +2,16 @@
 
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-/**
- * Class BaseCollectorRange.
- */
 class BaseCollectorRange extends BaseCollector
 {
     /**
-     * Create new instance of the Collector.
+     * BaseCollectorRange constructor.
      *
      * @param array $items
      */
     public function __construct($items = [])
     {
-        //We have range
+        // We have range.
         if (! empty($items)) {
             $this->defineRange($this->filterOutUnsupported($items));
         }
@@ -29,9 +26,10 @@ class BaseCollectorRange extends BaseCollector
      */
     public function defineRange($range = [])
     {
-        //Define items
+        // Define items.
         $this->items = $range;
-        //Return calling object
+
+        // Return calling object.
         return $this;
     }
 }

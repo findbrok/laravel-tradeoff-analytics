@@ -2,18 +2,15 @@
 
 namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionUnsupportedFieldException;
 use Illuminate\Support\Collection;
+use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionUnsupportedFieldException;
 
-/**
- * Class BaseCollector.
- */
 class BaseCollector extends Collection
 {
     /**
-     * Create a new Problem.
+     * BaseCollector constructor.
      *
-     * @param mixed $items
+     * @param array $items
      */
     public function __construct($items = [])
     {

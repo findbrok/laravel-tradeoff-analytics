@@ -2,9 +2,6 @@
 
 namespace FindBrok\TradeoffAnalytics;
 
-/**
- * Class AbstractEngine.
- */
 abstract class AbstractEngine
 {
     /**
@@ -27,8 +24,8 @@ abstract class AbstractEngine
      * @var array
      */
     protected $headers = [
-        'Accept'        => 'application/json',
-        'Content-Type'  => 'application/json',
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
     ];
 
     /**
@@ -39,11 +36,11 @@ abstract class AbstractEngine
     protected $results = null;
 
     /**
-     * Create a new instance of AbstractEngine.
+     * AbstractEngine constructor.
      */
     public function __construct()
     {
-        //Set Auth method
+        // Set Auth method.
         $this->useAuthMethod(config('tradeoff-analytics.auth_method'));
     }
 
@@ -54,9 +51,10 @@ abstract class AbstractEngine
      */
     public function makeBridge()
     {
-        return app()->make('TradeoffAnalyticsBridge', $this->getCredentials())
-                    ->useAuthMethodAs($this->getAuthMethod())
-                    ->appendHeaders($this->getHeaders());
+        return app()
+            ->make('TradeoffAnalyticsBridge', $this->getCredentials())
+            ->useAuthMethodAs($this->getAuthMethod())
+            ->appendHeaders($this->getHeaders());
     }
 
     /**
@@ -66,11 +64,12 @@ abstract class AbstractEngine
      */
     public function getHeaders()
     {
-        //Append X-Watson-Learning-Opt-Out
+        // Append X-Watson-Learning-Opt-Out.
         $this->appendHeaders([
             'X-Watson-Learning-Opt-Out' => config('tradeoff-analytics.x_watson_learning_opt_out'),
         ]);
-        //Return headers
+
+        // Return headers.
         return $this->headers;
     }
 
@@ -83,9 +82,10 @@ abstract class AbstractEngine
      */
     public function appendHeaders($headers = [])
     {
-        //Append headers in class
+        // Append headers in class.
         $this->headers = collect($this->headers)->merge($headers)->all();
-        //Return calling object
+
+        // Return calling object.
         return $this;
     }
 
@@ -98,9 +98,10 @@ abstract class AbstractEngine
      */
     public function usingCredentials($name = 'default')
     {
-        //Override credential name
+        // Override credential name.
         $this->credentialName = $name;
-        //Return calling object
+
+        // Return calling object.
         return $this;
     }
 
@@ -122,9 +123,9 @@ abstract class AbstractEngine
     public function getCredentials()
     {
         return [
-            'username' => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.username'),
-            'password' => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.password'),
-            'url'      => config('tradeoff-analytics.credentials.' . $this->getCredentialName() . '.url'),
+            'username' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.username'),
+            'password' => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.password'),
+            'url'      => config('tradeoff-analytics.credentials.'.$this->getCredentialName().'.url'),
         ];
     }
 
@@ -137,9 +138,10 @@ abstract class AbstractEngine
      */
     public function useAuthMethod($authMethod)
     {
-        //Set method
+        // Set method.
         $this->authMethod = $authMethod;
-        //Return object
+
+        // Return object.
         return $this;
     }
 

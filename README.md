@@ -28,13 +28,22 @@ Install the package through composer
 composer require findbrok/laravel-tradeoff-analytics
 ```
 
-Add the Service Provider to your providers array in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/5.2/providers#registering-providers)
+Depending on your Laravel version you will install one of the following
+versions of Tradeoff Analytics.
+
+ Laravel        | Tradeoff Analytics
+:---------------|:------------------
+ 5.0.x - 5.3.x  | 0.1.x
+ 5.4.x          | 0.2.x
+
+Add the ```WatsonBridgeServiceProvider``` and ```TradeoffAnalyticsServiceProvider``` to your providers array in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/master/providers#registering-providers)
 
 ```php
 'providers' => [
-    ...
+    // Other Service Providers
+     
+    FindBrok\WatsonBridge\WatsonBridgeServiceProvider::class,
     FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider::class,
-    ...
 ]
 ```
 

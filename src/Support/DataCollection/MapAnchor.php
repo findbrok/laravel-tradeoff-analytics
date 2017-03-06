@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use Illuminate\Support\Collection;
 
-/**
- * Class MapAnchor.
- */
 class MapAnchor extends Collection
 {
     /**

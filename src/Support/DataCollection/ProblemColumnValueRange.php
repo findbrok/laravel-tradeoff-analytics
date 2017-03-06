@@ -4,9 +4,6 @@ namespace FindBrok\TradeoffAnalytics\Support\DataCollection;
 
 use Exception;
 
-/**
- * Class ProblemColumnValueRange.
- */
 class ProblemColumnValueRange extends BaseCollectorRange
 {
     /**
@@ -50,17 +47,20 @@ class ProblemColumnValueRange extends BaseCollectorRange
      */
     public function defineRange($range = [])
     {
-        //Collect range
+        // Collect range.
         $range = collect($range);
-        //Validate Range
+
+        // Validate Range.
         if (! $range->has('high') && ! $range->has('low')) {
             throw new Exception('Missing {high} or {low} field in {ProblemColumnValueRange} object', 422);
         }
-        //Transform to int
+
+        // Transform to int.
         $this->items = $range->transform(function ($item) {
-            return (int) $item;
+            return (int)$item;
         })->all();
-        //Return calling object
+
+        // Return calling object.
         return $this;
     }
 }

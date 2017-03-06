@@ -2,18 +2,15 @@
 
 use Carbon\Carbon;
 use Faker\Factory;
-use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionUnsupportedFieldException;
+use Orchestra\Testbench\TestCase;
 use FindBrok\TradeoffAnalytics\Support\DataCollection\Problem;
 use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn;
-use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnCategoricalRange;
+use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption;
 use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange;
 use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange;
-use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption;
-use Orchestra\Testbench\TestCase;
+use FindBrok\TradeoffAnalytics\Exceptions\DataCollectionUnsupportedFieldException;
+use FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnCategoricalRange;
 
-/**
- * Class TestDataCollection.
- */
 class TestDataCollection extends TestCase
 {
     /**
@@ -213,10 +210,8 @@ class TestDataCollection extends TestCase
         try {
             $this->problem->put('Foo', 'Bar');
         } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals(
-                'Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\Problem} Object',
-                $e->getMessage()
-            );
+            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\Problem} Object',
+                $e->getMessage());
         }
     }
 
@@ -248,10 +243,8 @@ class TestDataCollection extends TestCase
         try {
             $this->problemColumn->put('Foo', 'Bar');
         } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals(
-                'Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn} Object',
-                $e->getMessage()
-            );
+            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn} Object',
+                $e->getMessage());
         }
     }
 
@@ -283,10 +276,8 @@ class TestDataCollection extends TestCase
         try {
             $this->problemOption->put('Foo', 'Bar');
         } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals(
-                'Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption} Object',
-                $e->getMessage()
-            );
+            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption} Object',
+                $e->getMessage());
         }
     }
 
@@ -331,8 +322,10 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnDateRangeObjectAcceptsSupportedFields()
     {
-        $low = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
-        $high = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
+        $low = Carbon::createFromFormat('Y-m-d H:i:s',
+            $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
+        $high = Carbon::createFromFormat('Y-m-d H:i:s',
+            $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
         $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange', [
             'high' => $high,
             'low'  => $low,
@@ -354,10 +347,8 @@ class TestDataCollection extends TestCase
         try {
             $this->problemColumnDateRange->put('Foo', 'Bar');
         } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals(
-                'Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange} Object',
-                $e->getMessage()
-            );
+            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange} Object',
+                $e->getMessage());
         }
     }
 
@@ -389,10 +380,8 @@ class TestDataCollection extends TestCase
         try {
             $this->problemColumnValueRange->put('Foo', 'Bar');
         } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals(
-                'Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange} Object',
-                $e->getMessage()
-            );
+            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange} Object',
+                $e->getMessage());
         }
     }
 
@@ -429,12 +418,10 @@ class TestDataCollection extends TestCase
         ];
         $this->problem->addColumns($columns);
         $this->assertCount(2, $this->problem->get('columns'));
-        $this->problem->addColumns(
-            $this->app->make('TradeoffProblemColumn', [
-                'key'         => '789',
-                'description' => 'another something else',
-            ])
-        );
+        $this->problem->addColumns($this->app->make('TradeoffProblemColumn', [
+            'key'         => '789',
+            'description' => 'another something else',
+        ]));
         $this->assertCount(3, $this->problem->get('columns'));
     }
 
@@ -501,8 +488,10 @@ class TestDataCollection extends TestCase
      */
     public function testProblemColumnDateRangeAddRangeFields()
     {
-        $low = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
-        $high = Carbon::createFromFormat('Y-m-d H:i:s', $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
+        $low = Carbon::createFromFormat('Y-m-d H:i:s',
+            $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
+        $high = Carbon::createFromFormat('Y-m-d H:i:s',
+            $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
         $this->problemColumnDateRange->defineRange([
             'low'  => $low,
             'high' => $high,
@@ -539,12 +528,10 @@ class TestDataCollection extends TestCase
      */
     public function testCanAddRangeObjectsToProblemColumn()
     {
-        $this->problemColumn->addRange(
-            $this->problemColumnValueRange->defineRange([
-                'low'  => 10,
-                'high' => 100,
-            ])
-        );
+        $this->problemColumn->addRange($this->problemColumnValueRange->defineRange([
+            'low'  => 10,
+            'high' => 100,
+        ]));
         $this->assertInstanceOf(ProblemColumnValueRange::class, $this->problemColumn->get('range'));
     }
 
@@ -568,7 +555,7 @@ class TestDataCollection extends TestCase
                         'low'  => 0,
                         'high' => 400,
                     ]),
-                    'format' => 'number:2',
+                    'format'       => 'number:2',
                 ]),
             ],
             'options' => [
@@ -602,7 +589,7 @@ class TestDataCollection extends TestCase
                         'low'  => 0,
                         'high' => 400,
                     ],
-                    'format' => 'number:2',
+                    'format'       => 'number:2',
                 ],
             ],
             'options' => [

@@ -1,11 +1,8 @@
 <?php
 
-use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Orchestra\Testbench\TestCase;
+use FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-/**
- * Class TestDilemma.
- */
 class TestDilemma extends TestCase
 {
     /**
@@ -56,7 +53,7 @@ class TestDilemma extends TestCase
      */
     public function getResolution()
     {
-        return json_decode(file_get_contents(__DIR__ . '/fixtures/resolution.json'), true);
+        return json_decode(file_get_contents(__DIR__.'/fixtures/resolution.json'), true);
     }
 
     /**

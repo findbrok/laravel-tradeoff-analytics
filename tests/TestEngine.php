@@ -1,13 +1,10 @@
 <?php
 
-use FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma;
-use FindBrok\WatsonBridge\Bridge;
 use GuzzleHttp\Psr7\Response;
+use FindBrok\WatsonBridge\Bridge;
 use Orchestra\Testbench\TestCase;
+use FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma;
 
-/**
- * Class TestEngine.
- */
 class TestEngine extends TestCase
 {
     /**
@@ -39,11 +36,11 @@ class TestEngine extends TestCase
     public function setUp()
     {
         parent::setUp();
-        //Setup our config path
-        $this->ourConfigPath = __DIR__ . '/../src/config/tradeoff-analytics.php';
-        //Set up engine
+        // Setup our config path.
+        $this->ourConfigPath = __DIR__.'/../src/config/tradeoff-analytics.php';
+        // Set up engine.
         $this->engine = app('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface');
-        //Mock Bridge
+        // Mock Bridge.
         $this->mockBridge();
     }
 
@@ -65,13 +62,16 @@ class TestEngine extends TestCase
      */
     public function mockBridge()
     {
-        $this->bridge = $this->getMockBuilder(Bridge::class)->disableOriginalConstructor()->setMethods(['post'])->getMock();
-        $this->bridge->expects($this->any())->method('post')->with($this->equalTo('v1/dilemmas?generate_visualization=true'), $this->anything())
-            ->willReturn(
-                new Response(200, ['X-Foo' => 'Bar'], $this->getResolutionResponseBody())
-            );
+        $this->bridge = $this->getMockBuilder(Bridge::class)
+                             ->disableOriginalConstructor()
+                             ->setMethods(['post'])
+                             ->getMock();
+        $this->bridge->expects($this->any())
+                     ->method('post')
+                     ->with($this->equalTo('v1/dilemmas?generate_visualization=true'), $this->anything())
+                     ->willReturn(new Response(200, ['X-Foo' => 'Bar'], $this->getResolutionResponseBody()));
 
-        //Override bridge in IOC
+        // Override bridge in IOC.
         $this->app->instance('TradeoffAnalyticsBridge', $this->bridge);
     }
 
@@ -82,7 +82,7 @@ class TestEngine extends TestCase
      */
     public function getProblem()
     {
-        return json_decode(file_get_contents(__DIR__ . '/fixtures/problem.json'), true);
+        return json_decode(file_get_contents(__DIR__.'/fixtures/problem.json'), true);
     }
 
     /**
@@ -92,7 +92,7 @@ class TestEngine extends TestCase
      */
     public function getResolutionResponseBody()
     {
-        return file_get_contents(__DIR__ . '/fixtures/resolution.json');
+        return file_get_contents(__DIR__.'/fixtures/resolution.json');
     }
 
     /**
@@ -115,10 +115,8 @@ class TestEngine extends TestCase
      */
     public function testServiceProviderBinding()
     {
-        $this->assertInstanceOf(
-            'FindBrok\TradeoffAnalytics\Engine',
-            $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface')
-        );
+        $this->assertInstanceOf('FindBrok\TradeoffAnalytics\Engine',
+            $this->app->make('FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface'));
     }
 
     /**
@@ -144,7 +142,8 @@ class TestEngine extends TestCase
             '--tag'      => ['config'],
         ]);
         $this->assertTrue(file_exists(config_path('tradeoff-analytics.php')));
-        $this->assertEquals(file_get_contents($this->ourConfigPath), file_get_contents(config_path('tradeoff-analytics.php')));
+        $this->assertEquals(file_get_contents($this->ourConfigPath),
+            file_get_contents(config_path('tradeoff-analytics.php')));
         unlink(config_path('tradeoff-analytics.php'));
     }
 

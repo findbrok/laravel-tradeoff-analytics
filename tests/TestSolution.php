@@ -1,11 +1,8 @@
 <?php
 
-use FindBrok\TradeoffAnalytics\Support\DataCollection;
 use Orchestra\Testbench\TestCase;
+use FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-/**
- * Class TestSolution.
- */
 class TestSolution extends TestCase
 {
     /**

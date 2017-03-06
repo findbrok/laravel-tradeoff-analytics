@@ -61,9 +61,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         // Merge config files.
-        $this->mergeConfigFrom(
-            $this->ourConfigPath('tradeoff-analytics.php'), 'tradeoff-analytics'
-        );
+        $this->mergeConfigFrom($this->ourConfigPath('tradeoff-analytics.php'), 'tradeoff-analytics');
 
         // Register bindings.
         $this->registerBindings();
@@ -94,11 +92,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     {
         // Register Bridge.
         $this->app->bind('TradeoffAnalyticsBridge', function ($app, $args = []) {
-            return new Bridge(
-                $args['username'],
-                $args['password'],
-                $args['url']
-            );
+            return new Bridge($args['username'], $args['password'], $args['url']);
         });
     }
 
@@ -126,6 +120,6 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function ourConfigPath($fileName = '')
     {
-        return __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $fileName;
+        return __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$fileName;
     }
 }

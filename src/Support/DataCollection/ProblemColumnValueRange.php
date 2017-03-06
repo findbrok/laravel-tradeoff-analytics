@@ -57,7 +57,7 @@ class ProblemColumnValueRange extends BaseCollectorRange
 
         // Transform to int.
         $this->items = $range->transform(function ($item) {
-            return (int)$item;
+            return (int) $item;
         })->all();
 
         // Return calling object.

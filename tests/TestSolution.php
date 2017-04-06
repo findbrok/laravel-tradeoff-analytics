@@ -1,5 +1,7 @@
 <?php
 
+namespace FindBrok\TradeoffAnalytics\Tests;
+
 use Orchestra\Testbench\TestCase;
 use FindBrok\TradeoffAnalytics\Support\DataCollection;
 

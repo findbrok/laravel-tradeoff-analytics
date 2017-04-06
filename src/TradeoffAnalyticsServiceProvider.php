@@ -47,10 +47,14 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Publish config files.
-        $this->publishes([
-            $this->ourConfigPath('tradeoff-analytics.php') => config_path('tradeoff-analytics.php'),
-        ], 'config');
+        // Make sure we are running in
+        // console first.
+        if ($this->app->runningInConsole()) {
+            // Publish config files.
+            $this->publishes([
+                __DIR__.'/../config/tradeoff-analytics.php' => config_path('tradeoff-analytics.php'),
+            ], 'watson-tradeoff-analytics');
+        }
     }
 
     /**
@@ -61,7 +65,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
     public function register()
     {
         // Merge config files.
-        $this->mergeConfigFrom($this->ourConfigPath('tradeoff-analytics.php'), 'tradeoff-analytics');
+        $this->mergeConfigFrom(__DIR__.'/../config/tradeoff-analytics.php', 'tradeoff-analytics');
 
         // Register bindings.
         $this->registerBindings();
@@ -109,17 +113,5 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
                 return new $className($items);
             });
         });
-    }
-
-    /**
-     * Gets our config path for package.
-     *
-     * @param string $fileName
-     *
-     * @return string
-     */
-    public function ourConfigPath($fileName = '')
-    {
-        return __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$fileName;
     }
 }

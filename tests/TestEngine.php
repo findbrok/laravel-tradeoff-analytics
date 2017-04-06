@@ -1,5 +1,7 @@
 <?php
 
+namespace FindBrok\TradeoffAnalytics\Tests;
+
 use GuzzleHttp\Psr7\Response;
 use FindBrok\WatsonBridge\Bridge;
 use Orchestra\Testbench\TestCase;

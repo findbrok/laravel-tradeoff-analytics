@@ -5,10 +5,31 @@ namespace FindBrok\TradeoffAnalytics\Models;
 use stdClass;
 use JsonMapper;
 use InvalidArgumentException;
+use Illuminate\Support\Traits\Macroable;
 use FindBrok\TradeoffAnalytics\Contracts\DataModelInterface;
 
-abstract class BaseModel implements DataModelInterface
+abstract class AbstractModel implements DataModelInterface
 {
+    use Macroable;
+
+    /**
+     * Get a property.
+     *
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        // Return Property if its there.
+        if (property_exists($this, $name)) {
+            return $this->{$name};
+        }
+
+        // Nothing to return.
+        return null;
+    }
+
     /**
      * Gets the JsonMapper instance.
      *
@@ -16,7 +37,10 @@ abstract class BaseModel implements DataModelInterface
      */
     public function getMapper()
     {
-        return app(JsonMapper::class);
+        $jm = app(JsonMapper::class);
+        $jm->bIgnoreVisibility = true;
+
+        return $jm;
     }
 
     /**
@@ -81,7 +105,7 @@ abstract class BaseModel implements DataModelInterface
     public function mapArrayDataToModel(array $data = [])
     {
         // Convert array to Object.
-        $objectData = json_decode(json_encode($data));
+        $objectData = json_decode(json_encode($data), false);
 
         // Json is not valid.
         if (json_last_error() !== JSON_ERROR_NONE) {

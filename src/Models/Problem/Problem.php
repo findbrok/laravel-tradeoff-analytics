@@ -1,15 +1,17 @@
 <?php
 
-namespace FindBrok\TradeoffAnalytics\Models;
+namespace FindBrok\TradeoffAnalytics\Models\Problem;
 
-class Problem extends BaseModel
+use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
+
+class Problem extends Model
 {
     /**
      * An array of Column objects that lists the objectives for the decision problem.
      * The field typically specifies the columns for the tabular
      * representation of the data.
      *
-     * @var Column[]
+     * @var \Illuminate\Support\Collection[Column]
      */
     protected $columns;
 
@@ -18,7 +20,7 @@ class Problem extends BaseModel
      * The field typically specifies the rows for the tabular
      * representation of the data.
      *
-     * @var Option[]
+     * @var \Illuminate\Support\Collection[Option]
      */
     protected $options;
 
@@ -34,13 +36,27 @@ class Problem extends BaseModel
     /**
      * Sets columns to the model.
      *
-     * @param Column[] $columns
+     * @param \Illuminate\Support\Collection[Column] $columns
      *
      * @return $this
      */
     public function setColumns($columns)
     {
         $this->columns = $columns;
+
+        return $this;
+    }
+
+    /**
+     * Sets the options to the model.
+     *
+     * @param \Illuminate\Support\Collection[Option] $options
+     *
+     * @return $this
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
 
         return $this;
     }

@@ -2,7 +2,13 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
-use FindBrok\TradeoffAnalytics\Models\Problem;
+use Illuminate\Support\Collection;
+use FindBrok\TradeoffAnalytics\Models\Problem\Column;
+use FindBrok\TradeoffAnalytics\Models\Problem\Option;
+use FindBrok\TradeoffAnalytics\Models\Problem\Problem;
+use FindBrok\TradeoffAnalytics\Models\Problem\Range\DateRange;
+use FindBrok\TradeoffAnalytics\Models\Problem\Range\ValueRange;
+use FindBrok\TradeoffAnalytics\Models\Problem\Range\CategoricalRange;
 
 class TestModels extends AbstractTestCase
 {
@@ -27,516 +33,163 @@ class TestModels extends AbstractTestCase
     }
 
     /**
+     * Test that we are able to create CategoricalRange
+     * model.
+     *
+     * @return void
+     */
+    public function testCreateCategoricalRangeModel()
+    {
+        $categoricalRange = $this->app->make(CategoricalRange::class)
+                                      ->setData(['range' => ['Apple', 'HTC', 'Samsung', 'Sony']]);
+
+        $this->assertInstanceOf(CategoricalRange::class, $categoricalRange);
+        $this->assertEquals(['Apple', 'HTC', 'Samsung', 'Sony'], $categoricalRange->range);
+    }
+
+    /**
+     * Test that we are able to create DateRange
+     * model.
+     *
+     * @return void
+     */
+    public function testCreateDateRangeModel()
+    {
+        $dateRange = $this->app->make(DateRange::class)
+                               ->setData([
+                                   'low'  => '2017-03-01T00:00:00Z',
+                                   'high' => '2018-03-01T00:00:00Z',
+                               ]);
+
+        $this->assertInstanceOf(DateRange::class, $dateRange);
+        $this->assertEquals('2017-03-01T00:00:00Z', $dateRange->low);
+        $this->assertEquals('2018-03-01T00:00:00Z', $dateRange->high);
+    }
+
+    /**
+     * Test that we are able to create ValueRange
+     * model.
+     *
+     * @return void
+     */
+    public function testCreateValueRangeModel()
+    {
+        $valueRangeInt = $this->app->make(ValueRange::class)
+                                   ->setData([
+                                       'low'  => 0,
+                                       'high' => 400,
+                                   ]);
+
+        $valueRangeFloat = $this->app->make(ValueRange::class)
+                                     ->setData([
+                                         'low'  => 0.3,
+                                         'high' => 0.9,
+                                     ]);
+
+        $this->assertInstanceOf(ValueRange::class, $valueRangeInt);
+        $this->assertInstanceOf(ValueRange::class, $valueRangeFloat);
+        $this->assertEquals(0, $valueRangeInt->low);
+        $this->assertEquals(400, $valueRangeInt->high);
+        $this->assertEquals(0.3, $valueRangeFloat->low);
+        $this->assertEquals(0.9, $valueRangeFloat->high);
+    }
+
+    /**
+     * Test we are able to create the different types of
+     * Column Model.
+     *
+     * @return void
+     */
+    public function testCreateTypesColumnModel()
+    {
+        $columnNumeric = $this->app->make(Column::class)
+                                   ->setData([
+                                       'type'  => 'numeric',
+                                       'range' => [
+                                           'low'  => 0,
+                                           'high' => 400,
+                                       ],
+                                   ]);
+
+        $this->assertInstanceOf(Column::class, $columnNumeric);
+        $this->assertInstanceOf(ValueRange::class, $columnNumeric->range);
+        $this->assertEquals(0, $columnNumeric->range->low);
+        $this->assertEquals(400, $columnNumeric->range->high);
+
+        $columnDateTime = $this->app->make(Column::class)
+                                    ->setData([
+                                        'type'  => 'datetime',
+                                        'range' => [
+                                            'low'  => '2017-03-01T00:00:00Z',
+                                            'high' => '2018-03-01T00:00:00Z',
+                                        ],
+                                    ]);
+        $this->assertInstanceOf(Column::class, $columnDateTime);
+        $this->assertInstanceOf(DateRange::class, $columnDateTime->range);
+        $this->assertEquals('2017-03-01T00:00:00Z', $columnDateTime->range->low);
+        $this->assertEquals('2018-03-01T00:00:00Z', $columnDateTime->range->high);
+
+        $columnCategorical = $this->app->make(Column::class)
+                                       ->setData([
+                                           'type'  => 'categorical',
+                                           'range' => ['Apple', 'HTC', 'Samsung', 'Sony'],
+                                       ]);
+        $this->assertInstanceOf(Column::class, $columnCategorical);
+        $this->assertInstanceOf(CategoricalRange::class, $columnCategorical->range);
+        $this->assertEquals(['Apple', 'HTC', 'Samsung', 'Sony'], $columnCategorical->range->range);
+    }
+
+    /**
+     * Test that we are able to create the Option
+     * model.
+     *
+     * @return void
+     */
+    public function testCreateOptionModel()
+    {
+        $option = $this->app->make(Option::class)->setData([
+            "key"      => "1",
+            "name"     => "Samsung Galaxy S4",
+            "values"   => [
+                "price"  => 249,
+                "weight" => 130,
+                "brand"  => "Samsung",
+                "rDate"  => "2013-04-29T00:00:00Z",
+            ],
+            'app_data' => [
+                'lorem' => 'ipsum',
+            ],
+        ]);
+
+        $this->assertInstanceOf(Option::class, $option);
+        $this->assertInstanceOf(Collection::class, $option->values);
+        $this->assertInstanceOf(Collection::class, $option->app_data);
+        $this->assertEquals('1', $option->key);
+        $this->assertEquals('Samsung Galaxy S4', $option->name);
+
+        $this->assertEquals([
+            "price"  => 249,
+            "weight" => 130,
+            "brand"  => "Samsung",
+            "rDate"  => "2013-04-29T00:00:00Z",
+        ], $option->values->toArray());
+        $this->assertEquals(['lorem' => 'ipsum'], $option->app_data->toArray());
+    }
+
+    /**
      * Test that we can create a Problem using a JSON
      * string.
      *
      * @return void
      */
-    public function testCreateProblemFromAJsonString()
+    public function testCreateProblemModelFromAJsonString()
     {
-        $problem = $this->app->make(Problem::class)->setData($this->getProblem());
-    }
+        $problem = $this->app->make(Problem::class)
+                             ->setData($this->getProblem());
 
-    /**
-     * Test if we can create different Problem Objects and each is different.
-     *
-     * @return void
-     */
-   /* public function testProblemObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problem = $this->app->make('TradeoffProblem');
         $this->assertInstanceOf(Problem::class, $problem);
-        $this->assertNotSame($this->problem, $problem);
-    }*/
-
-    /**
-     * Test that we can create ProblemColumn object and each is different.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problemColumn = $this->app->make('TradeoffProblemColumn');
-        $this->assertInstanceOf(ProblemColumn::class, $problemColumn);
-        $this->assertNotSame($this->problemColumn, $problemColumn);
-    }*/
-
-    /**
-     * Test that we can create ProblemOption object nd each is different.
-     *
-     * @return void
-     */
-  /*  public function testProblemOptionObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problemOption = $this->app->make('TradeoffProblemOption');
-        $this->assertInstanceOf(ProblemOption::class, $problemOption);
-        $this->assertNotSame($this->problemOption, $problemOption);
-    }*/
-
-    /**
-     * Test that we can create ProblemColumnCategoricalRange object and each is different.
-     *
-     * @return void
-     */
-   /* public function testProblemColumnCategoricalRangeObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange');
-        $this->assertInstanceOf(ProblemColumnCategoricalRange::class, $problemColumnCategoricalRange);
-        $this->assertNotSame($this->problemColumnCategoricalRange, $problemColumnCategoricalRange);
-    }*/
-
-    /**
-     * Test that we can create ProblemColumnDateRange object and each is different.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnDateRangeObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange');
-        $this->assertInstanceOf(ProblemColumnDateRange::class, $problemColumnDateRange);
-        $this->assertNotSame($this->problemColumnDateRange, $problemColumnDateRange);
-    }*/
-
-    /**
-     * Test that we can create ProblemColumnValueRange object and each is different.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnValueRangeObjectCanBeConstructedAndEachIsDifferent()
-    {
-        $problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange');
-        $this->assertInstanceOf(ProblemColumnValueRange::class, $problemColumnValueRange);
-        $this->assertNotSame($this->problemColumnValueRange, $problemColumnValueRange);
-    }*/
-
-    /**
-     * Test ProblemObject Accepts Supported Fields.
-     *
-     * @return void
-     */
-   /* public function testProblemObjectAcceptsSupportedFields()
-    {
-        $problem = $this->app->make('TradeoffProblem', [
-            'subject' => 'Foo',
-            'columns' => ['x' => 'bar'],
-            'options' => ['bar' => 'foo'],
-            'Foo'     => 'Bar',
-        ]);
-        $this->assertEquals([
-            'subject' => 'Foo',
-            'columns' => ['x' => 'bar'],
-            'options' => ['bar' => 'foo'],
-        ], $problem->all());
-    }*/
-
-    /**
-     * Test that if we put wrong field in the Problem object we get an exception.
-     *
-     * @return void
-     */
-   /* public function testProblemObjectThrowUnsupportedExceptionWhenWrongFieldIsPut()
-    {
-        try {
-            $this->problem->put('Foo', 'Bar');
-        } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\Problem} Object',
-                $e->getMessage());
-        }
-    }*/
-
-    /**
-     * Test that the ProblemColumn object accepts only supported fields.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnObjectAcceptsSupportedFields()
-    {
-        $problemColumn = $this->app->make('TradeoffProblemColumn', [
-            'key'  => '123',
-            'type' => 'numeric',
-            'Foo'  => 'Bar',
-        ]);
-        $this->assertEquals([
-            'key'  => '123',
-            'type' => 'numeric',
-        ], $problemColumn->all());
-    }*/
-
-    /**
-     * Test that if we put wrong field in the ProblemColumn object we get an exception.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnObjectThrowUnsupportedExceptionWhenWrongFieldIsPut()
-    {
-        try {
-            $this->problemColumn->put('Foo', 'Bar');
-        } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn} Object',
-                $e->getMessage());
-        }
-    }*/
-
-    /**
-     * Test that the ProblemOption object accepts only supported fields.
-     *
-     * @return void
-     */
-   /* public function testProblemOptionObjectAcceptsSupportedFields()
-    {
-        $problemOption = $this->app->make('TradeoffProblemOption', [
-            'key'    => '123',
-            'values' => ['X', 'Foo'],
-            'Foo'    => 'Bar',
-        ]);
-        $this->assertEquals([
-            'key'    => '123',
-            'values' => ['X', 'Foo'],
-        ], $problemOption->all());
-    }*/
-
-    /**
-     * Test that if we put wrong field in the ProblemOption object we get an exception.
-     *
-     * @return void
-     */
-    /*public function testProblemOptionObjectThrowUnsupportedExceptionWhenWrongFieldIsPut()
-    {
-        try {
-            $this->problemOption->put('Foo', 'Bar');
-        } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption} Object',
-                $e->getMessage());
-        }
-    }*/
-
-    /**
-     * Test that the ProblemColumnCategoricalRange object can accept any field.
-     *
-     * @return void
-     */
-  /*  public function testProblemColumnCategoricalRangeObjectAcceptsAnyField()
-    {
-        $problemColumnCategoricalRange = $this->app->make('TradeoffProblemColumnCategoricalRange', [
-            'Foo',
-            'Bar',
-            'X-Foo',
-        ]);
-        $this->assertEquals([
-            'Foo',
-            'Bar',
-            'X-Foo',
-        ], $problemColumnCategoricalRange->all());
-    }*/
-
-    /**
-     * Test we can push any value in the ProblemColumnCategoricalRange object.
-     *
-     * @return void
-     */
-   /* public function testProblemColumnCategoricalRangeObjectCanPush()
-    {
-        $this->problemColumnCategoricalRange->push('Bar');
-        $this->problemColumnCategoricalRange->push('Foo');
-        $this->assertEquals([
-            'Bar',
-            'Foo',
-        ], $this->problemColumnCategoricalRange->all());
-    }*/
-
-    /**
-     * Test that the ProblemColumnDateRange object accepts only supported fields.
-     *
-     * @return void
-     */
-   /* public function testProblemColumnDateRangeObjectAcceptsSupportedFields()
-    {
-        $low = Carbon::createFromFormat('Y-m-d H:i:s',
-            $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
-        $high = Carbon::createFromFormat('Y-m-d H:i:s',
-            $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
-        $problemColumnDateRange = $this->app->make('TradeoffProblemColumnDateRange', [
-            'high' => $high,
-            'low'  => $low,
-            'Foo'  => 'Bar',
-        ]);
-        $this->assertEquals([
-            'high' => $high->toIso8601String(),
-            'low'  => $low->toIso8601String(),
-        ], $problemColumnDateRange->all());
-    }*/
-
-    /**
-     * Test that if we put wrong field in the ProblemColumnDateRange object we get an exception.
-     *
-     * @return void
-     */
-  /*  public function testProblemColumnDateRangeThrowUnsupportedExceptionWhenWrongFieldIsPut()
-    {
-        try {
-            $this->problemColumnDateRange->put('Foo', 'Bar');
-        } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange} Object',
-                $e->getMessage());
-        }
-    }*/
-
-    /**
-     * Test that the ProblemColumnValueRange object accepts only supported fields.
-     *
-     * @return void
-     */
-  /*  public function testProblemColumnValueRangeObjectAcceptsSupportedFields()
-    {
-        $problemColumnValueRange = $this->app->make('TradeoffProblemColumnValueRange', [
-            'high' => 100,
-            'low'  => 10,
-            'Foo'  => 'Bar',
-        ]);
-        $this->assertEquals([
-            'high' => 100,
-            'low'  => 10,
-        ], $problemColumnValueRange->all());
-    }*/
-
-    /**
-     * Test that if we put wrong field in the ProblemColumnValueRange object we get an exception.
-     *
-     * @return void
-     */
-    /*public function testProblemColumnValueRangeThrowUnsupportedExceptionWhenWrongFieldIsPut()
-    {
-        try {
-            $this->problemColumnValueRange->put('Foo', 'Bar');
-        } catch (DataCollectionUnsupportedFieldException $e) {
-            $this->assertEquals('Tradeoff Analytics DataCollectionException: Unsupported field {Foo} in {FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange} Object',
-                $e->getMessage());
-        }
-    }*/
-
-    /**
-     * Test that we can add some data in the ProblemColumn object.
-     *
-     * @return void
-     */
-  /*  public function testAddDataInProblemColumnObject()
-    {
-        $this->problemColumn->add([
-            'key'         => '123',
-            'description' => 'something',
-        ]);
-        $this->assertCount(2, $this->problemColumn);
-    }*/
-
-    /**
-     * Test that we can add ProblemColumn object to Problem object.
-     *
-     * @return void
-     */
-/*    public function testAddColumnsToProblemObject()
-    {
-        $columns = [
-            $this->app->make('TradeoffProblemColumn', [
-                'key'         => '123',
-                'description' => 'something',
-            ]),
-            $this->app->make('TradeoffProblemColumn', [
-                'key'         => '456',
-                'description' => 'something else',
-            ]),
-        ];
-        $this->problem->addColumns($columns);
-        $this->assertCount(2, $this->problem->get('columns'));
-        $this->problem->addColumns($this->app->make('TradeoffProblemColumn', [
-            'key'         => '789',
-            'description' => 'another something else',
-        ]));
-        $this->assertCount(3, $this->problem->get('columns'));
-    }*/
-
-    /**
-     * Test that we can add data to ProblemOption object.
-     *
-     * @return void
-     */
-   /* public function testAddDataToProblemOptionObject()
-    {
-        $this->problemOption->add([
-            'key'  => '123',
-            'name' => 'Lorem Ipsum',
-        ]);
-        $this->assertCount(2, $this->problemOption);
-    }*/
-
-    /**
-     * Test that we can add ProblemOption to Problem object.
-     *
-     * @return void
-     */
-   /* public function testAddOptionsToProblemObject()
-    {
-        $options = [
-            $this->app->make('TradeoffProblemOption', [
-                'key'  => '123',
-                'name' => 'Some name',
-            ]),
-            $this->app->make('TradeoffProblemOption', [
-                'key'  => '456',
-                'name' => 'Another name',
-            ]),
-        ];
-        $this->problem->addOptions($options);
-        $this->assertCount(2, $this->problem->get('options'));
-        $this->problem->addOptions($this->app->make('TradeoffProblemOption', [
-            'key'  => '789',
-            'name' => 'My name',
-        ]));
-        $this->assertCount(3, $this->problem->get('options'));
-    }*/
-
-    /**
-     * Test that we can add fields to ProblemColumnCategoricalRange object.
-     *
-     * @return void
-     */
- /*   public function testProblemColumnCategoricalRangeAddRangeFields()
-    {
-        $this->problemColumnCategoricalRange->defineRange([
-            'Apple',
-            'HTC',
-            'Samsung',
-            'Sony',
-        ]);
-        $this->assertCount(4, $this->problemColumnCategoricalRange);
-    }*/
-
-    /**
-     * Test that we can add fields to ProblemColumnDateRange object.
-     *
-     * @return void
-     */
-   /* public function testProblemColumnDateRangeAddRangeFields()
-    {
-        $low = Carbon::createFromFormat('Y-m-d H:i:s',
-            $this->faker->dateTimeBetween('-3 years')->format('Y-m-d H:i:s'));
-        $high = Carbon::createFromFormat('Y-m-d H:i:s',
-            $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d H:i:s'));
-        $this->problemColumnDateRange->defineRange([
-            'low'  => $low,
-            'high' => $high,
-        ]);
-        $this->assertCount(2, $this->problemColumnDateRange);
-        $this->assertEquals([
-            'low'  => $low->toIso8601String(),
-            'high' => $high->toIso8601String(),
-        ], $this->problemColumnDateRange->all());
-    }*/
-
-    /**
-     * Test that we can add fields to the ProblemColumnValueRange object.
-     *
-     * @return void
-     */
- /*   public function testProblemColumnValueRangeAddRangeFields()
-    {
-        $this->problemColumnValueRange->defineRange([
-            'low'  => '1',
-            'high' => 40,
-        ]);
-        $this->assertCount(2, $this->problemColumnValueRange);
-        $this->assertEquals([
-            'low'  => 1,
-            'high' => 40,
-        ], $this->problemColumnValueRange->all());
-    }*/
-
-    /**
-     * Test that we can add Range objects to ProblemColumn.
-     *
-     * @return void
-     */
-   /* public function testCanAddRangeObjectsToProblemColumn()
-    {
-        $this->problemColumn->addRange($this->problemColumnValueRange->defineRange([
-            'low'  => 10,
-            'high' => 100,
-        ]));
-        $this->assertInstanceOf(ProblemColumnValueRange::class, $this->problemColumn->get('range'));
-    }*/
-
-    /**
-     * Test that we can get the problem statement from the problem object.
-     *
-     * @return void
-     */
-    /*public function testGetProblemStatementFromProblemObject()
-    {
-        $problem = $this->app->make('TradeoffProblem', [
-            'subject' => 'phones',
-            'columns' => [
-                $this->app->make('TradeoffProblemColumn', [
-                    'key'          => 'price',
-                    'type'         => 'numeric',
-                    'goal'         => 'min',
-                    'is_objective' => true,
-                    'full_name'    => 'Price',
-                    'range'        => $this->app->make('TradeoffProblemColumnValueRange', [
-                        'low'  => 0,
-                        'high' => 400,
-                    ]),
-                    'format'       => 'number:2',
-                ]),
-            ],
-            'options' => [
-                $this->app->make('TradeoffProblemOption', [
-                    'key'    => '1',
-                    'name'   => 'Samsung Galaxy S4',
-                    'values' => [
-                        'price' => 249,
-                    ],
-                ]),
-                $this->app->make('TradeoffProblemOption', [
-                    'key'    => '2',
-                    'name'   => 'Apple iPhone 5',
-                    'values' => [
-                        'price' => 449,
-                    ],
-                ]),
-            ],
-        ]);
-
-        $this->assertEquals([
-            'subject' => 'phones',
-            'columns' => [
-                [
-                    'key'          => 'price',
-                    'type'         => 'numeric',
-                    'goal'         => 'min',
-                    'is_objective' => true,
-                    'full_name'    => 'Price',
-                    'range'        => [
-                        'low'  => 0,
-                        'high' => 400,
-                    ],
-                    'format'       => 'number:2',
-                ],
-            ],
-            'options' => [
-                [
-                    'key'    => '1',
-                    'name'   => 'Samsung Galaxy S4',
-                    'values' => [
-                        'price' => 249,
-                    ],
-                ],
-                [
-                    'key'    => '2',
-                    'name'   => 'Apple iPhone 5',
-                    'values' => [
-                        'price' => 449,
-                    ],
-                ],
-            ],
-        ], $problem->statement());
-    }*/
+        $this->assertEquals('phones', $problem->subject);
+        $this->assertCount(4, $problem->columns);
+        $this->assertCount(16, $problem->options);
+    }
 }

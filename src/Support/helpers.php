@@ -1,204 +1,241 @@
 <?php
 
-if (! function_exists('make_tradeoff_problem')) {
+use FindBrok\TradeoffAnalytics\Models;
+
+if (! function_exists('tradeoff_problem')) {
     /**
-     * Make a Tradeoff Analytics Problem object.
+     * Make a Tradeoff Analytics Problem model.
      *
-     * @param array $items
-     * @param bool  $objectify
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Problem
+     * @return Models\Problem\Problem;
      */
-    function make_tradeoff_problem($items = [], $objectify = false)
+    function tradeoff_problem($definition)
     {
-        $problem = app()->make('TradeoffProblem', $items);
-
-        if ($objectify) {
-            return $problem->objectify();
-        }
-
-        return $problem;
+        return app(Models\Problem\Problem::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column')) {
+if (! function_exists('tradeoff_column')) {
     /**
-     * Make a Tradeoff Analytics ProblemColumn object.
+     * Make a Tradeoff Analytics Column model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumn
+     * @return Models\Problem\Column
      */
-    function make_tradeoff_problem_column($items = [])
+    function tradeoff_column($definition)
     {
-        return app()->make('TradeoffProblemColumn', $items);
+        return app(Models\Problem\Column::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_problem_option')) {
+if (! function_exists('tradeoff_option')) {
     /**
-     * Make a Tradeoff Analytics ProblemOption object.
+     * Make a Tradeoff Analytics Option model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemOption
+     * @return Models\Problem\Option
      */
-    function make_tradeoff_problem_option($items = [])
+    function tradeoff_option($definition)
     {
-        return app()->make('TradeoffProblemOption', $items);
+        return app(Models\Problem\Option::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_categorical_range')) {
+if (! function_exists('tradeoff_categorical_range')) {
     /**
-     * Make a Tradeoff Analytics ProblemColumnCategoricalRange object.
+     * Make a Tradeoff Analytics CategoricalRange model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnCategoricalRange
+     * @return Models\Problem\Range\CategoricalRange
      */
-    function make_tradeoff_problem_column_categorical_range($items = [])
+    function tradeoff_categorical_range($definition)
     {
-        return app()->make('TradeoffProblemColumnCategoricalRange', $items);
+        return app(Models\Problem\Range\CategoricalRange::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_date_range')) {
+if (! function_exists('tradeoff_date_range')) {
     /**
-     * Make a Tradeoff analytics ProblemColumnDateRange object.
+     * Make a Tradeoff analytics DateRange model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnDateRange
+     * @return Models\Problem\Range\DateRange
      */
-    function make_tradeoff_problem_column_date_range($items = [])
+    function tradeoff_date_range($definition)
     {
-        return app()->make('TradeoffProblemColumnDateRange', $items);
+        return app(Models\Problem\Range\DateRange::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_problem_column_value_range')) {
+if (! function_exists('tradeoff_value_range')) {
     /**
-     * Make a Tradeoff analytics ProblemColumnValueRange object.
+     * Make a Tradeoff analytics ValueRange model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\ProblemColumnValueRange
+     * @return Models\Problem\Range\ValueRange
      */
-    function make_tradeoff_problem_column_value_range($items = [])
+    function tradeoff_value_range($definition)
     {
-        return app()->make('TradeoffProblemColumnValueRange', $items);
+        return app(Models\Problem\Range\ValueRange::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_dilemma')) {
+if (! function_exists('tradeoff_dilemma')) {
     /**
-     * Make a Tradeoff analytics Dilemma Object.
+     * Make a Tradeoff analytics Dilemma model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Dilemma
+     * @return Models\Dilemma
      */
-    function make_tradeoff_dilemma($items = [])
+    function tradeoff_dilemma($definition)
     {
-        return app()->make('TradeoffDilemma', $items);
+        return app(Models\Dilemma::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_resolution')) {
+if (! function_exists('tradeoff_resolution')) {
     /**
-     * Make a Tradeoff Analytics Resolution Object.
+     * Make a Tradeoff Analytics Resolution model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Resolution
+     * @return Models\Resolution\Resolution
      */
-    function make_tradeoff_resolution($items = [])
+    function tradeoff_resolution($definition)
     {
-        return app()->make('TradeoffResolution', $items);
+        return app(Models\Resolution\Resolution::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_solution')) {
+if (! function_exists('tradeoff_solution')) {
     /**
-     * Make a Tradeoff Analytics Solution Object.
+     * Make a Tradeoff Analytics Solution model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Solution
+     * @return Models\Resolution\Solution
      */
-    function make_tradeoff_solution($items = [])
+    function tradeoff_solution($definition)
     {
-        return app()->make('TradeoffSolution', $items);
+        return app(Models\Resolution\Solution::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_solution_status_cause')) {
+if (! function_exists('tradeoff_status_cause')) {
     /**
-     * Make a Tradeoff Analytic SolutionStatusCause Object.
+     * Make a Tradeoff Analytic StatusCause model.
      *
-     * @param array $item
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\SolutionStatusCause
+     * @return Models\Resolution\StatusCause
      */
-    function make_tradeoff_solution_status_cause($item = [])
+    function tradeoff_status_cause($definition)
     {
-        return app()->make('TradeoffSolutionStatusCause', $item);
+        return app(Models\Resolution\StatusCause::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_map')) {
+if (! function_exists('tradeoff_excluded_by')) {
     /**
-     * Make a Tradeoff Analytics Map Object.
+     * Make a Tradeoff Analytic ExcludedBy model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Map
+     * @return Models\Resolution\ExcludedBy
      */
-    function make_tradeoff_map($items = [])
+    function tradeoff_excluded_by($definition)
     {
-        return app()->make('TradeoffMap', $items);
+        return app(Models\Resolution\ExcludedBy::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_map_anchor')) {
+if (! function_exists('tradeoff_objective')) {
     /**
-     * Make a Tradeoff Analytics MapAnchor object.
+     * Make a Tradeoff Analytic Objective model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\MapAnchor
+     * @return Models\Resolution\Objective
      */
-    function make_tradeoff_map_anchor($items = [])
+    function tradeoff_objective($definition)
     {
-        return app()->make('TradeoffMapAnchor', $items);
+        return app(Models\Resolution\Objective::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_map_node')) {
+if (! function_exists('tradeoff_preferable_solutions')) {
     /**
-     * Make a Tradeoff Analytics MapNode object.
+     * Make a Tradeoff Analytic PreferableSolutions model.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\MapNode
+     * @return Models\Resolution\PreferableSolutions
      */
-    function make_tradeoff_map_node($items = [])
+    function tradeoff_preferable_solutions($definition)
     {
-        return app()->make('TradeoffMapNode', $items);
+        return app(Models\Resolution\PreferableSolutions::class)->setData($definition);
     }
 }
 
-if (! function_exists('make_tradeoff_map_node_coordinates')) {
+if (! function_exists('tradeoff_map')) {
+    /**
+     * Make a Tradeoff Analytics Map model.
+     *
+     * @param array|\stdClass|string $definition
+     *
+     * @return Models\Resolution\Map\Map
+     */
+    function tradeoff_map($definition)
+    {
+        return app(Models\Resolution\Map\Map::class)->setData($definition);
+    }
+}
+
+if (! function_exists('tradeoff_map_anchor')) {
+    /**
+     * Make a Tradeoff Analytics Anchor model.
+     *
+     * @param array|\stdClass|string $definition
+     *
+     * @return Models\Resolution\Map\Anchor
+     */
+    function tradeoff_map_anchor($definition)
+    {
+        return app(Models\Resolution\Map\Anchor::class)->setData($definition);
+    }
+}
+
+if (! function_exists('tradeoff_map_node')) {
+    /**
+     * Make a Tradeoff Analytics Node model.
+     *
+     * @param array|\stdClass|string $definition
+     *
+     * @return Models\Resolution\Map\MapNode
+     */
+    function tradeoff_map_node($definition)
+    {
+        return app(Models\Resolution\Map\MapNode::class)->setData($definition);
+    }
+}
+
+if (! function_exists('tradeoff_map_node_coordinates')) {
     /**
      * Make a Tradeoff Analytics MapNodeCoordinates object.
      *
-     * @param array $items
+     * @param array|\stdClass|string $definition
      *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\MapNodeCoordinates
+     * @return Models\Resolution\Map\MapNodeCoordinates
      */
-    function make_tradeoff_map_node_coordinates($items = [])
+    function tradeoff_map_node_coordinates($definition)
     {
-        return app()->make('TradeoffMapNodeCoordinates', $items);
+        return app(Models\Resolution\Map\MapNodeCoordinates::class)->setData($definition);
     }
 }

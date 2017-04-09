@@ -2,7 +2,13 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Anchor;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Map;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\MapNodeCoordinates;
+use FindBrok\TradeoffAnalytics\Models\Resolution\PreferableSolutions;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
 use Illuminate\Support\Collection;
+use FindBrok\TradeoffAnalytics\Models\Dilemma;
 use FindBrok\TradeoffAnalytics\Models\Problem\Column;
 use FindBrok\TradeoffAnalytics\Models\Problem\Option;
 use FindBrok\TradeoffAnalytics\Models\Problem\Problem;
@@ -191,5 +197,49 @@ class TestModels extends AbstractTestCase
         $this->assertEquals('phones', $problem->subject);
         $this->assertCount(4, $problem->columns);
         $this->assertCount(16, $problem->options);
+    }
+
+    /**
+     * Test that we are able to create Anchor
+     * model object.
+     *
+     * @return void
+     */
+    public function testCreateAnchorModel()
+    {
+        $anchor = $this->app->make(Anchor::class)->setData([
+            "name"     => "price",
+            "position" => [
+                "x" => 0,
+                "y" => 0,
+            ],
+        ]);
+
+        $this->assertInstanceOf(Anchor::class, $anchor);
+        $this->assertEquals('price', $anchor->name);
+        $this->assertInstanceOf(MapNodeCoordinates::class, $anchor->position);
+        $this->assertEquals(0, $anchor->position->x);
+        $this->assertEquals(0, $anchor->position->y);
+    }
+
+    /**
+     * Test that the Dilemma model can be constructed.
+     *
+     * @return void
+     */
+    public function testCreateDilemmaModelFromAJsonString()
+    {
+        $dilemma = $this->app->make(Dilemma::class)
+                             ->setData($this->getResolution());
+
+        $this->assertInstanceOf(Dilemma::class, $dilemma);
+        $this->assertInstanceOf(Resolution::class, $dilemma->resolution);
+        $this->assertCount(16, $dilemma->resolution->solutions);
+
+        $this->assertInstanceOf(PreferableSolutions::class, $dilemma->resolution->preferable_solutions);
+
+        $this->assertInstanceOf(Map::class, $dilemma->resolution->map);
+        $this->assertCount(4, $dilemma->resolution->map->nodes);
+        $this->assertCount(3, $dilemma->resolution->map->anchors);
     }
 }

@@ -6,8 +6,8 @@
                 "key": "price",
                 "full_name": "Price",
                 "range": {
-                  "low": 0,
-                  "high": 400
+                    "low": 0,
+                    "high": 400
                 },
                 "format": "number:2",
                 "goal": "min",
@@ -237,11 +237,41 @@
             },
             {
                 "solution_ref": "4",
-                "status": "EXCLUDED"
+                "status": "EXCLUDED",
+                "excluded_by": [
+                    {
+                        "solution_ref": "1",
+                        "objectives": [
+                            {
+                                "key": "price",
+                                "difference": 100
+                            },
+                            {
+                                "key": "weight",
+                                "difference": 5
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "solution_ref": "5",
-                "status": "EXCLUDED"
+                "status": "EXCLUDED",
+                "excluded_by": [
+                    {
+                        "solution_ref": "2",
+                        "objectives": [
+                            {
+                                "key": "price",
+                                "difference": 50
+                            },
+                            {
+                                "key": "weight",
+                                "difference": 6
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "solution_ref": "6",
@@ -294,6 +324,13 @@
                 "status": "EXCLUDED"
             }
         ],
+        "preferable_solutions": {
+            "solution_refs": [
+                "1",
+                "2"
+            ],
+            "score": 0.94
+        },
         "map": {
             "nodes": [
                 {

@@ -7,7 +7,7 @@ use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 class Problem extends Model
 {
     /**
-     * An array of Column objects that lists the objectives for the decision problem.
+     * A collection of Column objects that lists the objectives for the decision problem.
      * The field typically specifies the columns for the tabular
      * representation of the data.
      *
@@ -16,7 +16,7 @@ class Problem extends Model
     protected $columns;
 
     /**
-     * An array of Option objects that lists the options for the decision problem.
+     * An collection of Option objects that lists the options for the decision problem.
      * The field typically specifies the rows for the tabular
      * representation of the data.
      *

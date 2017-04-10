@@ -1,31 +1,46 @@
-# Laravel 5 Tradeoff Analytics 
+ <h2 align="center">
+   Laravel 5 Tradeoff Analytics 
+</h2>
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42/big.png)](https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42)
+<p align="center">
+    <a href="https://packagist.org/packages/findbrok/laravel-tradeoff-analytics"><img src="https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/v/stable" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/findbrok/laravel-tradeoff-analytics"><img src="https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/v/unstable" alt="Latest Unstable Version"></a>
+    <a href="https://travis-ci.org/findbrok/laravel-tradeoff-analytics"><img src="https://travis-ci.org/findbrok/laravel-tradeoff-analytics.svg?branch=master" alt="Build Status"></a>
+    <a href="https://styleci.io/repos/59981815"><img src="https://styleci.io/repos/59981815/shield?style=flat" alt="StyleCI"></a>
+    <a href="https://packagist.org/packages/findbrok/laravel-tradeoff-analytics"><img src="https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/license" alt="License"></a>
+    <a href="https://packagist.org/packages/findbrok/laravel-tradeoff-analytics"><img src="https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/downloads" alt="Total Downloads"></a>
+    <a href="https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42" alt="medal"><img src="https://insight.sensiolabs.com/projects/f61e9357-250f-4816-b6c0-ae1ec0bcaa42/mini.png"></a>
+</p>
 
-[![StyleCI](https://styleci.io/repos/59981815/shield?style=flat)](https://styleci.io/repos/59981815)
-[![Dependency Status](https://dependencyci.com/github/findbrok/laravel-tradeoff-analytics/badge)](https://dependencyci.com/github/findbrok/laravel-tradeoff-analytics)
-[![Build Status](https://travis-ci.org/findbrok/laravel-tradeoff-analytics.svg?branch=master)](https://travis-ci.org/findbrok/laravel-tradeoff-analytics)
-[![Latest Stable Version](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/v/stable)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics) 
-[![Total Downloads](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/downloads)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics) 
-[![Latest Unstable Version](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/v/unstable)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics) 
-[![License](https://poser.pugx.org/findbrok/laravel-tradeoff-analytics/license)](https://packagist.org/packages/findbrok/laravel-tradeoff-analytics)
+## Introduction
 
-A simple Laravel 5 wrapper around [IBM Watson Tradeoff Analytics API](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics.html)
+Laravel 5 Tradeoff Analytics is a simple Laravel 5 wrapper around 
+[IBM Watson Tradeoff Analytics API](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics.html)
 
-## How it works
+## License
+Laravel 5 Tradeoff Analytics is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-Tradeoff Analytics is a Watson service that helps people make decisions when balancing multiple objectives. The service uses a mathematical filtering technique called “Pareto Optimization,” that enables users to explore tradeoffs when considering multiple criteria for a single decision.
+### How it works
 
-## Intended Use
+Tradeoff Analytics is a Watson service that helps people make decisions when balancing multiple objectives. 
+The service uses a mathematical filtering technique called “Pareto Optimization,” that enables users 
+to explore tradeoffs when considering multiple criteria for a single decision.
 
-Tradeoff Analytics can help bank analysts or wealth managers select the best investment strategy based on performance attributes, risk, and cost. It can help consumers purchase the product that best matches their preferences based on attributes like features, price, or warranties. Additionally, Tradeoff Analytics can help physicians find the most suitable treatment based on multiple criteria such as success rate, effectiveness, or adverse effects.
+### Intended Use
 
-## Installation
+Tradeoff Analytics can help bank analysts or wealth managers select the best investment strategy 
+based on performance attributes, risk, and cost. It can help consumers purchase the product 
+that best matches their preferences based on attributes like features, price, or 
+warranties. Additionally, Tradeoff Analytics can help physicians find the 
+most suitable treatment based on multiple criteria such as success 
+rate, effectiveness, or adverse effects.
+
+### Installation
 
 Install the package through composer
 
-```
-composer require findbrok/laravel-tradeoff-analytics
+```bash
+$ composer require findbrok/laravel-tradeoff-analytics
 ```
 
 Depending on your Laravel version you will install one of the following
@@ -36,7 +51,8 @@ versions of Tradeoff Analytics.
  5.0.x - 5.3.x  | 0.1.x
  5.4.x          | 0.2.x
 
-Add the ```WatsonBridgeServiceProvider``` and ```TradeoffAnalyticsServiceProvider``` to your providers array in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/master/providers#registering-providers)
+Add the ```WatsonBridgeServiceProvider``` and ```TradeoffAnalyticsServiceProvider``` to your providers array 
+in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/master/providers#registering-providers):
 
 ```php
 'providers' => [
@@ -50,12 +66,14 @@ Add the ```WatsonBridgeServiceProvider``` and ```TradeoffAnalyticsServiceProvide
 ## Configuration
 
 Once installed you can now publish your config file and set your correct configuration for using the package.
-
+```bash
+$ php artisan vendor:publish --tag="watson-api-bridge"
 ```
-php artisan vendor:publish --provider="FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider" --tag="config"
+```bash
+$ php artisan vendor:publish --tag="watson-tradeoff-analytics"
 ```
 
-This will create a file ```config/tradeoff-analytics.php``` , for information on how to set values present in this file see [Configuration Before Usage](https://github.com/findbrok/laravel-tradeoff-analytics/wiki/Configuration-Before-Usage)
+This will create the files ```config/watson-bridge.php``` and ```config/tradeoff-analytics.php``` respectively
 
 ## Usage
 

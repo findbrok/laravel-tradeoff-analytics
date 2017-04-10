@@ -2,9 +2,9 @@
 
 namespace FindBrok\TradeoffAnalytics;
 
-use FindBrok\WatsonBridge\Bridge;
 use Illuminate\Support\ServiceProvider;
-use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalyticsInterface;
+use FindBrok\WatsonBridge\Support\Carpenter;
+use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalytics;
 
 class TradeoffAnalyticsServiceProvider extends ServiceProvider
 {
@@ -35,12 +35,32 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
         // Merge config files.
         $this->mergeConfigFrom(__DIR__.'/../config/tradeoff-analytics.php', 'tradeoff-analytics');
 
-        // Register engine.
-        $this->app->bind(TradeoffAnalyticsInterface::class, Engine::class);
-
-        // Register Bridge.
-        $this->app->bind('TradeoffAnalyticsBridge', function ($app, $args = []) {
-            return new Bridge($args['username'], $args['password'], $args['url']);
+        // Registers the default Watson bridge for
+        // Communicating with Tradeoff Analytics.
+        $this->app->bind(TradeoffAnalytics::class, function ($app) {
+            return $this->buildDefaultBridge();
         });
+    }
+
+    /**
+     * Build and return the default bridge.
+     *
+     * @return \FindBrok\WatsonBridge\Bridge
+     */
+    public function buildDefaultBridge()
+    {
+        /** @var Carpenter $carpenter */
+        $carpenter = $this->app->make(Carpenter::class);
+
+        // Get Default Bridge name.
+        $defaultBridgeName = config('tradeoff-analytics.default_bridge');
+
+        // Get Bridge definition.
+        $bridgeDefinition = config('tradeoff-analytics.bridges.'.$defaultBridgeName);
+
+        // Return new Bridge
+        return $carpenter->constructBridge(
+            $bridgeDefinition['credential_name'], $bridgeDefinition['service'], $bridgeDefinition['auth_method']
+        );
     }
 }

@@ -2,10 +2,14 @@
 
 namespace FindBrok\TradeoffAnalytics\Models;
 
+use FindBrok\TradeoffAnalytics\Concerns;
 use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 
 class Dilemma extends Model
 {
+    use Concerns\Resolvable,
+        Concerns\Bridgeable;
+
     /**
      * The Problem object that was submitted in the
      * call to the dilemmas method.

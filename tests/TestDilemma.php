@@ -2,99 +2,37 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
-use Orchestra\Testbench\TestCase;
+use FindBrok\TradeoffAnalytics\Models\Dilemma;
+use FindBrok\TradeoffAnalytics\Models\Problem\Problem;
 use FindBrok\TradeoffAnalytics\Support\DataCollection;
 
-class TestDilemma extends TestCase
+class TestDilemma extends AbstractTestCase
 {
     /**
-     * The Dilemma Object.
-     *
-     * @var DataCollection\Dilemma
-     */
-    protected $dilemma;
-
-    /**
-     * Setup test.
+     * Test the loadProblem method.
      *
      * @return void
      */
-    public function setUp()
+    public function testLoadProblemMethod()
     {
-        parent::setUp();
-        $this->dilemma = $this->app->make('TradeoffDilemma', $this->getResolution());
+        $dilemma = $this->app->make(Dilemma::class)
+                             ->loadProblem($this->getProblem());
+
+        $this->assertInstanceOf(Problem::class, $dilemma->problem);
+        $this->assertEquals('phones', $dilemma->problem->subject);
+        $this->assertCount(4, $dilemma->problem->columns);
+        $this->assertCount(16, $dilemma->problem->options);
     }
 
     /**
-     * Tear down test.
+     * Test that we can get ResolutionObject from Dilemma.
      *
      * @return void
      */
-    public function tearDown()
+    public function testGetResolutionFromDilemma()
     {
-        parent::tearDown();
-        unset($this->dilemma);
-    }
-
-    /**
-     * Get package providers.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        return ['FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider'];
-    }
-
-    /**
-     * Get Resolution array.
-     *
-     * @return string
-     */
-    public function getResolution()
-    {
-        return json_decode(file_get_contents(__DIR__.'/fixtures/resolution.json'), true);
-    }
-
-    /**
-     * Test that we can create the Dilemma Object.
-     *
-     * @return void
-     */
-    public function testDilemmaCanBeConstructed()
-    {
-        $this->assertInstanceOf(DataCollection\Dilemma::class, $this->dilemma);
-    }
-
-    /**
-     * Test that the has Problem method works.
-     *
-     * @return void
-     */
-    public function testHasProblemMethod()
-    {
-        $this->assertTrue($this->dilemma->hasProblem());
-    }
-
-    /**
-     * Test to see if the getProblem method works.
-     *
-     * @return void
-     */
-    public function testGetProblemMethod()
-    {
-        $problem = $this->dilemma->getProblem();
-        $this->assertInstanceOf(DataCollection\Problem::class, $problem);
-
-        foreach ($problem->get('columns') as $problemColumn) {
-            $this->assertInstanceOf(DataCollection\ProblemColumn::class, $problemColumn);
-        }
-
-        foreach ($problem->get('options') as $problemOption) {
-            $this->assertInstanceOf(DataCollection\ProblemOption::class, $problemOption);
-        }
+        $dilemma = $this->app->make(Dilemma::class)
+                             ->loadProblem($this->getProblem());
     }
 
     /**
@@ -105,16 +43,6 @@ class TestDilemma extends TestCase
     public function testHasResolutionMethod()
     {
         $this->assertTrue($this->dilemma->hasResolution());
-    }
-
-    /**
-     * Test that we can get ResolutionObject from Dilemma.
-     *
-     * @return void
-     */
-    public function testGetResolutionFromDilemma()
-    {
-        $this->assertInstanceOf(DataCollection\Resolution::class, $this->dilemma->getResolution());
     }
 
     /**

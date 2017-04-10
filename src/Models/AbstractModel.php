@@ -46,7 +46,7 @@ abstract class AbstractModel implements DataModelInterface
     /**
      * Sets data to the model.
      *
-     * @param mixed $data
+     * @param array|string|stdClass $data
      *
      * @throws InvalidArgumentException
      *

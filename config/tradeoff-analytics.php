@@ -4,60 +4,42 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Credentials to use
+    | Tradeoff Analytics API version
     |--------------------------------------------------------------------------
     |
-    | Here you may define the default service credentials to use
-    | for performing API calls to Tradeoff Analytics
+    | The API version of Tradeoff analytics being used.
     |
     */
 
-    'default_credentials' => env('TRADEOFF_ANALYTICS_DEFAULT_CREDENTIALS', 'default'),
+    'api_version' => env('TRADEOFF_ANALYTICS_API_VERSION', 'v1'),
 
     /*
     |--------------------------------------------------------------------------
-    | Credentials
+    | Default bridge
     |--------------------------------------------------------------------------
     |
-    | Here you may define credentials for your Tradeoff Analytics Service
-    | you should find them in your Bluemix console. You can define as
-    | many credentials as you want
+    | The name of the default bridge to use for communicating with Watson.
     |
     */
 
-    'credentials' => [
+    'default_bridge' => env('TRADEOFF_ANALYTICS_DEFAULT_BRIDGE', 'default'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Bridges list
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define bridges that your application will use to communicate
+    | with the Tradeoff analytics service. You may define as many bridges
+    | as necessary.
+    |
+    */
+
+    'bridges' => [
         'default' => [
-            'url'      => env('TRADEOFF_ANALYTICS_URL', 'https://gateway.watsonplatform.net/tradeoff-analytics/api/'),
-            'password' => env('TRADEOFF_ANALYTICS_PASSWORD', 'SomePassword'),
-            'username' => env('TRADEOFF_ANALYTICS_USERNAME', 'SomeUsername'),
+            'credential_name' => env('TRADEOFF_ANALYTICS_DEFAULT_CREDENTIAL_NAME', 'default'),
+            'service'         => env('TRADEOFF_ANALYTICS_DEFAULT_SERVICE_NAME', 'tradeoff_analytics'),
+            'auth_method'     => env('TRADEOFF_ANALYTICS_DEFAULT_AUTH_METHOD', 'credentials'),
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Auth method
-    |--------------------------------------------------------------------------
-    |
-    | This specifies which Authentication method we will use for
-    | making request to Watson, default is credentials
-    | - credentials
-    | - token
-    |
-    */
-
-    'auth_method' => 'credentials',
-
-    /*
-    |--------------------------------------------------------------------------
-    | X-Watson-Learning-Opt-Out
-    |--------------------------------------------------------------------------
-    |
-    | By default, Watson collects data from all requests and uses the data
-    | to improve the service. If you do not want to share your data,
-    | set this value to true.
-    |
-    */
-
-    'x_watson_learning_opt_out' => false,
 ];

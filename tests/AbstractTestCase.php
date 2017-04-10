@@ -3,6 +3,7 @@
 namespace FindBrok\TradeoffAnalytics\Tests;
 
 use Orchestra\Testbench\TestCase;
+use FindBrok\WatsonBridge\WatsonBridgeServiceProvider;
 use FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider;
 
 abstract class AbstractTestCase extends TestCase
@@ -36,7 +37,10 @@ abstract class AbstractTestCase extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [TradeoffAnalyticsServiceProvider::class];
+        return [
+            WatsonBridgeServiceProvider::class,
+            TradeoffAnalyticsServiceProvider::class
+        ];
     }
 
     /**

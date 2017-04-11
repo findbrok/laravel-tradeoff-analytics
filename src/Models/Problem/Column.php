@@ -77,7 +77,7 @@ class Column extends Model
      * A significant gain for the column in the range of 0 to 1. The value is a proportion of the complete
      * range for the column. The field is relevant only for columns whose is_objective field is true.
      *
-     * @var double
+     * @var float
      */
     protected $significant_gain;
 
@@ -85,7 +85,7 @@ class Column extends Model
      * A significant loss for the column in the range of 0 to 1. The value is a proportion of the complete
      * range for the column. The field is relevant only for columns whose is_objective field is true.
      *
-     * @var double
+     * @var float
      */
     protected $significant_loss;
 
@@ -93,7 +93,7 @@ class Column extends Model
      * An insignificant loss for the column in the range of 0 to 1. The value is a proportion of the complete
      * range for the column. The field is relevant only for columns whose is_objective field is true.
      *
-     * @var double
+     * @var float
      */
     protected $insignificant_loss;
 

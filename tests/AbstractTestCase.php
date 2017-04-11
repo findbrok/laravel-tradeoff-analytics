@@ -39,7 +39,7 @@ abstract class AbstractTestCase extends TestCase
     {
         return [
             WatsonBridgeServiceProvider::class,
-            TradeoffAnalyticsServiceProvider::class
+            TradeoffAnalyticsServiceProvider::class,
         ];
     }
 

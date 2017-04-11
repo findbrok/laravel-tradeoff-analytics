@@ -19,7 +19,7 @@ class Objective extends Model
      * The difference between the values of the superior option and the current option for the column (objective). The
      * difference can be an integer or a double depending on the column definition.
      *
-     * @var int|double
+     * @var int|float
      */
     protected $difference;
 

@@ -21,7 +21,7 @@ class PreferableSolutions extends Model
      * A confidence score that indicates the percentage of users who are likely to choose one of the preferred
      * solutions. The higher the percentage, the greater the service's confidence in its selections.
      *
-     * @var int|double
+     * @var int|float
      */
     protected $score;
 

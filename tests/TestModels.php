@@ -2,19 +2,19 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
-use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Anchor;
-use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Map;
-use FindBrok\TradeoffAnalytics\Models\Resolution\Map\MapNodeCoordinates;
-use FindBrok\TradeoffAnalytics\Models\Resolution\PreferableSolutions;
-use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
 use Illuminate\Support\Collection;
 use FindBrok\TradeoffAnalytics\Models\Dilemma;
 use FindBrok\TradeoffAnalytics\Models\Problem\Column;
 use FindBrok\TradeoffAnalytics\Models\Problem\Option;
 use FindBrok\TradeoffAnalytics\Models\Problem\Problem;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Map;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Anchor;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
 use FindBrok\TradeoffAnalytics\Models\Problem\Range\DateRange;
 use FindBrok\TradeoffAnalytics\Models\Problem\Range\ValueRange;
 use FindBrok\TradeoffAnalytics\Models\Problem\Range\CategoricalRange;
+use FindBrok\TradeoffAnalytics\Models\Resolution\PreferableSolutions;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\MapNodeCoordinates;
 
 class TestModels extends AbstractTestCase
 {
@@ -154,13 +154,13 @@ class TestModels extends AbstractTestCase
     public function testCreateOptionModel()
     {
         $option = $this->app->make(Option::class)->setData([
-            "key"      => "1",
-            "name"     => "Samsung Galaxy S4",
-            "values"   => [
-                "price"  => 249,
-                "weight" => 130,
-                "brand"  => "Samsung",
-                "rDate"  => "2013-04-29T00:00:00Z",
+            'key'      => '1',
+            'name'     => 'Samsung Galaxy S4',
+            'values'   => [
+                'price'  => 249,
+                'weight' => 130,
+                'brand'  => 'Samsung',
+                'rDate'  => '2013-04-29T00:00:00Z',
             ],
             'app_data' => [
                 'lorem' => 'ipsum',
@@ -174,10 +174,10 @@ class TestModels extends AbstractTestCase
         $this->assertEquals('Samsung Galaxy S4', $option->name);
 
         $this->assertEquals([
-            "price"  => 249,
-            "weight" => 130,
-            "brand"  => "Samsung",
-            "rDate"  => "2013-04-29T00:00:00Z",
+            'price'  => 249,
+            'weight' => 130,
+            'brand'  => 'Samsung',
+            'rDate'  => '2013-04-29T00:00:00Z',
         ], $option->values->toArray());
         $this->assertEquals(['lorem' => 'ipsum'], $option->app_data->toArray());
     }
@@ -208,10 +208,10 @@ class TestModels extends AbstractTestCase
     public function testCreateAnchorModel()
     {
         $anchor = $this->app->make(Anchor::class)->setData([
-            "name"     => "price",
-            "position" => [
-                "x" => 0,
-                "y" => 0,
+            'name'     => 'price',
+            'position' => [
+                'x' => 0,
+                'y' => 0,
             ],
         ]);
 

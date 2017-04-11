@@ -10,14 +10,14 @@ class ValueRange extends Model
     /**
      * The low end of the range.
      *
-     * @var int|double
+     * @var int|float
      */
     protected $low;
 
     /**
      * The high end of the range.
      *
-     * @var int|double
+     * @var int|float
      */
     protected $high;
 

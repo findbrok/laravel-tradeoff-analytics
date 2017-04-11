@@ -13,7 +13,6 @@ trait Bridgeable
      */
     protected $bridge;
 
-
     public function getBridge()
     {
     }

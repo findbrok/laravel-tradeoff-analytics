@@ -4,7 +4,7 @@ namespace FindBrok\TradeoffAnalytics;
 
 use Illuminate\Support\ServiceProvider;
 use FindBrok\WatsonBridge\Support\Carpenter;
-use FindBrok\TradeoffAnalytics\Contracts\TradeoffAnalytics;
+use FindBrok\TradeoffAnalytics\Exceptions\UndefinedBridgeException;
 
 class TradeoffAnalyticsServiceProvider extends ServiceProvider
 {
@@ -37,7 +37,7 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
 
         // Registers the default Watson bridge for
         // Communicating with Tradeoff Analytics.
-        $this->app->bind(TradeoffAnalytics::class, function ($app) {
+        $this->app->bind('TradeoffAnalytics', function () {
             return $this->buildDefaultBridge();
         });
     }
@@ -54,6 +54,11 @@ class TradeoffAnalyticsServiceProvider extends ServiceProvider
 
         // Get Default Bridge name.
         $defaultBridgeName = config('tradeoff-analytics.default_bridge');
+
+        // Bridge name not found.
+        if (! array_key_exists($defaultBridgeName, config('tradeoff-analytics.bridges'))) {
+            throw new UndefinedBridgeException;
+        }
 
         // Get Bridge definition.
         $bridgeDefinition = config('tradeoff-analytics.bridges.'.$defaultBridgeName);

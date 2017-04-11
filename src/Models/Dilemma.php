@@ -3,6 +3,7 @@
 namespace FindBrok\TradeoffAnalytics\Models;
 
 use FindBrok\TradeoffAnalytics\Concerns;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
 use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 
 class Dilemma extends Model
@@ -25,4 +26,14 @@ class Dilemma extends Model
      * @var \FindBrok\TradeoffAnalytics\Models\Resolution\Resolution
      */
     protected $resolution;
+
+    /**
+     * Checks if Dilemma has a resolution.
+     *
+     * @return bool
+     */
+    public function hasResolution()
+    {
+        return (! is_null($this->resolution) && $this->resolution instanceof Resolution);
+    }
 }

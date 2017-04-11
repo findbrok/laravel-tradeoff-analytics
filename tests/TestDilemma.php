@@ -33,17 +33,12 @@ class TestDilemma extends AbstractTestCase
     {
         $dilemma = $this->app->make(Dilemma::class)
                              ->loadProblem($this->getProblem());
+
+        $this->assertFalse($dilemma->hasResolution());
+        $dilemma->resolve();
+        $this->assertTrue($dilemma->hasResolution());
     }
 
-    /**
-     * Test that the hasResolution method on the Dilemma object works.
-     *
-     * @return void
-     */
-    public function testHasResolutionMethod()
-    {
-        $this->assertTrue($this->dilemma->hasResolution());
-    }
 
     /**
      * Test the hasSolution method on the Resolution object.

@@ -4,11 +4,14 @@ namespace FindBrok\TradeoffAnalytics\Models;
 
 use stdClass;
 use JsonMapper;
+use JsonSerializable;
 use InvalidArgumentException;
 use Illuminate\Support\Traits\Macroable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 use FindBrok\TradeoffAnalytics\Contracts\DataModelInterface;
 
-abstract class AbstractModel implements DataModelInterface
+abstract class AbstractModel implements DataModelInterface, Arrayable, Jsonable, JsonSerializable
 {
     use Macroable;
 
@@ -135,6 +138,62 @@ abstract class AbstractModel implements DataModelInterface
         }
 
         return $this->mapObjectDataToModel($objectData);
+    }
+
+    /**
+     * Get the instance as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        // Get the Array Representation of the object.
+        $arrayRep = array_map(function ($value) {
+            return $value instanceof Arrayable ? $value->toArray() : $value;
+        }, get_object_vars($this));
+
+        // Remove null values and return.
+        return collect($arrayRep)->reject(function ($item) {
+            return is_null($item);
+        })->toArray();
+    }
+
+    /**
+     * Convert the object to its JSON representation.
+     *
+     * @param  int $options
+     *
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        // Get the Array Representation of the object.
+        $arrayRep = array_map(function ($value) {
+            if ($value instanceof JsonSerializable) {
+                return $value->jsonSerialize();
+            } elseif ($value instanceof Jsonable) {
+                return json_decode($value->toJson(), true);
+            } elseif ($value instanceof Arrayable) {
+                return $value->toArray();
+            } else {
+                return $value;
+            }
+        }, get_object_vars($this));
+
+        // Remove null values and return.
+        return collect($arrayRep)->reject(function ($item) {
+            return is_null($item);
+        })->jsonSerialize();
     }
 
     /**

@@ -3,8 +3,7 @@
 namespace FindBrok\TradeoffAnalytics\Tests;
 
 use FindBrok\TradeoffAnalytics\Models\Dilemma;
-use FindBrok\TradeoffAnalytics\Models\Problem\Problem;
-use FindBrok\TradeoffAnalytics\Support\DataCollection;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
 
 class TestDilemma extends AbstractTestCase
 {
@@ -15,10 +14,14 @@ class TestDilemma extends AbstractTestCase
      */
     public function testLoadProblemMethod()
     {
-        $dilemma = $this->app->make(Dilemma::class)
-                             ->loadProblem($this->getProblem());
+        $dilemma = $this->app->make(Dilemma::class);
 
-        $this->assertInstanceOf(Problem::class, $dilemma->problem);
+        $this->assertFalse($dilemma->hasProblem());
+
+        $dilemma->loadProblem($this->getProblem());
+
+        $this->assertTrue($dilemma->hasProblem());
+
         $this->assertEquals('phones', $dilemma->problem->subject);
         $this->assertCount(4, $dilemma->problem->columns);
         $this->assertCount(16, $dilemma->problem->options);
@@ -31,35 +34,15 @@ class TestDilemma extends AbstractTestCase
      */
     public function testGetResolutionFromDilemma()
     {
+        $this->app->instance('TradeoffAnalytics', $this->mockWatsonBridge());
+
         $dilemma = $this->app->make(Dilemma::class)
                              ->loadProblem($this->getProblem());
 
         $this->assertFalse($dilemma->hasResolution());
         $dilemma->resolve();
         $this->assertTrue($dilemma->hasResolution());
-    }
-
-
-    /**
-     * Test the hasSolution method on the Resolution object.
-     *
-     * @return void
-     */
-    public function testResolutionHasSolutions()
-    {
-        $this->assertTrue($this->dilemma->getResolution()->hasSolutions());
-    }
-
-    /**
-     * Test we can get a solution object from the Resolution.
-     *
-     * @return void
-     */
-    public function testResolutionGetAllSolutions()
-    {
-        foreach ($this->dilemma->getResolution()->getAllSolutions(true) as $solution) {
-            $this->assertInstanceOf(DataCollection\Solution::class, $solution);
-        }
+        $this->assertInstanceOf(Resolution::class, $dilemma->resolution);
     }
 
     /**
@@ -67,86 +50,86 @@ class TestDilemma extends AbstractTestCase
      *
      * @return void
      */
-    public function testResolutionGetFavouredSolutions()
+    /*public function testResolutionGetFavouredSolutions()
     {
         $favouredSolutions = $this->dilemma->getResolution()->getFavouredSolutions(true);
         $this->assertCount(4, $favouredSolutions);
         foreach ($favouredSolutions as $solution) {
             $this->assertInstanceOf(DataCollection\Solution::class, $solution);
         }
-    }
+    }*/
 
     /**
      * Test that we can get excluded solutions from our Resolution.
      *
      * @return void
      */
-    public function testResolutionGetExcludedSolutions()
+    /*public function testResolutionGetExcludedSolutions()
     {
         $excludedSolutions = $this->dilemma->getResolution()->getExcludedSolutions(true);
         $this->assertCount(11, $excludedSolutions);
         foreach ($excludedSolutions as $solution) {
             $this->assertInstanceOf(DataCollection\Solution::class, $solution);
         }
-    }
+    }*/
 
     /**
      * Test that we can get Incomplete solutions from our Resolution.
      *
      * @return void
      */
-    public function testResolutionGetIncompleteSolutions()
+    /*public function testResolutionGetIncompleteSolutions()
     {
         $incompleteSolutions = $this->dilemma->getResolution()->getIncompleteSolutions(true);
         $this->assertCount(1, $incompleteSolutions);
         foreach ($incompleteSolutions as $solution) {
             $this->assertInstanceOf(DataCollection\Solution::class, $solution);
         }
-    }
+    }*/
 
     /**
      * Test that we can get solutions that do not meet preference from our Resolution.
      *
      * @return void
      */
-    public function testResolutionGetUnmetCategoricalPreferenceSolutions()
+    /*public function testResolutionGetUnmetCategoricalPreferenceSolutions()
     {
         $unmetPreferenceSolutions = $this->dilemma->getResolution()->getUnmetCategoricalPreferenceSolutions(true);
         $this->assertCount(0, $unmetPreferenceSolutions);
-    }
+    }*/
 
     /**
      * Test that the hasMap method on the Resolution works.
      *
      * @return void
      */
-    public function testResolutionHasMapMethod()
+   /* public function testResolutionHasMapMethod()
     {
         $this->assertTrue($this->dilemma->getResolution()->hasMap());
-    }
+    }*/
 
     /**
      * Test that we can get the Map object from the Resolution.
      *
      * @return void
      */
-    public function testResolutionGetMapMethod()
+    /*public function testResolutionGetMapMethod()
     {
         $this->assertInstanceOf(DataCollection\Map::class, $this->dilemma->getResolution()->getMap());
-    }
+    }*/
 
     /**
      * Test that we are able to find a particular solution in the Resolution object.
      *
      * @return void
      */
-    public function testResolutionFindSolutionMethod()
+    /*public function testResolutionFindSolutionMethod()
     {
         $solution = $this->dilemma->getResolution()->findSolution('14');
         $this->assertInstanceOf(DataCollection\Solution::class, $solution);
         $this->assertEquals('14', $solution->get('solution_ref'));
         $this->assertTrue($solution->isFavoured());
-    }
+    }*/
 
     /**
      * Test that we are able to retrieve all solutions that
@@ -154,22 +137,22 @@ class TestDilemma extends AbstractTestCase
      *
      * @return void
      */
-    public function testResolutionGetSolutionsShadowingMethod()
+    /*public function testResolutionGetSolutionsShadowingMethod()
     {
         $solutions = $this->dilemma->getResolution()->getSolutionsShadowing('7');
         $this->assertCount(1, $solutions);
         $this->assertEquals('14', $solutions[0]->get('solution_ref'));
-    }
+    }*/
 
     /**
      * Test that we can get all the solutions being shadowed by a particular solution.
      *
      * @return void
      */
-    public function testResolutionGetSolutionsBeingShadowedByMethod()
+    /*public function testResolutionGetSolutionsBeingShadowedByMethod()
     {
         $solutions = $this->dilemma->getResolution()->getSolutionsBeingShadowedBy('14');
         $this->assertCount(1, $solutions);
         $this->assertEquals('7', $solutions['0']->get('solution_ref'));
-    }
+    }*/
 }

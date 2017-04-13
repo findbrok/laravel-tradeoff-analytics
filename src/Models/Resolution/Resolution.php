@@ -2,6 +2,7 @@
 
 namespace FindBrok\TradeoffAnalytics\Models\Resolution;
 
+use Illuminate\Support\Collection;
 use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 
 class Resolution extends Model
@@ -31,4 +32,18 @@ class Resolution extends Model
      * @var \FindBrok\TradeoffAnalytics\Models\Resolution\Map\Map
      */
     protected $map;
+
+    /**
+     * Checks if Resolution has solutions.
+     *
+     * @return bool
+     */
+    public function hasSolutions()
+    {
+        return (
+            ! is_null($this->solutions) &&
+            $this->solutions instanceof Collection &&
+            $this->solutions->isNotEmpty()
+        );
+    }
 }

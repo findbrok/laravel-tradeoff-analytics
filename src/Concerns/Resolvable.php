@@ -2,6 +2,9 @@
 
 namespace FindBrok\TradeoffAnalytics\Concerns;
 
+use GuzzleHttp\Psr7\Response;
+use FindBrok\WatsonBridge\Exceptions\WatsonBridgeException;
+
 trait Resolvable
 {
     /**
@@ -70,6 +73,8 @@ trait Resolvable
     /**
      * Resolve the Dilemma.
      *
+     * @throws WatsonBridgeException
+     *
      * @return $this
      */
     public function resolve()
@@ -78,7 +83,16 @@ trait Resolvable
         $endpoint = $this->constructEndPoint();
 
         // Get Response from Watson.
-        $response = $this->getBridge()->post($endpoint, []);
+        /** @var Response $response */
+        $response = $this->getBridge()->post($endpoint, $this->problem->toArray());
+
+        // Create Resolution from Response.
+        $resolution = tradeoff_resolution($response->getBody()->getContents());
+
+        // Set it to the model.
+        $this->resolution = $resolution;
+
+        return $this;
     }
 
     /**

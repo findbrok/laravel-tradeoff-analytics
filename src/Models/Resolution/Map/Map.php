@@ -2,6 +2,7 @@
 
 namespace FindBrok\TradeoffAnalytics\Models\Resolution\Map;
 
+use Illuminate\Support\Collection;
 use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 
 class Map extends Model
@@ -25,4 +26,18 @@ class Map extends Model
      * @var \Illuminate\Support\Collection[MapNode]|null
      */
     protected $nodes;
+
+    /**
+     * Checks if Map has anchors.
+     *
+     * @return bool
+     */
+    public function hasAnchors()
+    {
+        return (
+            ! is_null($this->anchors) &&
+            $this->anchors instanceof Collection &&
+            $this->anchors->isNotEmpty()
+        );
+    }
 }

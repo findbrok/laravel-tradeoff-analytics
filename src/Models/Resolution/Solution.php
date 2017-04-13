@@ -57,4 +57,14 @@ class Solution extends Model
      * @var array
      */
     protected $shadow_me;
+
+    /**
+     * Check is the solution is an Optimal one.
+     *
+     * @return bool
+     */
+    public function isFavoured()
+    {
+        return (! is_null($this->status) && $this->status == 'FRONT');
+    }
 }

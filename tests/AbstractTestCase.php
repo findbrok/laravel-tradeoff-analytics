@@ -2,6 +2,9 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
+use \Mockery as m;
+use GuzzleHttp\Psr7\Response;
+use FindBrok\WatsonBridge\Bridge;
 use Orchestra\Testbench\TestCase;
 use FindBrok\WatsonBridge\WatsonBridgeServiceProvider;
 use FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider;
@@ -25,6 +28,7 @@ abstract class AbstractTestCase extends TestCase
      */
     protected function tearDown()
     {
+        m::close();
         parent::tearDown();
     }
 
@@ -61,5 +65,22 @@ abstract class AbstractTestCase extends TestCase
     public function getResolution()
     {
         return file_get_contents(__DIR__.'/fixtures/resolution.json');
+    }
+
+    /**
+     * Return a mocked WatsonAPI bridge with
+     * resolution response.
+     *
+     * @return mixed
+     */
+    public function mockWatsonBridge()
+    {
+        // Mock WatsonBridge Response
+        $mockedBridge = m::mock(Bridge::class);
+        $mockedBridge->shouldReceive('post')
+                     ->withAnyArgs()
+                     ->andReturn(new Response(200, [], $this->getResolution()));
+
+        return $mockedBridge;
     }
 }

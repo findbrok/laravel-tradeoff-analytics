@@ -17,4 +17,16 @@ class CategoricalRange extends Model
      * @var array
      */
     protected $range;
+
+    /**
+     * Get the instance as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return collect($this->range)->reject(function ($item) {
+            return is_null($item);
+        })->toArray();
+    }
 }

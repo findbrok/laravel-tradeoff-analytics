@@ -14,8 +14,8 @@ class ExcludedBy extends Model
     protected $solution_ref;
 
     /**
-     * A collection of Objective objects that describes each value of the superior option that was strictly better than
-     * the current option.
+     * A collection of Objective objects that describes each value of the superior option that was
+     * strictly better than the current option.
      *
      * @var \Illuminate\Support\Collection[Objective]|null
      */

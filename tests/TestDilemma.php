@@ -103,10 +103,10 @@ class TestDilemma extends AbstractTestCase
      *
      * @return void
      */
-   /* public function testResolutionHasMapMethod()
-    {
-        $this->assertTrue($this->dilemma->getResolution()->hasMap());
-    }*/
+    /* public function testResolutionHasMapMethod()
+     {
+         $this->assertTrue($this->dilemma->getResolution()->hasMap());
+     }*/
 
     /**
      * Test that we can get the Map object from the Resolution.

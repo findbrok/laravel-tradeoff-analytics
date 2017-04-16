@@ -59,12 +59,84 @@ class Solution extends Model
     protected $shadow_me;
 
     /**
-     * Check is the solution is an Optimal one.
+     * Checks the status of the Solution.
+     *
+     * @param string $status
      *
      * @return bool
      */
-    public function isFavoured()
+    public function is($status)
     {
-        return (! is_null($this->status) && $this->status == 'FRONT');
+        return $this->status === $status;
+    }
+
+    /**
+     * Checks if the solution is an Optimal one.
+     *
+     * @return bool
+     */
+    public function isFront()
+    {
+        return (! is_null($this->status) && $this->is('FRONT'));
+    }
+
+    /**
+     * Checks if the solution is Incomplete one.
+     *
+     * @return bool
+     */
+    public function isIncomplete()
+    {
+        return (! is_null($this->status) && $this->is('INCOMPLETE'));
+    }
+
+    /**
+     * Checks if the solution is Excluded.
+     *
+     * @return bool
+     */
+    public function isExcluded()
+    {
+        return (! is_null($this->status) && $this->is('EXCLUDED'));
+    }
+
+    /**
+     * Checks if the solution does not meet preference.
+     *
+     * @return bool
+     */
+    public function doesNotMeetPreference()
+    {
+        return (! is_null($this->status) && $this->is('DOES_NOT_MEET_PREFERENCE'));
+    }
+
+    /**
+     * Checks if the Solution has a StatusCause.
+     *
+     * @return bool
+     */
+    public function hasStatusCause()
+    {
+        return (! is_null($this->status_cause) && $this->status_cause instanceof StatusCause);
+    }
+
+    /**
+     * Checks if Solution is shadowed by other solutions.
+     *
+     * @return bool
+     */
+    public function isShadowedByOthers()
+    {
+        return (! is_null($this->shadow_me) && ! empty($this->shadow_me));
+    }
+
+    /**
+     * Checks the the solution is shadows other solutions.
+     *
+     * @return bool
+     */
+    public function shadowsOthers()
+    {
+        return (! is_null($this->shadows) && ! empty($this->shadows));
     }
 }

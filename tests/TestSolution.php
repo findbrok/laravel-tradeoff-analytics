@@ -7,12 +7,12 @@ use FindBrok\TradeoffAnalytics\Models\Resolution\Solution;
 class TestSolution extends AbstractTestCase
 {
     /**
-     * Test that isFavoured method works as
+     * Test that is method works as
      * expected on the Solution model.
      *
      * @return void
      */
-    public function testIsFavouredMethod()
+    public function testIsMethod()
     {
         $solutionF = $this->app->make(Solution::class);
 
@@ -20,44 +20,89 @@ class TestSolution extends AbstractTestCase
             "solution_ref" => "9",
             "status"       => "FRONT",
         ]);
-        $this->assertTrue($solutionF->isFavoured());
+        $this->assertFalse($solutionF->is('EXCLUDED'));
+        $this->assertTrue($solutionF->is('FRONT'));
 
         $solutionNF = $this->app->make(Solution::class);
         $solutionNF->setData([
             "solution_ref" => "9",
             "status"       => "EXCLUDED",
         ]);
-        $this->assertFalse($solutionNF->isFavoured());
+        $this->assertFalse($solutionNF->is('FRONT'));
+        $this->assertTrue($solutionNF->is('EXCLUDED'));
     }
 
     /**
-     * Get an Incomplete solution.
-     *
-     * @return \FindBrok\TradeoffAnalytics\Support\DataCollection\Solution
-     */
-    /*public function getAnInCompleteSolution()
-    {
-        return collect($this->resolution->getIncompleteSolutions(true))->random(1);
-    }*/
-
-    /**
-     * Test that the hasStatusCause method on the Solution object works as Expected.
+     * Test the hasStatusCause method works as
+     * expected.
      *
      * @return void
      */
-    /*public function testHasStatusCauseMethodOnSolutionObject()
+    public function testHasStatusCauseMethod()
     {
-        $this->assertTrue($this->getAnInCompleteSolution()->hasStatusCause());
-    }*/
+        $solution = $this->app->make(Solution::class);
+
+        $this->assertFalse($solution->hasStatusCause());
+
+        $solution->setData([
+            "solution_ref" => "2",
+            "status"       => "INCOMPLETE",
+            "status_cause" => [
+                "message"    => "A column of a option is out of range. Option \"2\" has a value in column \"price\" which is:\"449\" while the column range\" is: [0.0,400.0]",
+                "error_code" => "RANGE_MISMATCH",
+                "tokens"     => [
+                    "price",
+                    "449",
+                    "[0.0,400.0]",
+                ],
+            ],
+        ]);
+        $this->assertTrue($solution->hasStatusCause());
+    }
 
     /**
-     * Test that the getStatusCause will return an StatusCause object.
+     * Test that the isShadowedByOthers method
+     * works as expected.
      *
      * @return void
      */
-    /*public function testGetStatusCauseMethod()
+    public function testIsShadowedByOthersMethod()
     {
-        $solution = $this->getAnInCompleteSolution();
-        $this->assertInstanceOf(DataCollection\SolutionStatusCause::class, $solution->getStatusCause());
-    }*/
+        $solution = $this->app->make(Solution::class);
+
+        $this->assertFalse($solution->isShadowedByOthers());
+
+        $solution->setData([
+            "solution_ref" => "7",
+            "status"       => "FRONT",
+            "shadow_me"    => [
+                "14",
+            ],
+        ]);
+
+        $this->assertTrue($solution->isShadowedByOthers());
+    }
+
+    /**
+     * Test that the shadowsOthers method
+     * works as expected.
+     *
+     * @return void
+     */
+    public function testShadowsOthersMethod()
+    {
+        $solution = $this->app->make(Solution::class);
+
+        $this->assertFalse($solution->shadowsOthers());
+
+        $solution->setData([
+            "solution_ref" => "14",
+            "status"       => "FRONT",
+            "shadows"      => [
+                "7",
+            ],
+        ]);
+
+        $this->assertTrue($solution->shadowsOthers());
+    }
 }

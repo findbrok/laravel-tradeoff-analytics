@@ -46,4 +46,73 @@ class Resolution extends Model
             $this->solutions->isNotEmpty()
         );
     }
+
+    /**
+     * Checks if the Resolution Object has any
+     * solutions.
+     *
+     * @return bool
+     */
+    public function hasNoSolutions()
+    {
+        return ! $this->hasSolutions();
+    }
+
+    /**
+     * Find a specific solution in the Resolution.
+     *
+     * @param mixed $solutionRef
+     *
+     * @return Solution|null
+     */
+    public function findSolution($solutionRef)
+    {
+        // No Solutions
+        if ($this->hasNoSolutions()) {
+            return null;
+        }
+
+        // Search for the solution key.
+        $solutionKey = $this->solutions->search(function ($item) use ($solutionRef) {
+            return $item->solution_ref == $solutionRef;
+        });
+
+        // Return the Solution.
+        return $solutionKey !== false ? $this->solutions[$solutionKey] : null;
+    }
+
+    /**
+     * Find all Solutions shadowing the specific
+     * solution.
+     *
+     * @param mixed $solutionRef
+     *
+     * @return Collection|null
+     */
+    public function findSolutionsShadowing($solutionRef)
+    {
+        // Get the current solution.
+        $solution = $this->findSolution($solutionRef);
+
+        // Nothing found.
+        if (is_null($solution)) {
+            return null;
+        }
+
+        // No solutions is currently shadowing
+        // the current solution.
+        if (! $solution->isShadowedByOthers()) {
+            return null;
+        }
+
+        // Get Solutions shadowing the current solution.
+        $shadowingSolutions = $solution->shadow_me;
+
+        // Return solutions.
+        return collect($shadowingSolutions)->transform(function ($solutionRef) {
+            return $this->findSolution($solutionRef);
+        })->reject(function ($item) {
+            return is_null($item);
+        });
+    }
 }

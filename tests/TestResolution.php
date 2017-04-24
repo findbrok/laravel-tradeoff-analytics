@@ -66,7 +66,6 @@ class TestResolution extends AbstractTestCase
             ],
         ]);
         $this->assertTrue($resolution->hasMap());
-
     }
 
     /**

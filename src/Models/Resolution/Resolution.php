@@ -3,6 +3,7 @@
 namespace FindBrok\TradeoffAnalytics\Models\Resolution;
 
 use Illuminate\Support\Collection;
+use FindBrok\TradeoffAnalytics\Models\Resolution\Map\Map;
 use FindBrok\TradeoffAnalytics\Models\AbstractModel as Model;
 
 class Resolution extends Model
@@ -58,6 +59,16 @@ class Resolution extends Model
     }
 
     /**
+     * Checks if the Resolution Object has a Map.
+     *
+     * @return bool
+     */
+    public function hasMap()
+    {
+        return ! is_null($this->map) && $this->map instanceof Map;
+    }
+
+    /**
      * Find a specific solution in the Resolution.
      *
      * @param mixed $solutionRef
@@ -81,7 +92,33 @@ class Resolution extends Model
     }
 
     /**
-     * Find all Solutions shadowing the specific
+     * Get all solutions with the specified status.
+     *
+     * @param string $status
+     *
+     * @return Collection|null
+     */
+    public function getSolutionsByStatus($status)
+    {
+        // No Solutions.
+        if ($this->hasNoSolutions()) {
+            return null;
+        }
+
+        // Capitalize status word.
+        $status = strtoupper($status);
+
+        // Filter solutions and return.
+        $expectedSolutions = $this->solutions->reject(function (Solution $item) use ($status) {
+            return $item->status != $status;
+        });
+
+        // Return solutions.
+        return $expectedSolutions->isNotEmpty() ? $expectedSolutions->values() : null;
+    }
+
+    /**
+     * Find all solutions shadowing the specific
      * solution.
      *
      * @param mixed $solutionRef
@@ -93,25 +130,94 @@ class Resolution extends Model
         // Get the current solution.
         $solution = $this->findSolution($solutionRef);
 
-        // Nothing found.
-        if (is_null($solution)) {
-            return null;
-        }
-
-        // No solutions is currently shadowing
+        // Nothing found or no solutions is currently shadowing
         // the current solution.
-        if (! $solution->isShadowedByOthers()) {
+        if (is_null($solution) || ! $solution->isShadowedByOthers()) {
             return null;
         }
-
-        // Get Solutions shadowing the current solution.
-        $shadowingSolutions = $solution->shadow_me;
 
         // Return solutions.
-        return collect($shadowingSolutions)->transform(function ($solutionRef) {
+        return $this->makeSolutionRefsArrayToSolutions($solution->shadow_me);
+    }
+
+    /**
+     * Find all solutions being shadowed by the given solution ref.
+     *
+     * @param mixed $solutionRef
+     *
+     * @return Collection|null
+     */
+    public function findSolutionsBeingShadowedBy($solutionRef)
+    {
+        // Get the current solution.
+        $solution = $this->findSolution($solutionRef);
+
+        // Nothing found or no solutions being shadowed by the
+        // current solution.
+        if (is_null($solution) || ! $solution->shadowsOthers()) {
+            return null;
+        }
+
+        // Return solutions
+        return $this->makeSolutionRefsArrayToSolutions($solution->shadows);
+    }
+
+    /**
+     * Return all solutions that are favored or marked as "FRONT".
+     *
+     * @return Collection|null
+     */
+    public function getFavoredSolutions()
+    {
+        return $this->getSolutionsByStatus('FRONT');
+    }
+
+    /**
+     * Return all solutions that were marked as "EXCLUDED".
+     *
+     * @return Collection|null
+     */
+    public function getExcludedSolutions()
+    {
+        return $this->getSolutionsByStatus('EXCLUDED');
+    }
+
+    /**
+     * Return all solutions that are marked as "EXCLUDED".
+     *
+     * @return Collection|null
+     */
+    public function getIncompleteSolutions()
+    {
+        return $this->getSolutionsByStatus('INCOMPLETE');
+    }
+
+    /**
+     * Return all solutions that are marked as "DOES_NOT_MEET_PREFERENCE".
+     *
+     * @return Collection|null
+     */
+    public function getUnmetPreferenceSolutions()
+    {
+        return $this->getSolutionsByStatus('DOES_NOT_MEET_PREFERENCE');
+    }
+
+    /**
+     * Takes an array of Solution ref and makes it into the Solution
+     * object.
+     *
+     * @param array $solutionsRefs
+     *
+     * @return Collection
+     */
+    protected function makeSolutionRefsArrayToSolutions(array $solutionsRefs)
+    {
+        return collect($solutionsRefs)->transform(function ($solutionRef) {
+            // Transform to a SolutionObject.
             return $this->findSolution($solutionRef);
         })->reject(function ($item) {
+            // Remove NULL items from list.
             return is_null($item);
-        });
+        })->values();
     }
 }

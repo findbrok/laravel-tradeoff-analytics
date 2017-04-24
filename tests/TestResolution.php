@@ -32,7 +32,7 @@ class TestResolution extends AbstractTestCase
     }
 
     /**
-     * Test that the hasMap method works as expected
+     * Test that the hasMap method works as expected.
      *
      * @return void
      */

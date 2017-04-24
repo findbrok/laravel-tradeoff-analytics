@@ -35,7 +35,7 @@ class Dilemma extends Model
      */
     public function hasProblem()
     {
-        return (! is_null($this->problem) && $this->problem instanceof Problem);
+        return ! is_null($this->problem) && $this->problem instanceof Problem;
     }
 
     /**
@@ -45,6 +45,6 @@ class Dilemma extends Model
      */
     public function hasResolution()
     {
-        return (! is_null($this->resolution) && $this->resolution instanceof Resolution);
+        return ! is_null($this->resolution) && $this->resolution instanceof Resolution;
     }
 }

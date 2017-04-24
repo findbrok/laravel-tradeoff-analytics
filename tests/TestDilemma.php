@@ -45,7 +45,7 @@ class TestDilemma extends AbstractTestCase
         $this->assertInstanceOf(Resolution::class, $dilemma->resolution);
     }
 
-    /**
+    /*
      * Test that we get only the favoured solutions from our Resolution.
      *
      * @return void
@@ -59,7 +59,7 @@ class TestDilemma extends AbstractTestCase
         }
     }*/
 
-    /**
+    /*
      * Test that we can get excluded solutions from our Resolution.
      *
      * @return void
@@ -73,7 +73,7 @@ class TestDilemma extends AbstractTestCase
         }
     }*/
 
-    /**
+    /*
      * Test that we can get Incomplete solutions from our Resolution.
      *
      * @return void
@@ -87,7 +87,7 @@ class TestDilemma extends AbstractTestCase
         }
     }*/
 
-    /**
+    /*
      * Test that we can get solutions that do not meet preference from our Resolution.
      *
      * @return void
@@ -98,7 +98,7 @@ class TestDilemma extends AbstractTestCase
         $this->assertCount(0, $unmetPreferenceSolutions);
     }*/
 
-    /**
+    /*
      * Test that the hasMap method on the Resolution works.
      *
      * @return void
@@ -108,7 +108,7 @@ class TestDilemma extends AbstractTestCase
          $this->assertTrue($this->dilemma->getResolution()->hasMap());
      }*/
 
-    /**
+    /*
      * Test that we can get the Map object from the Resolution.
      *
      * @return void
@@ -118,7 +118,7 @@ class TestDilemma extends AbstractTestCase
         $this->assertInstanceOf(DataCollection\Map::class, $this->dilemma->getResolution()->getMap());
     }*/
 
-    /**
+    /*
      * Test that we are able to find a particular solution in the Resolution object.
      *
      * @return void
@@ -131,7 +131,7 @@ class TestDilemma extends AbstractTestCase
         $this->assertTrue($solution->isFavoured());
     }*/
 
-    /**
+    /*
      * Test that we are able to retrieve all solutions that
      * shadow a particular solution.
      *
@@ -144,7 +144,7 @@ class TestDilemma extends AbstractTestCase
         $this->assertEquals('14', $solutions[0]->get('solution_ref'));
     }*/
 
-    /**
+    /*
      * Test that we can get all the solutions being shadowed by a particular solution.
      *
      * @return void

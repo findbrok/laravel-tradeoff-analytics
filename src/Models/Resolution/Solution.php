@@ -77,7 +77,7 @@ class Solution extends Model
      */
     public function isFront()
     {
-        return (! is_null($this->status) && $this->is('FRONT'));
+        return ! is_null($this->status) && $this->is('FRONT');
     }
 
     /**
@@ -87,7 +87,7 @@ class Solution extends Model
      */
     public function isIncomplete()
     {
-        return (! is_null($this->status) && $this->is('INCOMPLETE'));
+        return ! is_null($this->status) && $this->is('INCOMPLETE');
     }
 
     /**
@@ -97,7 +97,7 @@ class Solution extends Model
      */
     public function isExcluded()
     {
-        return (! is_null($this->status) && $this->is('EXCLUDED'));
+        return ! is_null($this->status) && $this->is('EXCLUDED');
     }
 
     /**
@@ -107,7 +107,7 @@ class Solution extends Model
      */
     public function doesNotMeetPreference()
     {
-        return (! is_null($this->status) && $this->is('DOES_NOT_MEET_PREFERENCE'));
+        return ! is_null($this->status) && $this->is('DOES_NOT_MEET_PREFERENCE');
     }
 
     /**
@@ -117,7 +117,7 @@ class Solution extends Model
      */
     public function hasStatusCause()
     {
-        return (! is_null($this->status_cause) && $this->status_cause instanceof StatusCause);
+        return ! is_null($this->status_cause) && $this->status_cause instanceof StatusCause;
     }
 
     /**
@@ -127,7 +127,7 @@ class Solution extends Model
      */
     public function isShadowedByOthers()
     {
-        return (! is_null($this->shadow_me) && ! empty($this->shadow_me));
+        return ! is_null($this->shadow_me) && ! empty($this->shadow_me);
     }
 
     /**
@@ -137,6 +137,6 @@ class Solution extends Model
      */
     public function shadowsOthers()
     {
-        return (! is_null($this->shadows) && ! empty($this->shadows));
+        return ! is_null($this->shadows) && ! empty($this->shadows);
     }
 }

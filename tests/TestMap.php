@@ -20,17 +20,17 @@ class TestMap extends AbstractTestCase
         $this->assertFalse($map->hasAnchors());
         $map->setData([
             'anchors' => [
-                "name"     => "price",
-                "position" => [
-                    "x" => 0,
-                    "y" => 0,
+                'name'     => 'price',
+                'position' => [
+                    'x' => 0,
+                    'y' => 0,
                 ],
             ],
         ]);
         $this->assertTrue($map->hasAnchors());
     }
 
-    /**
+    /*
      * Get an Anchor point.
      *
      * @return DataCollection\MapAnchor
@@ -40,7 +40,7 @@ class TestMap extends AbstractTestCase
         return collect($this->map->getAnchors())->random();
     }*/
 
-    /**
+    /*
      * Get a Node point.
      *
      * @return DataCollection\MapNode
@@ -50,7 +50,7 @@ class TestMap extends AbstractTestCase
         return collect($this->map->getNodes())->random();
     }*/
 
-    /**
+    /*
      * Test the getAnchors method on the Map object.
      *
      * @return void
@@ -64,7 +64,7 @@ class TestMap extends AbstractTestCase
         }
     }*/
 
-    /**
+    /*
      * Test the getNodes method on the Map object.
      *
      * @return void
@@ -78,7 +78,7 @@ class TestMap extends AbstractTestCase
         }
     }*/
 
-    /**
+    /*
      * Test that the getCoordinates method on the MapAnchor object works.
      *
      * @return void
@@ -89,7 +89,7 @@ class TestMap extends AbstractTestCase
         $this->assertInstanceOf(DataCollection\MapNodeCoordinates::class, $coordinates);
     }*/
 
-    /**
+    /*
      * Test that the getCoordinates method on the MapNode object works.
      *
      * @return void

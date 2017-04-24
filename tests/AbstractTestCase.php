@@ -2,7 +2,7 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
-use \Mockery as m;
+use Mockery as m;
 use GuzzleHttp\Psr7\Response;
 use FindBrok\WatsonBridge\Bridge;
 use Orchestra\Testbench\TestCase;

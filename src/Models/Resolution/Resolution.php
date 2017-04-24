@@ -40,11 +40,10 @@ class Resolution extends Model
      */
     public function hasSolutions()
     {
-        return (
+        return
             ! is_null($this->solutions) &&
             $this->solutions instanceof Collection &&
-            $this->solutions->isNotEmpty()
-        );
+            $this->solutions->isNotEmpty();
     }
 
     /**

@@ -61,13 +61,13 @@ class TestProblem extends AbstractTestCase
     {
         return [
             [
-                "key"    => "1",
-                "name"   => "Samsung Galaxy S4",
-                "values" => [
-                    "price"  => 249,
-                    "weight" => 130,
-                    "brand"  => "Samsung",
-                    "rDate"  => "2013-04-29T00:00:00Z",
+                'key'    => '1',
+                'name'   => 'Samsung Galaxy S4',
+                'values' => [
+                    'price'  => 249,
+                    'weight' => 130,
+                    'brand'  => 'Samsung',
+                    'rDate'  => '2013-04-29T00:00:00Z',
                 ],
             ],
         ];
@@ -82,16 +82,16 @@ class TestProblem extends AbstractTestCase
     {
         return [
             [
-                "key"          => "price",
-                "type"         => "numeric",
-                "goal"         => "min",
-                "is_objective" => true,
-                "range"        => [
-                    "low"  => 0,
-                    "high" => 400,
+                'key'          => 'price',
+                'type'         => 'numeric',
+                'goal'         => 'min',
+                'is_objective' => true,
+                'range'        => [
+                    'low'  => 0,
+                    'high' => 400,
                 ],
-                "format"       => "number:2",
-                "full_name"    => "Price",
+                'format'       => 'number:2',
+                'full_name'    => 'Price',
             ],
         ];
     }

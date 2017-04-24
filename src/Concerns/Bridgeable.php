@@ -67,7 +67,7 @@ trait Bridgeable
      */
     public function hasBridge()
     {
-        return (! is_null($this->bridge) && $this->bridge instanceof Bridge);
+        return ! is_null($this->bridge) && $this->bridge instanceof Bridge;
     }
 
     /**

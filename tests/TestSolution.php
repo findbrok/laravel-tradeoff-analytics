@@ -17,16 +17,16 @@ class TestSolution extends AbstractTestCase
         $solutionF = $this->app->make(Solution::class);
 
         $solutionF->setData([
-            "solution_ref" => "9",
-            "status"       => "FRONT",
+            'solution_ref' => '9',
+            'status'       => 'FRONT',
         ]);
         $this->assertFalse($solutionF->is('EXCLUDED'));
         $this->assertTrue($solutionF->is('FRONT'));
 
         $solutionNF = $this->app->make(Solution::class);
         $solutionNF->setData([
-            "solution_ref" => "9",
-            "status"       => "EXCLUDED",
+            'solution_ref' => '9',
+            'status'       => 'EXCLUDED',
         ]);
         $this->assertFalse($solutionNF->is('FRONT'));
         $this->assertTrue($solutionNF->is('EXCLUDED'));
@@ -45,15 +45,15 @@ class TestSolution extends AbstractTestCase
         $this->assertFalse($solution->hasStatusCause());
 
         $solution->setData([
-            "solution_ref" => "2",
-            "status"       => "INCOMPLETE",
-            "status_cause" => [
-                "message"    => "A column of a option is out of range. Option \"2\" has a value in column \"price\" which is:\"449\" while the column range\" is: [0.0,400.0]",
-                "error_code" => "RANGE_MISMATCH",
-                "tokens"     => [
-                    "price",
-                    "449",
-                    "[0.0,400.0]",
+            'solution_ref' => '2',
+            'status'       => 'INCOMPLETE',
+            'status_cause' => [
+                'message'    => 'A column of a option is out of range. Option "2" has a value in column "price" which is:"449" while the column range" is: [0.0,400.0]',
+                'error_code' => 'RANGE_MISMATCH',
+                'tokens'     => [
+                    'price',
+                    '449',
+                    '[0.0,400.0]',
                 ],
             ],
         ]);
@@ -73,10 +73,10 @@ class TestSolution extends AbstractTestCase
         $this->assertFalse($solution->isShadowedByOthers());
 
         $solution->setData([
-            "solution_ref" => "7",
-            "status"       => "FRONT",
-            "shadow_me"    => [
-                "14",
+            'solution_ref' => '7',
+            'status'       => 'FRONT',
+            'shadow_me'    => [
+                '14',
             ],
         ]);
 
@@ -96,10 +96,10 @@ class TestSolution extends AbstractTestCase
         $this->assertFalse($solution->shadowsOthers());
 
         $solution->setData([
-            "solution_ref" => "14",
-            "status"       => "FRONT",
-            "shadows"      => [
-                "7",
+            'solution_ref' => '14',
+            'status'       => 'FRONT',
+            'shadows'      => [
+                '7',
             ],
         ]);
 

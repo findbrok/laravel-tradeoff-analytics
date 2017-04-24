@@ -2,9 +2,9 @@
 
 namespace FindBrok\TradeoffAnalytics\Tests;
 
+use Illuminate\Support\Collection;
 use FindBrok\TradeoffAnalytics\Models\Resolution\Solution;
 use FindBrok\TradeoffAnalytics\Models\Resolution\Resolution;
-use Illuminate\Support\Collection;
 
 class TestResolution extends AbstractTestCase
 {
@@ -22,9 +22,9 @@ class TestResolution extends AbstractTestCase
         $resolution->setData([
             'solutions' => [
                 [
-                    "solution_ref" => "14",
-                    "status"       => "FRONT",
-                    "shadows"      => ["7"],
+                    'solution_ref' => '14',
+                    'status'       => 'FRONT',
+                    'shadows'      => ['7'],
                 ],
             ],
         ]);
@@ -43,17 +43,17 @@ class TestResolution extends AbstractTestCase
         $resolution->setData([
             'solutions' => [
                 [
-                    "solution_ref" => "14",
-                    "status"       => "FRONT",
-                    "shadows"      => ["7"],
+                    'solution_ref' => '14',
+                    'status'       => 'FRONT',
+                    'shadows'      => ['7'],
                 ],
                 [
-                    "solution_ref" => "15",
-                    "status"       => "FRONT",
+                    'solution_ref' => '15',
+                    'status'       => 'FRONT',
                 ],
                 [
-                    "solution_ref" => "16",
-                    "status"       => "EXCLUDED",
+                    'solution_ref' => '16',
+                    'status'       => 'EXCLUDED',
                 ],
             ],
         ]);
@@ -81,20 +81,20 @@ class TestResolution extends AbstractTestCase
         $resolution->setData([
             'solutions' => [
                 [
-                    "solution_ref" => "14",
-                    "status"       => "FRONT",
-                    "shadows"      => ["7"],
+                    'solution_ref' => '14',
+                    'status'       => 'FRONT',
+                    'shadows'      => ['7'],
                 ],
                 [
-                    "solution_ref" => "15",
-                    "status"       => "FRONT",
+                    'solution_ref' => '15',
+                    'status'       => 'FRONT',
                 ],
                 [
-                    "solution_ref" => "7",
-                    "status"       => "FRONT",
-                    "shadow_me"    => [
-                        "14",
-                        "15",
+                    'solution_ref' => '7',
+                    'status'       => 'FRONT',
+                    'shadow_me'    => [
+                        '14',
+                        '15',
                     ],
                 ],
             ],
@@ -103,7 +103,7 @@ class TestResolution extends AbstractTestCase
         $solutions = $resolution->findSolutionsShadowing('7');
         $this->assertInstanceOf(Collection::class, $solutions);
         $this->assertCount(2, $solutions);
-        $this->assertEquals("14", $solutions[0]->solution_ref);
-        $this->assertEquals("15", $solutions[1]->solution_ref);
+        $this->assertEquals('14', $solutions[0]->solution_ref);
+        $this->assertEquals('15', $solutions[1]->solution_ref);
     }
 }

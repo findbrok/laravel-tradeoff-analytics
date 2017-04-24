@@ -34,10 +34,9 @@ class Map extends Model
      */
     public function hasAnchors()
     {
-        return (
+        return
             ! is_null($this->anchors) &&
             $this->anchors instanceof Collection &&
-            $this->anchors->isNotEmpty()
-        );
+            $this->anchors->isNotEmpty();
     }
 }

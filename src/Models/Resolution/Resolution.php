@@ -83,7 +83,7 @@ class Resolution extends Model
         }
 
         // Search for the solution key.
-        $solutionKey = $this->solutions->search(function ($item) use ($solutionRef) {
+        $solutionKey = $this->solutions->search(function (Solution $item) use ($solutionRef) {
             return $item->solution_ref == $solutionRef;
         });
 

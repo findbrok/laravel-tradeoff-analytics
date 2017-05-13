@@ -1,4 +1,8 @@
- <h2 align="center">
+<p align="center">
+	<img src="https://raw.githubusercontent.com/findbrok/art-work/master/packages/laravel-tradeoff-analytics/laravel-tradeoff-analytics.png">
+</p>
+
+<h2 align="center">
    Laravel 5 Tradeoff Analytics 
 </h2>
 
@@ -13,7 +17,6 @@
 </p>
 
 ## Introduction
-
 Laravel 5 Tradeoff Analytics is a simple Laravel 5 wrapper around 
 [IBM Watson Tradeoff Analytics API](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tradeoff-analytics.html)
 
@@ -21,13 +24,11 @@ Laravel 5 Tradeoff Analytics is a simple Laravel 5 wrapper around
 Laravel 5 Tradeoff Analytics is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ### How it works
-
 Tradeoff Analytics is a Watson service that helps people make decisions when balancing multiple objectives. 
 The service uses a mathematical filtering technique called “Pareto Optimization,” that enables users 
 to explore tradeoffs when considering multiple criteria for a single decision.
 
 ### Intended Use
-
 Tradeoff Analytics can help bank analysts or wealth managers select the best investment strategy 
 based on performance attributes, risk, and cost. It can help consumers purchase the product 
 that best matches their preferences based on attributes like features, price, or 
@@ -36,7 +37,6 @@ most suitable treatment based on multiple criteria such as success
 rate, effectiveness, or adverse effects.
 
 ### Installation
-
 Install the package through composer
 
 ```bash
@@ -56,16 +56,15 @@ in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/ma
 
 ```php
 'providers' => [
-    // Other Service Providers
-     
+    // Other Service Providers...
     FindBrok\WatsonBridge\WatsonBridgeServiceProvider::class,
     FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider::class,
 ]
 ```
 
-## Configuration
+### Configuration
+Once installed you can now publish your config file and set your correct configuration for using the package:
 
-Once installed you can now publish your config file and set your correct configuration for using the package.
 ```bash
 $ php artisan vendor:publish --tag="watson-api-bridge"
 ```
@@ -73,14 +72,15 @@ $ php artisan vendor:publish --tag="watson-api-bridge"
 $ php artisan vendor:publish --tag="watson-tradeoff-analytics"
 ```
 
-This will create the files ```config/watson-bridge.php``` and ```config/tradeoff-analytics.php``` respectively
+This will create the files ```config/watson-bridge.php``` and ```config/tradeoff-analytics.php``` respectively.
 
-## Usage
-
+### Usage
 Read the [docs](https://github.com/findbrok/laravel-tradeoff-analytics/wiki)
 
-## Credits
-
+### Credits
+Big Thanks to all developers who worked hard to create something amazing!
+ 
+### Creator
 [![Percy Mamedy](https://img.shields.io/badge/Author-Percy%20Mamedy-orange.svg)](https://twitter.com/PercyMamedy)
 
 Twitter: [@PercyMamedy](https://twitter.com/PercyMamedy)

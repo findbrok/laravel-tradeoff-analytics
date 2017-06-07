@@ -49,7 +49,11 @@ versions of Tradeoff Analytics.
  Laravel        | Tradeoff Analytics
 :---------------|:------------------
  5.0.x - 5.3.x  | 0.1.x
- 5.4.x          | 0.2.x
+ 5.4.x - 5.5.x  | 0.2.x
+
+> If you are using Laravel >= 5.5, you can skip service registration 
+> and aliases registration thanks to Laravel auto package discovery 
+> feature.
 
 Add the ```WatsonBridgeServiceProvider``` and ```TradeoffAnalyticsServiceProvider``` to your providers array 
 in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/master/providers#registering-providers):
@@ -59,6 +63,15 @@ in ```config/app.php```, see [Registering Providers](https://laravel.com/docs/ma
     // Other Service Providers...
     FindBrok\WatsonBridge\WatsonBridgeServiceProvider::class,
     FindBrok\TradeoffAnalytics\TradeoffAnalyticsServiceProvider::class,
+]
+```
+
+You can also add the following alias to you app.php file:
+
+```php
+'aliases' => [
+    ...
+    'TradeoffAnalytics' => FindBrok\TradeoffAnalytics\Facades\TradeoffAnalytics::class,
 ]
 ```
 
